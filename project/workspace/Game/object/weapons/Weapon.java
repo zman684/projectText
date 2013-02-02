@@ -1,5 +1,7 @@
 package weapons;
 
+import engine.Utils;
+
 public class Weapon {
 	private static String name;
 	private static int dmg;
@@ -12,7 +14,12 @@ public class Weapon {
 		Weapon.dmg = dmg;
 		Weapon.weight = weight;
 	}
-
+	
+	public String toString(){
+		String summary = name + "," + type + "," + dmg + "," + weight;
+		return summary;
+	}
+	
 	public static String getName() {
 		return name;
 	}

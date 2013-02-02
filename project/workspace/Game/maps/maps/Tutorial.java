@@ -10,7 +10,11 @@ public class Tutorial {
 		}
 		for (int row = 0; row < table.length; row++) {
 			for (int col = 0; col < table[row].length; col++) {
-				System.out.println(table[row][col] + "\t");
+				if(col == 9){
+					System.out.print(table[row][col]);
+				}else{
+					System.out.print(table[row][col] + ",");
+				}
 			}
 			System.out.println();
 		}

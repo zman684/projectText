@@ -8,7 +8,11 @@
 <fullyQualifiedTypeName name="org.toorealcommunity.zach.game.methods.Invo"/>
 <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
 <fullyQualifiedTypeName name="java.io.FileWriter"/>
-<fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="org.toorealcommunity.zach.game.maps.Point"/>
 <fullyQualifiedTypeName name="maps.Tutorial"/>
+<fullyQualifiedTypeName name="weapons.Weapon"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
 </qualifiedTypeNameHistroy>

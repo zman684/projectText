@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import weapons.Weapon;
 import maps.Point;
 import methods.Invo;
 
@@ -12,6 +14,24 @@ public class Engine {
 	private static Invo[] userInvo;
 	private static Point location;
 	private static int Heading;
+	
+	public static void equip(){
+		Scanner in = new Scanner(System.in);
+
+		Weapon[] weapons = Utils.read("object/weapons/weapons.csv");
+		
+		for(int i = 0; i < weapons.length; i++){
+			System.out.println(weapons[i]);
+		}
+		
+		
+		System.out.print("Equip what: ");
+		String item = in.nextLine();
+		Invo a = new Invo(item);
+		
+		System.out.println(item);
+		
+	}
 	
 	public static void goForward(){
 		//north == 1
@@ -170,6 +190,8 @@ public class Engine {
 				location();
 			}else if(action.equals("equipment")){
 				System.out.println(user.equipment());
+			}else if(action.equals("equip")){
+				equip();
 			}else if(action.equals("pickup")){
 				pickUp();
 			}else if(action.equals("status")){

@@ -1,5 +1,7 @@
 package engine;
 
+import weapons.Weapon;
+
 public class User {
 	private static String name;
 	private static double health;
