@@ -10,4 +10,5 @@
 <fullyQualifiedTypeName name="java.io.FileWriter"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="org.toorealcommunity.zach.game.maps.Point"/>
+<fullyQualifiedTypeName name="maps.Tutorial"/>
 </qualifiedTypeNameHistroy>
