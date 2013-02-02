@@ -1,0 +1,41 @@
+package org.toorealcommunity.zach.game.text;
+
+import java.util.Scanner;
+
+public class Engine {
+	private static User user;
+	
+	public static String start(){
+		Scanner in = new Scanner(System.in);
+		System.out.print("What is your name: ");
+		String name = in.nextLine();
+		user = new User(name);
+		String summary = "\nWelcome " + name + "!";
+				summary += "\nIf you need help please type 'help'";
+				summary += "\nOr if you need to know the commands you can type in 'commands'";
+		return summary;
+	}
+	
+	public static void menu(){
+		while(true){
+			Scanner in = new Scanner(System.in);
+			System.out.print(": ");
+			String action = in.nextLine();
+			if(action.equals("straight")){
+				System.out.println("You moved forward");
+			}else if(action.equals("back")){
+				System.out.println("You moved back");
+			}else if(action.equals("left")){
+				System.out.println("You moved left");
+			}else if(action.equals("right")){
+				System.out.println("You moved right");
+			}else if(action.equals("equipment")){
+				user.equipment();
+			}else if(action.equals("status")){
+				user.toString();
+			}else{
+				System.out.println("That is not a correct command please try again.");
+			}
+		}
+	}
+}

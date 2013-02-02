@@ -1,0 +1,135 @@
+package org.toorealcommunity.zach.game.text;
+
+import java.util.Arrays;
+
+public class User {
+	private String name;
+	private double health;
+	private double mana;
+	private String[] invo;
+	private int score;
+	private boolean end;
+	private String rightHand;
+	private String leftHand;
+	private String feet;
+	private String legs;
+	private String torso;
+	private String head;
+	private String back;
+	
+	
+	public User(String name) {
+		this.name = name;
+		this.health = 100;
+		this.mana = 100;
+		this.invo = invo;
+		this.score = 0;
+		this.end = false;
+		this.rightHand = "nothing";
+		this.leftHand = "nothing";
+		this.feet = "Sandals";
+		this.legs = "Rags";
+		this.torso = "nothing";
+		this.head = "nothing";
+		this.back = "nothing";
+	}
+	
+	public String toString() {
+		String summary = "Name: " + name;
+				summary += "\nHealth: " + health;
+				summary += "\nMana: " + mana;
+				summary += "\nScore: " + score;
+		return summary;
+	}
+	
+	public String equipment(){
+		String summary = "Equipment:";
+			summary += "\nRight Hand: " + rightHand;
+			summary += "\nLeft Hand: " + leftHand;
+			summary += "\nHead: " + head;
+			summary += "\nTorso: " + torso;
+			summary += "\nLegs: " + legs;
+			summary += "\nFeet: " + feet;
+			summary += "\nBack " + back;
+		return summary;
+	}
+	
+//	public String invo(){
+//		
+//	}
+
+	//Getters
+	public String getName() {
+		return name;
+	}
+	public double getHealth() {
+		return health;
+	}
+	public double getMana() {
+		return mana;
+	}
+	public String[] getInvo() {
+		return invo;
+	}
+	public int getScore() {
+		return score;
+	}
+	public boolean isEnd() {
+		return end;
+	}
+	public String getRightHand() {
+		return rightHand;
+	}
+	public String getLeftHand() {
+		return leftHand;
+	}
+	public String getFeet() {
+		return feet;
+	}
+	public String getLegs() {
+		return legs;
+	}
+	public String getTorso() {
+		return torso;
+	}
+	public String getHead() {
+		return head;
+	}
+	//Setters
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setHealth(double health) {
+		this.health = health;
+	}
+	public void setMana(double mana) {
+		this.mana = mana;
+	}
+	public void setInvo(String[] invo) {
+		this.invo = invo;
+	}
+	public void setScore(int score) {
+		this.score = score;
+	}
+	public void setEnd(boolean end) {
+		this.end = end;
+	}
+	public void setRightHand(String rightHand) {
+		this.rightHand = rightHand;
+	}
+	public void setLeftHand(String leftHand) {
+		this.leftHand = leftHand;
+	}
+	public void setFeet(String boots) {
+		this.feet = boots;
+	}
+	public void setLegs(String legs) {
+		this.legs = legs;
+	}
+	public void setTorso(String shirt) {
+		this.torso = shirt;
+	}
+	public void setHead(String head) {
+		this.head = head;
+	}
+}

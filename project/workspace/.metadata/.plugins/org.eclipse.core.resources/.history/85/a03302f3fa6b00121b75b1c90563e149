@@ -1,0 +1,27 @@
+package org.toorealcommunity.zach.game.text;
+
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.Scanner;
+
+public class test {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+//			  Frame frame=new Frame("Text Frame");
+//			  frame.setLayout(new FlowLayout());
+//			  frame.setSize(250,250);
+//			  frame.setVisible(true);
+//			  frame.addWindowListener(new WindowAdapter(){
+//			  public void windowClosing(WindowEvent e){
+//			  System.exit(0);
+//			  		}
+//			  });
+		Engine.start();
+		
+		Engine.menu();
+		
+	}
+
+}

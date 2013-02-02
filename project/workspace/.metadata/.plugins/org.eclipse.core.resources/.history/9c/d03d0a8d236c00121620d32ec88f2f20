@@ -1,0 +1,76 @@
+package org.toorealcommunity.zach.game.text;
+
+import java.util.Scanner;
+
+public class Engine {
+	private static User user;
+	
+	public static void commands(){
+		String commands = "Commands:\n-help";
+		commands += "\n-straight";
+		commands += "\n-back";
+		commands += "\n-left";
+		commands += "\n-right";
+		commands += "\n-look around";
+		commands += "\n-status";
+		commands += "\n-equipment";
+		commands += "\n-exit";
+		System.out.println(commands);
+	}
+	
+	public static void help(){
+		String help = "Help:\n";
+		help += "This game is a text adventure created by";
+		help += "\nZach Eriksen, if you need to know your";
+		help += "\nsurrounding's description again please type";
+		help += "\n'look around' or if you need to know what you";
+		help += "\ncan type for commands please type 'commands'";
+		help += "\nif you have any more questions, ideas, or just";
+		help += "\nwant to say somthing please email me at: ";
+		help += "\ntoorealc@yahoo.com";
+		System.out.println(help);
+	}
+	
+	public static void start(){
+		Scanner in = new Scanner(System.in);
+		System.out.print("What is your name: ");
+		String name = in.nextLine();
+		user = new User(name);
+		String summary = "\nWelcome " + name + "!";
+				summary += "\nIf you need help please type 'help'";
+				summary += "\nOr if you need to know the commands you can type in 'commands'";
+		System.out.println(summary);
+	}
+	
+	public static void menu(){
+		while(true){
+			Scanner in = new Scanner(System.in);
+			System.out.print(": ");
+			String action = in.nextLine();
+			if(action.equals("straight")){
+				System.out.println("You moved forward");
+			}else if(action.equals("back")){
+				System.out.println("You moved back");
+			}else if(action.equals("left")){
+				System.out.println("You moved left");
+			}else if(action.equals("right")){
+				System.out.println("You moved right");
+			}else if(action.equals("equipment")){
+				System.out.println(user.equipment());
+			}else if(action.equals("status")){
+				System.out.println(user.toString());
+			}else if(action.equals("help")){
+				help();
+			}else if(action.equals("commands")){
+				commands();
+			}else if(action.equals("look around")){
+				System.out.println("You look are and see...");
+			}else if(action.equals("exit")){
+				System.out.println("goodbye");
+				break;
+			}else{
+				System.out.println("That is not a correct command please try again.");
+			}
+		}
+	}
+}
