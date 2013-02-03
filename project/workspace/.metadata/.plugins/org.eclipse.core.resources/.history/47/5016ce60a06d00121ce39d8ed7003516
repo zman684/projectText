@@ -3,7 +3,6 @@ package monsters;
 public class Monster {
 	private static String name;
 	private static double health;
-	private static int level;
 	private static double mana;
 	private static String rightHand;
 	private static String leftHand;
@@ -14,11 +13,10 @@ public class Monster {
 	private static String back;
 	
 	
-	public Monster(String name,double health,int level) {
+	public Monster(String name) {
 		Monster.name = name;
 		Monster.health = 100;
 		Monster.mana = 100;
-		Monster.level = level;
 		Monster.rightHand = "Stick";
 		Monster.leftHand = "nothing";
 		Monster.feet = "nothing";

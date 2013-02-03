@@ -1,0 +1,22 @@
+package start;
+
+import monsters.Monster;
+import engine.User;
+
+public class Fight {
+	private static int time;
+	private static User player;
+	private static Monster npc;
+	private static String area;
+	private static boolean playerWin;
+	
+	public Fight(User player, Monster npc, String area){
+		Fight.player = player;
+		Fight.npc = npc;
+		Fight.area = area;
+		Fight.time = 0;
+		Fight.playerWin = true;
+	}
+	
+	public static boolean 
+}
