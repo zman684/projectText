@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
 import weapons.Weapon;
 import maps.Point;
 import methods.Invo;
@@ -14,64 +15,6 @@ public class Engine {
 	private static Point location;
 	private static int Heading;
 	
-	/**
-	 * All the commands that a user can type in
-	 */
-	public static void menu(){
-		while(true){
-			Scanner in = new Scanner(System.in);
-			System.out.print(": ");
-			String action = in.nextLine();
-			if(action.equals("forward") || action.equals("go forward") || action.equals("move forward")){
-				System.out.println("You moved forward");
-				goForward();
-			}else if(action.equals("back") || action.equals("go back") || action.equals("move back")){
-				System.out.println("You back up");
-				goBack();
-			}else if(action.equals("left") || action.equals("turn left")){
-				System.out.println("You turn left");
-				turnLeft();
-			}else if(action.equals("right") || action.equals("turn right")){
-				System.out.println("You turn right");
-				turnRight();
-			}else if(action.equals("location")){
-				location();
-			}else if(action.equals("equipment")){
-				System.out.println(user.equipment());
-			}else if(action.equals("equip")){
-				equip();
-			}else if(action.equals("pickup")){
-				pickUp();
-			}else if(action.equals("status")){
-				System.out.println(user.toString());
-			}else if(action.equals("help")){
-				help();
-			}else if(action.equals("commands")){
-				commands();
-			}else if(action.equals("look around")){
-				System.out.println("You look are and see...");
-			}else if(action.equals("exit")){
-				System.out.println("goodbye");
-				break;
-			}else if(action.equals("clear")){
-				clear();
-			}else{
-				System.out.println("That is not a correct command please try again.");
-			}
-		}
-	}
-	
-	/**
-	 * Clears the menu so all text is gone
-	 */
-	private static void clear() {
-		menu();
-	}
-	
-	/**
-	 * Player types in equip
-	 * then the console asks the user what they want to equip
-	 */
 	public static void equip(){
 		Scanner in = new Scanner(System.in);
 
@@ -90,11 +33,6 @@ public class Engine {
 		
 	}
 	
-	/**
-	 * moves forward one
-	 * adds or subtracts x or y
-	 * depending on which way they are facing
-	 */
 	public static void goForward(){
 		//north == 1
 		//east == 2
@@ -115,11 +53,6 @@ public class Engine {
 		}
 	}
 	
-	/**
-	 * Moves back one
-	 * adds or subtracts x or y
-	 * depending on which way they are facing
-	 */
 	public static void goBack(){
 		if(Heading == 1){
 			Point newLocation = new Point(location.getX(),location.getY()-1);
@@ -136,24 +69,14 @@ public class Engine {
 		}
 	}
 	
-	/**
-	 * Turns right once and changes the heading
-	 */
 	public static void turnRight(){
 		Heading += 1;
 	}
 	
-	/**
-	 * Turns left once and changes the heading
-	 */
 	public static void turnLeft(){
 		Heading -= 1;
 	}
 	
-	/**
-	 * Tells the user which direction they are facing
-	 * and what their location is
-	 */
 	public static void location(){
 		if(Heading == 1){
 			System.out.println("You are facing North.");
@@ -167,10 +90,6 @@ public class Engine {
 		System.out.println("Your Coords are, " + location.toString());
 	}
 	
-	/**
-	 * Player types in pickup
-	 * then the console will ask what to pick up
-	 */
 	public static void pickUp(){
 		Scanner in = new Scanner(System.in);
 		System.out.print("Pickup what: ");
@@ -193,12 +112,6 @@ public class Engine {
 		}
 	}
 	
-	/**
-	 * Saves the item to the invo
-	 * (autosave) 
-	 * @param path Which file to save to
-	 * @param acqs Array of invo
-	 */
 	public static void saveItem(String path, Invo[] acqs) {
 		BufferedWriter file;
 		
@@ -215,9 +128,6 @@ public class Engine {
 		}
 	}
 	
-	/**
-	 * Lists of commands that the user name use
-	 */
 	public static void commands(){
 		String commands = "Commands:\n-help";
 		commands += "\n-forward";
@@ -233,9 +143,6 @@ public class Engine {
 		System.out.println(commands);
 	}
 	
-	/**
-	 * Help and promotion message
-	 */
 	public static void help(){
 		String help = "Help:\n";
 		help += "This game is a text adventure created by";
@@ -249,9 +156,6 @@ public class Engine {
 		System.out.println(help);
 	}
 	
-	/**
-	 * Starts the game
-	 */
 	public static void start(){
 		Scanner in = new Scanner(System.in);
 		System.out.print("What is your name: ");
@@ -263,5 +167,47 @@ public class Engine {
 				summary += "\nIf you need help please type 'help'";
 				summary += "\nOr if you need to know the commands you can type in 'commands'";
 		System.out.println(summary);
+	}
+	
+	public static void menu(){
+		while(true){
+			Scanner in = new Scanner(System.in);
+			System.out.print(": ");
+			String action = in.nextLine();
+			if(action.equals("forward")){
+				System.out.println("You moved forward");
+				goForward();
+			}else if(action.equals("back")){
+				System.out.println("You back up");
+				goBack();
+			}else if(action.equals("left")){
+				System.out.println("You turn left");
+				turnLeft();
+			}else if(action.equals("right")){
+				System.out.println("You turn right");
+				turnRight();
+			}else if(action.equals("location")){
+				location();
+			}else if(action.equals("equipment")){
+				System.out.println(user.equipment());
+			}else if(action.equals("equip")){
+				equip();
+			}else if(action.equals("pickup")){
+				pickUp();
+			}else if(action.equals("status")){
+				System.out.println(user.toString());
+			}else if(action.equals("help")){
+				help();
+			}else if(action.equals("commands")){
+				commands();
+			}else if(action.equals("look around")){
+				System.out.println("You look are and see...");
+			}else if(action.equals("exit")){
+				System.out.println("goodbye");
+				break;
+			}else{
+				System.out.println("That is not a correct command please try again.");
+			}
+		}
 	}
 }

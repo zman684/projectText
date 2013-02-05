@@ -17,10 +17,7 @@ public class User {
 	private static String head;
 	private static String back;
 	
-	/**
-	 * Constructor for the user
-	 * @param name the users name
-	 */
+	
 	public User(String name) {
 		User.name = name;
 		User.health = 100;
