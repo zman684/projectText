@@ -77,19 +77,19 @@ public class Utils {
 		Utils.weaponType = weaponType;
 	}
 
-	public static String getWeaponDmg() {
+	public static int getWeaponDmg() {
 		return weaponDmg;
 	}
 
-	public static void setWeaponDmg(String weaponDmg) {
+	public static void setWeaponDmg(int weaponDmg) {
 		Utils.weaponDmg = weaponDmg;
 	}
 
-	public static String getWeaponWeight() {
+	public static double getWeaponWeight() {
 		return weaponWeight;
 	}
 
-	public static void setWeaponWeight(String weaponWeight) {
+	public static void setWeaponWeight(double weaponWeight) {
 		Utils.weaponWeight = weaponWeight;
 	}
 }

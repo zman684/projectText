@@ -9,8 +9,8 @@ import weapons.Weapon;
 public class Utils {
 	private static String weaponName;
 	private static String weaponType;
-	private static String weaponDmg;
-	private static String weaponWeight;
+	private static int weaponDmg;
+	private static double weaponWeight;
 	
 	
 	public static Weapon[] read(String path) {
@@ -33,11 +33,6 @@ public class Utils {
 							Integer.parseInt(parts[2]),
 							Double.parseDouble(parts[3]));
 
-					
-					weaponName = parts[0];
-					weaponType = parts[1];
-					weaponDmg = parts[2];
-					weaponWeight = parts[3];
 					// Add the object to the array
 					// (1) create a new Weapon array with one extra element
 					Weapon[] temp = new Weapon[weapons.length + 1];
@@ -60,36 +55,5 @@ public class Utils {
 			System.err.println("Input exception");
 		}
 		return weapons;
-	}
-	public static String getWeaponName() {
-		return weaponName;
-	}
-
-	public static void setWeaponName(String weaponName) {
-		Utils.weaponName = weaponName;
-	}
-
-	public static String getWeaponType() {
-		return weaponType;
-	}
-
-	public static void setWeaponType(String weaponType) {
-		Utils.weaponType = weaponType;
-	}
-
-	public static String getWeaponDmg() {
-		return weaponDmg;
-	}
-
-	public static void setWeaponDmg(String weaponDmg) {
-		Utils.weaponDmg = weaponDmg;
-	}
-
-	public static String getWeaponWeight() {
-		return weaponWeight;
-	}
-
-	public static void setWeaponWeight(String weaponWeight) {
-		Utils.weaponWeight = weaponWeight;
 	}
 }

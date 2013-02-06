@@ -73,19 +73,19 @@ public class Engine {
 	 * then the console asks the user what they want to equip
 	 */
 	public static void equip(){
-		int i;
+		
 		Scanner in = new Scanner(System.in);
 
 		Weapon[] weapons = Utils.read("object/weapons/weapons.csv");
 		
-		for(i = 0; i < weapons.length; i++){
+		for(int i = 0; i < weapons.length; i++){
 			System.out.println(weapons[i]);
 		}
 		
 		System.out.print("Equip what: ");
 		String item = in.nextLine();
 		
-			if(item.equals(Utils.getWeaponName())){
+			if(item.equals(weapons[i])){
 				User.setRightHand(item);
 				System.out.println(item + " equiped");
 			}else{
@@ -260,7 +260,6 @@ public class Engine {
 		System.out.print("What is your name: ");
 		String name = in.nextLine();
 		user = new User(name);
-		invo = new Invo[1];
 		location = new Point(0,0);
 		Heading = 1;
 		String summary = "\nWelcome " + name + "!";
