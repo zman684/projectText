@@ -4,7 +4,7 @@ public class Invo {
 	private String item;
 	
 	public Invo(String item){
-		this.item = item;
+		this.Item(item);
 	}
 
 	public String toString() {

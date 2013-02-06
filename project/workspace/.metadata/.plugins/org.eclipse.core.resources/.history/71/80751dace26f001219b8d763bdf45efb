@@ -84,11 +84,8 @@ public class Engine {
 		
 		System.out.print("Equip what: ");
 		String item = in.nextLine();
-		
-		for(int i = 0; i < weapons.length; i++){
-			if(item.equals(weapons[i])){
-				User.setRightHand(item);
-			}
+		if(item.equals(weapons[i])){
+			User.setRightHand(item);
 		}
 	}
 	

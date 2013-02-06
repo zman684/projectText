@@ -10,7 +10,7 @@ import methods.Invo;
 
 public class Engine {
 	private static User user;
-	private static Invo[] invo;
+	private static Invo[] userInvo;
 	private static Point location;
 	private static int Heading;
 	
@@ -73,7 +73,6 @@ public class Engine {
 	 * then the console asks the user what they want to equip
 	 */
 	public static void equip(){
-		
 		Scanner in = new Scanner(System.in);
 
 		Weapon[] weapons = Utils.read("object/weapons/weapons.csv");
@@ -84,12 +83,7 @@ public class Engine {
 		
 		System.out.print("Equip what: ");
 		String item = in.nextLine();
-		
-		for(int i = 0; i < weapons.length; i++){
-			if(item.equals(weapons[i])){
-				User.setRightHand(item);
-			}
-		}
+		User.setRightHand(item);
 	}
 	
 	/**
@@ -184,14 +178,14 @@ public class Engine {
 		int option = Integer.parseInt(c);
 		
 		if(option == 1){
-			 Invo[] temp = new Invo[invo.length + 1];
-             for(int i = 0; i < invo.length; i++){
-                 temp[i] = invo[i];
+			 Invo[] temp = new Invo[userInvo.length + 1];
+             for(int i = 0; i < userInvo.length; i++){
+                 temp[i] = userInvo[i]; 
              }
          temp[temp.length - 1] = a;
-         invo = temp;
+         userInvo = temp;
          
-         saveItem("list/invo.csv",invo);
+         saveItem("list/invo.csv",userInvo);
 		}
 	}
 	
