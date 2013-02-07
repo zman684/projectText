@@ -37,6 +37,22 @@ public class User {
 		User.back = "nothing";
 	}
 	
+	public User(String name, double health, double mana, int score, String rightHand, String leftHand,
+			String feet, String legs, String torso, String head, String back) {
+				this.name = name;
+				this.health = health;
+				this.mana = mana;
+				this.score = score;
+				this.rightHand = rightHand;
+				this.leftHand = leftHand;
+				this.feet = feet;
+				this.legs = legs;
+				this.torso = torso;
+				this.head = head;
+				this.back = back;
+				
+			}
+	
 	public String toString() {
 		String summary = "Name: " + name;
 				summary += "\nHealth: " + health;
@@ -97,6 +113,9 @@ public class User {
 	}
 	public String getHead() {
 		return head;
+	}
+	public String getBack(){
+		return back;
 	}
 	//Setters
 	public void setName(String name) {

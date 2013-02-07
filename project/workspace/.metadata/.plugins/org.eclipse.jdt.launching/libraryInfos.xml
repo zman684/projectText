@@ -44,7 +44,7 @@
 <entry path="/usr/lib/jvm/java-7-openjdk-i386/jre/lib/endorsed"/>
 </endorsedDirs>
 </libraryInfo>
-<libraryInfo home="C:\Program Files (x86)\Java\jre7" version="1.7.0_07">
+<libraryInfo home="C:\Program Files (x86)\Java\jre7" version="1.7.0_09">
 <bootpath>
 <entry path="C:\Program Files (x86)\Java\jre7\lib\resources.jar"/>
 <entry path="C:\Program Files (x86)\Java\jre7\lib\rt.jar"/>
