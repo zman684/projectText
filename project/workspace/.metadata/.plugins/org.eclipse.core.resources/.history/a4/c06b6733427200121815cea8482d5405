@@ -84,9 +84,6 @@ public class User {
 	public String getName() {
 		return name;
 	}
-	public int getPassword() {
-		return password;
-	}
 	public double getHealth() {
 		return health;
 	}
@@ -126,9 +123,6 @@ public class User {
 	//Setters
 	public void setName(String name) {
 		User.name = name;
-	}
-	public void setPassword(int password) {
-		User.password = password;
 	}
 	public void setHealth(double health) {
 		User.health = health;

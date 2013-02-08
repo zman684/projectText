@@ -127,9 +127,6 @@ public class User {
 	public void setName(String name) {
 		User.name = name;
 	}
-	public void setPassword(int password) {
-		User.password = password;
-	}
 	public void setHealth(double health) {
 		User.health = health;
 	}

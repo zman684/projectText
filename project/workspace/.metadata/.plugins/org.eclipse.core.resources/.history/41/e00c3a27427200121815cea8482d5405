@@ -34,7 +34,7 @@ public class SaveData {
 				
 				// Create a User object
 				
-				User a = new User(parts[0], Integer.parseInt(parts[1]), Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), Integer.parseInt(parts[4]),
+				User a = new User(parts[0], Integer.parseInt(parts[1]) Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), Integer.parseInt(parts[4]),
 						parts[5],parts[6],parts[7],parts[8],parts[9],parts[10],parts[11]);
 						
 				// Add the object to the array
@@ -121,7 +121,6 @@ public class SaveData {
 	}
 	private static String toCSV(User a) {
 		String summary = a.getName() + ",";
-		summary += a.getPassword() + ",";
 		summary += a.getHealth() + ",";
 		summary += a.getMana() + ",";
 		summary += a.getScore() + ",";

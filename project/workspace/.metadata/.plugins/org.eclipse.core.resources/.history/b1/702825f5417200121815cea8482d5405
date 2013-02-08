@@ -4,7 +4,6 @@ import weapons.Weapon;
 
 public class User {
 	private static String name;
-	public static int password;
 	private static double health;
 	private static double mana;
 	private static String[] invo;
@@ -24,7 +23,6 @@ public class User {
 	 */
 	public User(String name) {
 		User.name = name;
-		User.password = 1234;
 		User.health = 100;
 		User.mana = 100;
 		User.invo = invo;
@@ -39,10 +37,9 @@ public class User {
 		User.back = "nothing";
 	}
 	
-	public User(String name, int password, double health, double mana, int score, String rightHand, String leftHand,
+	public User(String name, double health, double mana, int score, String rightHand, String leftHand,
 			String feet, String legs, String torso, String head, String back) {
 				this.name = name;
-				this.password = password;
 				this.health = health;
 				this.mana = mana;
 				this.score = score;
@@ -84,9 +81,6 @@ public class User {
 	public String getName() {
 		return name;
 	}
-	public int getPassword() {
-		return password;
-	}
 	public double getHealth() {
 		return health;
 	}
@@ -126,9 +120,6 @@ public class User {
 	//Setters
 	public void setName(String name) {
 		User.name = name;
-	}
-	public void setPassword(int password) {
-		User.password = password;
 	}
 	public void setHealth(double health) {
 		User.health = health;
