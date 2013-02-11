@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="18" version="2.0">
+<workbench progressCount="20" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="150" y="150">
 <fastViewData fastViewLocation="1024"/>
@@ -48,7 +48,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Engine.java" partName="Engine.java" path="/home/zach/Documents/projectText/project/workspace/Game/src/engine/Engine.java" title="Engine.java" tooltip="Game/src/engine/Engine.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/src/engine/Engine.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5796" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2181" selectionTopPixel="1294"/>
 </editor>
 <editor id="org.eclipse.ui.DefaultTextEditor" name="weapons.csv" partName="weapons.csv" path="/home/zach/Documents/projectText/project/workspace/Game/object/weapons/weapons.csv" title="weapons.csv" tooltip="Game/object/weapons/weapons.csv" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/object/weapons/weapons.csv"/>
@@ -67,7 +67,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (12 items)"/>
+<category IMemento.internal.id="Warnings (1 item)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="280" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -274,7 +274,7 @@
 <view id="org.eclipse.ui.views.ProblemView" ratio="0.3"/>
 <view id="org.eclipse.jdt.ui.JavadocView" ratio="0.3"/>
 <view id="org.eclipse.jdt.ui.SourceView" ratio="0.3"/>
-<view id="org.eclipse.ui.console.ConsoleView" ratio="0.70746887"/>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.7071611"/>
 </fastViews>
 </fastViewBar>
 <fastViewBar fastViewLocation="131072" id="right" orientation="512" selectedTabId="org.eclipse.ui.views.ContentOutline" style="0">
@@ -341,19 +341,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/src/engine/Utils.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/object/weapons/Weapon.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/Game/list/invo.csv"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/src/engine/Utils.java"/>
 </editors>
-<item historyLabel="Engine.java" index="0">
-<position info="not_deleted" x="2249" y="81"/>
-</item>
-<item historyLabel="weapons.csv" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Engine.java" index="0">
-<position info="not_deleted" x="2271" y="0"/>
-</item>
-<item historyLabel="weapons.csv" index="1">
-<position info="not_deleted" x="51" y="0"/>
-</item>
 <item historyLabel="Engine.java" index="0">
 <position info="not_deleted" x="2179" y="64"/>
 </item>
@@ -489,8 +478,20 @@
 <item historyLabel="invo.csv" index="8">
 <position info="not_deleted" x="5" y="0"/>
 </item>
-<item active="true" historyLabel="Engine.java" index="0">
+<item historyLabel="Engine.java" index="0">
 <position info="not_deleted" x="5764" y="4"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="5357" y="0"/>
+</item>
+<item historyLabel="Utils.java" index="9">
+<position info="not_deleted" x="1462" y="0"/>
+</item>
+<item historyLabel="Utils.java" index="9">
+<position info="not_deleted" x="187" y="0"/>
+</item>
+<item active="true" historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="5357" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -513,11 +514,11 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weapon.java" tooltip="Game/object/weapons/Weapon.java">
-<persistable path="/Game/object/weapons/Weapon.java"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Utils.java" tooltip="Game/src/engine/Utils.java">
 <persistable path="/Game/src/engine/Utils.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weapon.java" tooltip="Game/object/weapons/Weapon.java">
+<persistable path="/Game/object/weapons/Weapon.java"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="invo.csv" tooltip="Game/list/invo.csv">
 <persistable path="/Game/list/invo.csv"/>

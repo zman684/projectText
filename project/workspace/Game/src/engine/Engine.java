@@ -85,7 +85,7 @@ public class Engine {
 		System.out.print("Equip what: ");
 		String item = in.nextLine();
 		
-			if(item.equals(Utils.getWeaponName())){
+			if(item.equals(Weapon.getName())){
 				User.setRightHand(item);
 				System.out.println(item + " equiped");
 			}else{
