@@ -17,4 +17,5 @@
 <fullyQualifiedTypeName name="engine.User"/>
 <fullyQualifiedTypeName name="monsters.Monster"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
 </qualifiedTypeNameHistroy>

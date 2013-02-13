@@ -31,9 +31,9 @@ public class Utils {
 					
 					// Add the object to the array
 					// (1) create a new Weapon array with one extra element
-					Weapon[] temp = new Weapon[weapons.length + 1];
+					Weapon[] temp = new Weapon[weapons.length];
 					// (2) copy all old elements into new
-					for (int i = 0; i < weapons.length; i++) {
+					for (int i = 0; i < weapons.length-1; i++) {
 						temp[i] = weapons[i];
 						System.out.println(weapons[i]);
 					}

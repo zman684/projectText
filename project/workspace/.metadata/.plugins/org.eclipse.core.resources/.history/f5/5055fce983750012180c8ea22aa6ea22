@@ -35,7 +35,7 @@ public class Utils {
 					// (2) copy all old elements into new
 					for (int i = 0; i < weapons.length; i++) {
 						temp[i] = weapons[i];
-						System.out.println(weapons[i]);
+						System.out.println(weapons[i-1]);
 					}
 					// (3) Assign a new Weapon object to the last element of the
 					// arrray

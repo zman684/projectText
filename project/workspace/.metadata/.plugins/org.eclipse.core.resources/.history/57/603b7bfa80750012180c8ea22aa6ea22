@@ -26,24 +26,9 @@ public class Fight {
 		
 		while(playerWin == false){
 			turns++;
-			attack(1);
+			
 		}
+		
 		return playerWin = true;
-	}
-	
-	/**
-	 * 1 == npc (this method will mainly use one)
-	 * 2 == user
-	 */
-	public static void attack(int attacker){
-		if(attacker == 1){
-			int damage = npc.getLevel() * 5;
-			
-			System.out.println("You have been hit!");
-			
-			player.setHealth(player.getHealth()-damage);
-			
-			System.out.println("You now have " + player.getHealth());
-		}
 	}
 }

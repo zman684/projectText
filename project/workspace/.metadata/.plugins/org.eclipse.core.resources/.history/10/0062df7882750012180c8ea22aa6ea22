@@ -75,9 +75,6 @@ public class Monster {
 	public String getHead() {
 		return head;
 	}
-	public int getLevel(){
-		return level;
-	}
 	//Setters
 	public void setName(String name) {
 		Monster.name = name;
