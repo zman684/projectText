@@ -105,32 +105,20 @@ public class Engine {
 		//west == 4
 		if(Heading == 1){
 			Point newLocation = new Point(location.getX(),location.getY()+1);
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
-				location = newLocation;
+			if(newLocation.getX() > 0 || newLocation.getY() > 0){
+			location = newLocation;
 			}else{
 				System.out.println("You can't go that way!");
 			}
 		}else if(Heading == 2){
 			Point newLocation = new Point(location.getX()+1,location.getY());
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
-				location = newLocation;
-			}else{
-				System.out.println("You can't go that way!");
-			}
+			location = newLocation;
 		}else if(Heading == 3){
 			Point newLocation = new Point(location.getX(),location.getY()-1);
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
-				location = newLocation;
-			}else{
-				System.out.println("You can't go that way!");
-			}
+			location = newLocation;
 		}else{
 			Point newLocation = new Point(location.getX()-1,location.getY());
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
-				location = newLocation;
-			}else{
-				System.out.println("You can't go that way!");
-			}
+			location = newLocation;
 		}
 	}
 	
@@ -142,32 +130,16 @@ public class Engine {
 	public static void goBack(){
 		if(Heading == 1){
 			Point newLocation = new Point(location.getX(),location.getY()-1);
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
-				location = newLocation;
-			}else{
-				System.out.println("You can't go that way!");
-			}
+			location = newLocation;
 		}else if(Heading == 2){
 			Point newLocation = new Point(location.getX()-1,location.getY());
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
-				location = newLocation;
-			}else{
-				System.out.println("You can't go that way!");
-			}
+			location = newLocation;
 		}else if(Heading == 3){
 			Point newLocation = new Point(location.getX(),location.getY()+1);
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
-				location = newLocation;
-			}else{
-				System.out.println("You can't go that way!");
-			}
+			location = newLocation;
 		}else{
 			Point newLocation = new Point(location.getX()+1,location.getY());
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
-				location = newLocation;
-			}else{
-				System.out.println("You can't go that way!");
-			}
+			location = newLocation;
 		}
 	}
 	
