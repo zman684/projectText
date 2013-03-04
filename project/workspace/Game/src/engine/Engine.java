@@ -1,10 +1,14 @@
 package engine;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import weapons.Weapon;
+import maps.Move;
 import maps.Point;
 import methods.Invo;
 
@@ -13,6 +17,7 @@ public class Engine {
 	private static Invo[] invo;
 	private static Point location;
 	private static int Heading;
+	private static Move[] map;
 	
 	/**
 	 * All the commands that a user can type in
@@ -105,28 +110,28 @@ public class Engine {
 		//west == 4
 		if(Heading == 1){
 			Point newLocation = new Point(location.getX(),location.getY()+1);
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
+			if(newLocation.getX() >= 0 && newLocation.getY() >= 0){
 				location = newLocation;
 			}else{
 				System.out.println("You can't go that way!");
 			}
 		}else if(Heading == 2){
 			Point newLocation = new Point(location.getX()+1,location.getY());
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
+			if(newLocation.getX() >= 0 && newLocation.getY() >= 0){
 				location = newLocation;
 			}else{
 				System.out.println("You can't go that way!");
 			}
 		}else if(Heading == 3){
 			Point newLocation = new Point(location.getX(),location.getY()-1);
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
+			if(newLocation.getX() >= 0 && newLocation.getY() >= 0){
 				location = newLocation;
 			}else{
 				System.out.println("You can't go that way!");
 			}
 		}else{
 			Point newLocation = new Point(location.getX()-1,location.getY());
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
+			if(newLocation.getX() >= 0 && newLocation.getY() >= 0){
 				location = newLocation;
 			}else{
 				System.out.println("You can't go that way!");
@@ -142,28 +147,28 @@ public class Engine {
 	public static void goBack(){
 		if(Heading == 1){
 			Point newLocation = new Point(location.getX(),location.getY()-1);
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
+			if(newLocation.getX() >= 0 && newLocation.getY() >= 0){
 				location = newLocation;
 			}else{
 				System.out.println("You can't go that way!");
 			}
 		}else if(Heading == 2){
 			Point newLocation = new Point(location.getX()-1,location.getY());
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
+			if(newLocation.getX() >= 0 && newLocation.getY() >= 0){
 				location = newLocation;
 			}else{
 				System.out.println("You can't go that way!");
 			}
 		}else if(Heading == 3){
 			Point newLocation = new Point(location.getX(),location.getY()+1);
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
+			if(newLocation.getX() >= 0 && newLocation.getY() >= 0){
 				location = newLocation;
 			}else{
 				System.out.println("You can't go that way!");
 			}
 		}else{
 			Point newLocation = new Point(location.getX()+1,location.getY());
-			if(newLocation.getX() >= 0 || newLocation.getY() >= 0){
+			if(newLocation.getX() >= 0 && newLocation.getY() >= 0){
 				location = newLocation;
 			}else{
 				System.out.println("You can't go that way!");
@@ -298,6 +303,48 @@ public class Engine {
 		String summary = "\nWelcome " + name + "!";
 				summary += "\nIf you need help please type 'help'";
 				summary += "\nOr if you need to know the commands you can type in 'commands'";
+				read("maps/maps/map.txt");
 		System.out.println(summary);
+	}
+	
+	public static Move[] read(String path) {
+		BufferedReader file;
+		Move[] temp = new Move[1];
+		map = new Move[13];
+		int i = 0;
+		try {
+			file = new BufferedReader(new FileReader(path));
+			String line;
+			String w;
+			int t = 0;
+			while ((line = file.readLine()) != null) {
+				String l = new String(line);
+				for(int j = 0; j < temp.length; j++){
+					w += l.charAt(j);
+					temp[j] = w;
+					for(int q = 0; q < temp.length; q++){
+						map[t] = temp[q];
+					}
+					t++;
+				}
+				BufferedReader reader = new BufferedReader(new FileReader(path));
+				reader.close();
+			}
+//			int[] temm = new int[word.length()];
+//			parse(word);
+//			temm = parse(word);
+			
+//			for(int j = 0; j < word.length(); j++){
+//				int w = temm[j];
+//				map[j] = temp[w];
+//			}
+			//CLOSE!
+			file.close();
+		} catch (FileNotFoundException e) {
+			System.err.println("File Not Found");
+		} catch (IOException e) {
+			System.err.println("Input exception");
+		}
+		return map;
 	}
 }

@@ -1,0 +1,10 @@
+package maps;
+
+public class Move {
+	private char location;
+	
+	public Move(char location){
+		this.location = location;
+	}
+
+}

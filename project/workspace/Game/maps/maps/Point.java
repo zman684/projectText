@@ -29,6 +29,4 @@ package maps;
 			
 			return "(" + d.format(x) + ", " + d.format(y) + ")";
 		}
-
-	}
-
+}
