@@ -326,7 +326,7 @@ public class Engine {
 						temp[u] = move;
 						map[j] = temp[u];
 						System.out.println(map[j]);
-						if (u == 6) {
+						if (u == 7) {
 							j++;
 							u = 0;
 						}

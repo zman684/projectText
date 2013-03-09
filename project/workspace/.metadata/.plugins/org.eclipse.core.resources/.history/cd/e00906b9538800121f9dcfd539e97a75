@@ -11,9 +11,4 @@ public class Move {
 		return location;
 	}
 
-	@Override
-	public String toString() {
-		return location;
-	}
-
 }

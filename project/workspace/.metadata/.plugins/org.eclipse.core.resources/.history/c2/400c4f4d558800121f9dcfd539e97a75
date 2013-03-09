@@ -321,14 +321,15 @@ public class Engine {
 				String l = new String(line);
 				for (int j = 0; j < map.length;) {
 					for (int u = 0; u < temp.length; u++) {
-						w += l.charAt(u);
+						w += l.charAt(j);
 						Move move = new Move(w);
-						temp[u] = move;
-						map[j] = temp[u];
-						System.out.println(map[j]);
-						if (u == 6) {
-							j++;
-							u = 0;
+						temp[j] = move;
+						for (int q = 0; q < temp.length; q++) {
+							map[j] = temp[q];
+							System.out.println(map[j]);
+							if (u == temp.length) {
+								j++;
+							}
 						}
 					}
 				}
