@@ -312,38 +312,33 @@ public class Engine {
 		BufferedReader file;
 		Move[] temp = new Move[7];
 		map = new Move[13];
-		int i = 0;
 		try {
 			file = new BufferedReader(new FileReader(path));
 			String line;
 			String w = "";
 			while ((line = file.readLine()) != null) {
 				String l = new String(line);
-				for (int j = 0; j < map.length;) {
-					for (int u = 0; u < temp.length; u++) {
-						w += l.charAt(u);
-						Move move = new Move(w);
-						temp[u] = move;
-						map[j] = temp[u];
-						System.out.println(map[j]);
-						if (u == 6) {
-							j++;
-							u = 0;
-						}
+				for (int u = 0; u < temp.length; u++) {
+					w += l.charAt(u);
+					Move move = new Move(w);
+					map[u] = move;
+					if (u == temp.length) {
+						u = 0;
 					}
 				}
 
 				BufferedReader reader = new BufferedReader(new FileReader(path));
 				reader.close();
 			}
-			// int[] temm = new int[word.length()];
-			// parse(word);
-			// temm = parse(word);
-
-			// for(int j = 0; j < word.length(); j++){
-			// int w = temm[j];
-			// map[j] = temp[w];
-			// }
+			System.out.println(map[1]);
+				// int[] temm = new int[word.length()];
+				// parse(word);
+				// temm = parse(word);
+	
+				// for(int j = 0; j < word.length(); j++){
+				// int w = temm[j];
+				// map[j] = temp[w];
+				// }
 			// CLOSE!
 			file.close();
 		} catch (FileNotFoundException e) {
