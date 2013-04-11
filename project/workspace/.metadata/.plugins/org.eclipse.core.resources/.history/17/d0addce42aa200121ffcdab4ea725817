@@ -1,0 +1,19 @@
+package maps;
+
+public class Move {
+	private char location;
+
+	public Move(char location){
+		this.location = location;
+	}
+
+	private char getLocation(){
+		return location;
+	}
+
+	@Override
+	public String toString() {
+		return location + "";
+	}
+
+}

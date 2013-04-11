@@ -1,9 +1,6 @@
 package engine;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -18,6 +15,8 @@ public class Engine {
 	private static Point location;
 	private static int Heading;
 	private static Move[] map;
+	private static int startX;
+	private static final int startY = 6;
 
 	/**
 	 * All the commands that a user can type in
@@ -29,11 +28,9 @@ public class Engine {
 			String action = in.nextLine();
 			if (action.equals("forward") || action.equals("go forward")
 					|| action.equals("move forward")) {
-				System.out.println("You moved forward");
 				goForward();
 			} else if (action.equals("back") || action.equals("go back")
 					|| action.equals("move back")) {
-				System.out.println("You back up");
 				goBack();
 			} else if (action.equals("left") || action.equals("turn left")) {
 				System.out.println("You turn left");
@@ -41,6 +38,7 @@ public class Engine {
 			} else if (action.equals("right") || action.equals("turn right")) {
 				System.out.println("You turn right");
 				turnRight();
+
 			} else if (action.equals("location")) {
 				location();
 			} else if (action.equals("equipment")) {
@@ -49,6 +47,8 @@ public class Engine {
 				equip();
 			} else if (action.equals("pickup")) {
 				pickUp();
+			} else if (action.equals("map")) {
+				showMap();
 			} else if (action.equals("status")) {
 				System.out.println(user.toString());
 			} else if (action.equals("help")) {
@@ -112,29 +112,33 @@ public class Engine {
 		// west == 4
 		if (Heading == 1) {
 			Point newLocation = new Point(location.getX(), location.getY() + 1);
-			if (newLocation.getX() >= 0 && newLocation.getY() >= 0) {
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
 				location = newLocation;
+				System.out.println("You moved forward");
 			} else {
 				System.out.println("You can't go that way!");
 			}
 		} else if (Heading == 2) {
 			Point newLocation = new Point(location.getX() + 1, location.getY());
-			if (newLocation.getX() >= 0 && newLocation.getY() >= 0) {
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
 				location = newLocation;
+				System.out.println("You moved forward");
 			} else {
 				System.out.println("You can't go that way!");
 			}
 		} else if (Heading == 3) {
 			Point newLocation = new Point(location.getX(), location.getY() - 1);
-			if (newLocation.getX() >= 0 && newLocation.getY() >= 0) {
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
 				location = newLocation;
+				System.out.println("You moved forward");
 			} else {
 				System.out.println("You can't go that way!");
 			}
 		} else {
 			Point newLocation = new Point(location.getX() - 1, location.getY());
-			if (newLocation.getX() >= 0 && newLocation.getY() >= 0) {
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
 				location = newLocation;
+				System.out.println("You moved forward");
 			} else {
 				System.out.println("You can't go that way!");
 			}
@@ -148,29 +152,33 @@ public class Engine {
 	public static void goBack() {
 		if (Heading == 1) {
 			Point newLocation = new Point(location.getX(), location.getY() - 1);
-			if (newLocation.getX() >= 0 && newLocation.getY() >= 0) {
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
 				location = newLocation;
+				System.out.println("You moved back");
 			} else {
 				System.out.println("You can't go that way!");
 			}
 		} else if (Heading == 2) {
 			Point newLocation = new Point(location.getX() - 1, location.getY());
-			if (newLocation.getX() >= 0 && newLocation.getY() >= 0) {
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
 				location = newLocation;
+				System.out.println("You moved back");
 			} else {
 				System.out.println("You can't go that way!");
 			}
 		} else if (Heading == 3) {
 			Point newLocation = new Point(location.getX(), location.getY() + 1);
-			if (newLocation.getX() >= 0 && newLocation.getY() >= 0) {
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
 				location = newLocation;
+				System.out.println("You moved back");
 			} else {
 				System.out.println("You can't go that way!");
 			}
 		} else {
 			Point newLocation = new Point(location.getX() + 1, location.getY());
-			if (newLocation.getX() >= 0 && newLocation.getY() >= 0) {
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
 				location = newLocation;
+				System.out.println("You moved back");
 			} else {
 				System.out.println("You can't go that way!");
 			}
@@ -180,14 +188,14 @@ public class Engine {
 	/**
 	 * Turns right once and changes the heading
 	 */
-	public static void turnRight() {
+	public static void turnLeft() {
 		Heading += 1;
 	}
 
 	/**
 	 * Turns left once and changes the heading
 	 */
-	public static void turnLeft() {
+	public static void turnRight() {
 		Heading -= 1;
 	}
 
@@ -196,13 +204,17 @@ public class Engine {
 	 */
 	public static void location() {
 		if (Heading == 1) {
-			System.out.println("You are facing North.");
+			System.out.println("You are facing South.");
 		} else if (Heading == 2) {
 			System.out.println("You are facing East.");
 		} else if (Heading == 3) {
-			System.out.println("You are facing South.");
-		} else {
+			System.out.println("You are facing North.");
+		} else if (Heading == 4) {
 			System.out.println("You are facing West.");
+		} else if (Heading > 4) {
+			Heading = 1;
+		} else if (Heading < 1) {
+			Heading = 4;
 		}
 		System.out.println("Your Coords are, " + location.toString());
 	}
@@ -235,7 +247,7 @@ public class Engine {
 
 	/**
 	 * Saves the item to the invo (autosave)
-	 * 
+	 *
 	 * @param path
 	 *            Which file to save to
 	 * @param acqs
@@ -267,6 +279,7 @@ public class Engine {
 		commands += "\n-right";
 		commands += "\n-look around";
 		commands += "\n-location";
+		commands += "\n-map";
 		commands += "\n-status";
 		commands += "\n-pickup";
 		commands += "\n-equipment";
@@ -299,53 +312,59 @@ public class Engine {
 		String name = in.nextLine();
 		user = new User(name);
 		invo = new Invo[1];
-		location = new Point(0, 0);
-		Heading = 1;
+		Heading = 3;
+		map = new Move[] {
+				mapMaker("xxxxx"),
+				mapMaker("xexxx"),
+				mapMaker("xoxxx"),
+				mapMaker("xmxxx"),
+				mapMaker("xooox"),
+				mapMaker("xoxtx"),
+				mapMaker("xsxxx"),
+				mapMaker("xxxxx") };
+		location = new Point(startX, startY);
 		String summary = "\nWelcome " + name + "!";
 		summary += "\nIf you need help please type 'help'";
 		summary += "\nOr if you need to know the commands you can type in 'commands'";
-		read("maps/maps/map.txt");
 		System.out.println(summary);
 	}
 
-	public static Move[] read(String path) {
-		BufferedReader file;
-		Move[] temp = new Move[7];
-		map = new Move[13];
-		try {
-			file = new BufferedReader(new FileReader(path));
-			String line;
-			String w = "";
-			while ((line = file.readLine()) != null) {
-				String l = new String(line);
-				for (int u = 0; u < temp.length; u++) {
-					w += l.charAt(u);
-					Move move = new Move(w);
-					map[u] = move;
-					if (u == temp.length) {
-						u = 0;
-					}
-				}
-
-				BufferedReader reader = new BufferedReader(new FileReader(path));
-				reader.close();
+	public static Move mapMaker(String str) {
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == 's') {
+				startX = i;
 			}
-			System.out.println(map[1]);
-				// int[] temm = new int[word.length()];
-				// parse(word);
-				// temm = parse(word);
-	
-				// for(int j = 0; j < word.length(); j++){
-				// int w = temm[j];
-				// map[j] = temp[w];
-				// }
-			// CLOSE!
-			file.close();
-		} catch (FileNotFoundException e) {
-			System.err.println("File Not Found");
-		} catch (IOException e) {
-			System.err.println("Input exception");
 		}
-		return map;
+		return new Move(str);
+	}
+
+	public static char read(int x, int y) {
+		return map[y].toString().charAt(x);
+	}
+
+	public static String showMap() {
+		System.out.println("Current Location : "
+				+  "(" + (int)location.getX() + "," + (int) location.getY() + ")");
+		String sum = "";
+		int y = 0;
+		boolean start = true;
+		if (start == true) {
+			System.out.print(" ");
+			for (int topX = 0; topX < map[0].toString().length(); topX++) {
+				System.out.print(topX);
+			}
+			System.out.println();
+			start = false;
+		}
+		for (int i = 0; i < map.length; i++) {
+			System.out.print(y);
+			for (int j = 0; j < map[i].length(); j++) {
+				System.out.print(map[i].toString().charAt(j));
+			}
+			System.out.println();
+			y++;
+		}
+		System.out.println();
+		return sum;
 	}
 }
