@@ -353,9 +353,6 @@ public class Engine {
 
 	}
 
-	/**
-	 * @return prints out all of the Items and Weapons in the users Invo
-	 */
 	public static String invo(){
 		String invo = "";
 		invo += "Weapons:";
@@ -367,9 +364,6 @@ public class Engine {
 		return invo;
 	}
 
-	/**
-	 * @param str The map
-	 */
 	public static Move mapMaker(String str) {
 		for (int i = 0; i < str.length(); i++) {
 			if (str.charAt(i) == 's') {

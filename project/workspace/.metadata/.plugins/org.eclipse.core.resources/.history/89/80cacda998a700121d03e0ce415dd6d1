@@ -63,7 +63,7 @@ public class Engine {
 			} else if (action.equals("look around")) {
 				System.out.println("You look are and see...");
 			}else if (action.equals("invo")) {
-				System.out.println(invo());
+				System.out.println(this.invo());
 			} else if (action.equals("exit")) {
 				System.out.println("goodbye");
 				break;
@@ -246,7 +246,8 @@ public class Engine {
 			}
 		}
 		System.out.println("Do you want to pick up: " + item + "?");
-		System.out.print("If this is correct please press 1, or press 2 if it is not: ");
+		System.out
+				.print("If this is correct please press 1, or press 2 if it is not: ");
 		String c = in.nextLine();
 		int option = Integer.parseInt(c);
 
@@ -353,23 +354,16 @@ public class Engine {
 
 	}
 
-	/**
-	 * @return prints out all of the Items and Weapons in the users Invo
-	 */
-	public static String invo(){
+	public String invo(){
 		String invo = "";
-		invo += "Weapons:";
+		invo += "Weapons";
 		invo += "\n";
 		for(Weapon a : wepInvo){
 			invo += a.getName();
-			invo += "\n";
 		}
 		return invo;
 	}
 
-	/**
-	 * @param str The map
-	 */
 	public static Move mapMaker(String str) {
 		for (int i = 0; i < str.length(); i++) {
 			if (str.charAt(i) == 's') {
