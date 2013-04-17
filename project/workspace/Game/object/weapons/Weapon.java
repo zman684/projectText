@@ -1,36 +1,36 @@
 package weapons;
 
 public class Weapon {
-	private static String name;
-	private static int dmg;
-	private static double weight;
-	private static String type;
+	private String name;
+	private int dmg;
+	private double weight;
+	private String type;
 
 	public Weapon(String name, String type, int dmg, double weight){
-		Weapon.name = name;
-		Weapon.type = type;
-		Weapon.dmg = dmg;
-		Weapon.weight = weight;
+		this.name = name;
+		this.type = type;
+		this.dmg = dmg;
+		this.weight = weight;
 	}
-	
+
 	public String toString(){
 		String summary = name + "," + type + "," + dmg + "," + weight;
 		return summary;
 	}
-	
-	public static String getName() {
+
+	public String getName() {
 		return name;
 	}
 
-	public static int getDmg() {
+	public int getDmg() {
 		return dmg;
 	}
 
-	public static double getWeight() {
+	public double getWeight() {
 		return weight;
 	}
 
-	public static String getType() {
+	public String getType() {
 		return type;
 	}
 
