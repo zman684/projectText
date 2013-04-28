@@ -16,27 +16,27 @@ public class SaveData {
 	 * @return User from the file
 	 */
 	public static User[] read(String path) {
-	
+
 		// Create our array of friends
 		User[] user = new User[0];
-		
+
 		// Open the file
-		
+
 		try {
-			
+
 			BufferedReader file = new BufferedReader(new FileReader(path));
-			
+
 			// Read the file
 			String line;
 			while((line = file.readLine()) != null) {
 				// Parse the line that we just read
 				String[] parts = line.split(",");
-				
+
 				// Create a User object
-				
+
 				User a = new User(parts[0], Integer.parseInt(parts[1]), Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), Integer.parseInt(parts[4]),
-						parts[5],parts[6],parts[7],parts[8],parts[9],parts[10],parts[11]);
-						
+						false, (int) Double.parseDouble(parts[5]), parts[6],parts[7],parts[8],parts[9],parts[10],parts[11],parts[12]);
+
 				// Add the object to the array
 				// (1) create a User array, with one extra element
 				User[] user2 = new User[user.length + 1];
@@ -48,21 +48,21 @@ public class SaveData {
 				user2[user2.length - 1] = a;
 				// (4) assign new array's address to user
 				user = user2;
-		
+
 			}
-			
+
 			// Close the file
 			file.close();
-		
+
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found");
 		} catch (IOException e) {
 			System.out.println("Input/output exception");
 		}
-		
+
 		return user;
 	}
-	
+
 	/**
 	 * Use this to save the game
 	 * Rewrites entire array of users
@@ -72,15 +72,15 @@ public class SaveData {
 	public static void writeToSave(String path,User[] a) {
 		try {
 			BufferedWriter file = new BufferedWriter(new FileWriter(path));
-			
+
 			for(int i = 0; i < a.length; i++) {
 				file.write(toCSV(a[i]));
 				if(i < a.length - 1) {
 					file.newLine();
 				}
-				
+
 			}
-			
+
 			// Close the file
 			file.close();
 		} catch (FileNotFoundException e) {
@@ -91,7 +91,7 @@ public class SaveData {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Writes a new User,
 	 * It appends the file by write in a new line of code to the specifications of the User constructor
@@ -105,10 +105,10 @@ public class SaveData {
 
 			for(int i = 0; i < a.length; i++) {
 				file.append(toCSV(a[i]));
-				
-				
+
+
 			}
-			
+
 			// Close the file
 			file.close();
 		} catch (FileNotFoundException e) {
@@ -133,7 +133,7 @@ public class SaveData {
 		summary += a.getHead() + ",";
 		summary += a.getBack();
 		return summary;
-		
-		
+
+
 	}
-}	
+}

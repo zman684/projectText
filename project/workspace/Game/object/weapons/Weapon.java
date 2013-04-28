@@ -1,10 +1,13 @@
 package weapons;
 
-public class Weapon {
+import objects.IObject;
+
+public class Weapon implements IObject{
 	private String name;
 	private int dmg;
 	private double weight;
 	private String type;
+	private final String objectType = "weapon";
 
 	public Weapon(String name, String type, int dmg, double weight){
 		this.name = name;
@@ -32,6 +35,11 @@ public class Weapon {
 
 	public String getType() {
 		return type;
+	}
+
+	@Override
+	public String getObjectType() {
+		return objectType;
 	}
 
 }

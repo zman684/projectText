@@ -1,5 +1,7 @@
 package engine;
 
+import item.Item;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import objects.IObject;
+import protection.Armor;
 import weapons.Weapon;
 import maps.Move;
 import maps.Point;
@@ -14,13 +17,13 @@ import methods.Invo;
 
 public class Engine {
 	private static User user;
-	private static ArrayList<Weapon> wepInvo;
+	private static ArrayList<IObject> invo;
 	private static Point location;
 	private static int Heading;
 	private static Move[] map;
 	private static int startX;
 	private static final int startY = 6;
-	private static Weapon[] worldWeps;
+	private static IObject[] worldObjects;
 	private static Move[] worldMaps;
 
 	/**
@@ -51,7 +54,7 @@ public class Engine {
 			} else if (action.equals("equip")) {
 				equip();
 			} else if (action.equals("pickup")) {
-				 pickUp();
+				pickUp();
 			} else if (action.equals("map")) {
 				showMap();
 			} else if (action.equals("status")) {
@@ -62,7 +65,7 @@ public class Engine {
 				commands();
 			} else if (action.equals("look around")) {
 				System.out.println("You look are and see...");
-			}else if (action.equals("invo")) {
+			} else if (action.equals("invo")) {
 				System.out.println(invo());
 			} else if (action.equals("exit")) {
 				System.out.println("goodbye");
@@ -91,17 +94,48 @@ public class Engine {
 	public static void equip() {
 		String equip = "";
 		Scanner in = new Scanner(System.in);
-		for (int i = 0; i < wepInvo.size(); i++) {
-			System.out.println(((Weapon) wepInvo.get(i)).getName());
+		for (int i = 0; i < invo.size(); i++) {
+			System.out.println(invo.get(i).getName());
 		}
 		System.out.print("Equip what: ");
 		String item = in.nextLine();
-		for (int j = 0; j < wepInvo.size(); j++) {
-			if (item.toLowerCase().equals(
-					((Weapon) wepInvo.get(j)).getName().toLowerCase())) {
-				User.setRightHand(((Weapon) wepInvo.get(j)).getName());
-				equip = ((Weapon) wepInvo.get(j)).getName() + " equiped";
-				break;
+		// TODO: check if it is a weapon or armor
+		for (int j = 0; j < invo.size(); j++) {
+			if (item.toLowerCase().equals(invo.get(j).getName().toLowerCase())) {
+				if (invo.get(j).getObjectType().equals("weapon")) {
+					User.setRightHand(((Weapon) invo.get(j)).getName());
+					equip = ((Weapon) invo.get(j)).getName() + " equiped";
+					invo.remove(j);
+					break;
+				}else if(invo.get(j).getObjectType().equals("armor")){
+					String type = ((Armor) invo.get(j)).getType();
+			        switch (type) {
+			            case "Hand":  User.setLeftHand(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			            case "Back":  User.setBack(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			            case "Legs":  User.setLegs(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			            case "Torso":  User.setTorso(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			            case "Head":  User.setHead(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			            case "Feet":  User.setFeet(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			        }
+				}
 			} else {
 				equip = "You can not equip that item!";
 			}
@@ -230,28 +264,34 @@ public class Engine {
 	/**
 	 * Player types in pickup then the console will ask what to pick up
 	 */
-	// TODO: Fix the pickup method
 	public static void pickUp() {
 		int i = 0;
+		boolean itemIsValid = false;
 		Scanner in = new Scanner(System.in);
 		System.out.print("Pickup what: ");
 		String item = in.nextLine();
-		// TODO: Fix it so it asks if it is a weapon or a item
-		// then get the information from the weapon or item
-		// (make a big array with all the items)
-		for(int j = 0; j < worldWeps.length;j++){
-			//Make sure the item is by them and they don't just put in a random name
-			if(worldWeps[j].getName().toLowerCase().equals(item.toLowerCase())){
+		for (int j = 0; j < worldObjects.length; j++) {
+			// Makes sure the item is by them and they don't just put in a
+			// random name
+			if (worldObjects[j].getName().toLowerCase()
+					.equals(item.toLowerCase())) {
 				i = j;
+				itemIsValid = true;
 			}
 		}
+		// Yes or No
 		System.out.println("Do you want to pick up: " + item + "?");
-		System.out.print("If this is correct please press 1, or press 2 if it is not: ");
-		String c = in.nextLine();
-		int option = Integer.parseInt(c);
+		String option = in.nextLine();
 
-		if (option == 1) {
-			 wepInvo.add(worldWeps[i]);
+		if (option.toLowerCase().equals("yes")) {
+			if (itemIsValid) {
+				invo.add(worldObjects[i]);
+				System.out.println("You picked up " + worldObjects[i]);
+			} else {
+				System.out.println("You can not pick that up.");
+			}
+		} else {
+			menu();
 		}
 	}
 
@@ -323,9 +363,7 @@ public class Engine {
 		String name = in.nextLine();
 		user = new User(name);
 		Heading = 3;
-		wepInvo = new ArrayList<Weapon>();
-		wepInvo.add(new Weapon("Wood Staff", "Staff", 10, 7.0));
-		wepInvo.add(new Weapon("Long Bow", "Bow", 7, 3.0));
+		invo = new ArrayList<IObject>();
 		map = new Move[] { mapMaker("xxxxx"), mapMaker("xexxx"),
 				mapMaker("xoxxx"), mapMaker("xmxxx"), mapMaker("xooox"),
 				mapMaker("xoxtx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
@@ -334,41 +372,61 @@ public class Engine {
 		summary += "\nIf you need help please type 'help'";
 		summary += "\nOr if you need to know the commands you can type in 'commands'";
 		System.out.println(summary);
-		//ALL DEFAULT MAPS, WEAPONS, AND ITEMS//
-		worldWeps = new Weapon[]{
-			new Weapon("Long Sword", "Sword", 5, 4.0)
-		};
-		//MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
-		worldMaps = new Move[]{
-				mapMaker("xxx"),
-				mapMaker("xex"),
-				mapMaker("xox"),
-				mapMaker("xox"),
-				mapMaker("xox"),
-				mapMaker("xox"),
-				mapMaker("xox"),
-				mapMaker("xsx"),
-				mapMaker("xxx")
-			};
+		// ALL DEFAULT MAPS, WEAPONS, AND ITEMS//
+		worldObjects = new IObject[] { new Weapon("Sword", "Melee", 5, 4.0),
+				new Weapon("Staff", "Magic", 5, 4.0),
+				new Weapon("Bow", "Range", 5, 4.0),
+				new Weapon("Dagger", "Melee", 5, 4.0),
+				new Armor("Helm", "Head", 5, 4.0),
+				new Armor("Top", "Torso", 5, 4.0),
+				new Armor("Legs", "Legs", 5, 4.0),
+				new Armor("Boots", "Feet", 5, 4.0),
+				new Armor("Gloves", "Hand", 5, 4.0),
+				new Armor("Cape", "Back", 5, 4.0),
+				new Item("Beer", "Alchahol", -1, 10) };
+		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
+		worldMaps = new Move[] { mapMaker("xxx"), mapMaker("xex"),
+				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
+				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
+				mapMaker("xxx") };
 
 	}
 
 	/**
 	 * @return prints out all of the Items and Weapons in the users Invo
 	 */
-	public static String invo(){
-		String invo = "";
-		invo += "Weapons:";
-		invo += "\n";
-		for(Weapon a : wepInvo){
-			invo += a.getName();
-			invo += "\n";
+	public static String invo() {
+		String invoList = "";
+		invoList += "Weapons:";
+		invoList += "\n";
+		for (IObject a : invo) {
+			if (a.getObjectType().equals("weapon")) {
+				invoList += "\t" + a.getName();
+				invoList += "\n";
+			}
 		}
-		return invo;
+		invoList += "Armor:";
+		invoList += "\n";
+		for (IObject a : invo) {
+			if (a.getObjectType().equals("armor")) {
+				invoList += "\t" + a.getName();
+				invoList += "\n";
+			}
+		}
+		invoList += "Items:";
+		invoList += "\n";
+		for (IObject a : invo) {
+			if (a.getObjectType().equals("item")) {
+				invoList += "\t" + a.getName();
+				invoList += "\n";
+			}
+		}
+		return invoList;
 	}
 
 	/**
-	 * @param str The map
+	 * @param str
+	 *            The map
 	 */
 	public static Move mapMaker(String str) {
 		for (int i = 0; i < str.length(); i++) {

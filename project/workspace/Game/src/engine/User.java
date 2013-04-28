@@ -1,5 +1,7 @@
 package engine;
 
+import java.util.ArrayList;
+
 import weapons.Weapon;
 
 public class User {
@@ -7,7 +9,8 @@ public class User {
 	public static int password;
 	private static double health;
 	private static double mana;
-	private static String[] invo;
+	private static double level;
+	private static ArrayList<Weapon> wepInvo;
 	private static int score;
 	private static boolean end;
 	private static String rightHand;
@@ -17,34 +20,38 @@ public class User {
 	private static String torso;
 	private static String head;
 	private static String back;
-	
+
 	/**
 	 * Constructor for the user
 	 * @param name the users name
 	 */
 	public User(String name) {
-		User.name = name;
-		User.password = 1234;
-		User.health = 100;
-		User.mana = 100;
-		User.invo = invo;
-		User.score = 0;
-		User.end = false;
-		User.rightHand = "nothing";
-		User.leftHand = "nothing";
-		User.feet = "Sandals";
-		User.legs = "Rags";
-		User.torso = "nothing";
-		User.head = "nothing";
-		User.back = "nothing";
+		this.name = name;
+		password = 1234;
+		health = 100;
+		mana = 100;
+		level = 1.0;
+		wepInvo = new ArrayList<Weapon>();
+		score = 0;
+		end = false;
+		rightHand = "nothing";
+		leftHand = "nothing";
+		feet = "Sandals";
+		legs = "Rags";
+		torso = "nothing";
+		head = "nothing";
+		back = "nothing";
 	}
-	
-	public User(String name, int password, double health, double mana, int score, String rightHand, String leftHand,
+
+	public User(String name, int password, double health, double mana, double level, boolean end, int score, String rightHand, String leftHand,
 			String feet, String legs, String torso, String head, String back) {
 				this.name = name;
 				this.password = password;
 				this.health = health;
 				this.mana = mana;
+				this.level = level;
+				this.end = end;
+//				wepInvo = new ArrayList<Weapon>();
 				this.score = score;
 				this.rightHand = rightHand;
 				this.leftHand = leftHand;
@@ -53,9 +60,9 @@ public class User {
 				this.torso = torso;
 				this.head = head;
 				this.back = back;
-				
+
 			}
-	
+
 	public String toString() {
 		String summary = "Name: " + name;
 				summary += "\nHealth: " + health;
@@ -63,7 +70,7 @@ public class User {
 				summary += "\nScore: " + score;
 		return summary;
 	}
-	
+
 	public String equipment(){
 		String summary = "Equipment:";
 			summary += "\nRight Hand: " + rightHand;
@@ -75,9 +82,9 @@ public class User {
 			summary += "\nBack " + back;
 		return summary;
 	}
-	
+
 //	public String invo(){
-//		
+//
 //	}
 
 	//Getters
@@ -93,8 +100,8 @@ public class User {
 	public double getMana() {
 		return mana;
 	}
-	public String[] getInvo() {
-		return invo;
+	public ArrayList<Weapon> getInvo() {
+		return wepInvo;
 	}
 	public int getScore() {
 		return score;
@@ -136,9 +143,6 @@ public class User {
 	public void setMana(double mana) {
 		User.mana = mana;
 	}
-	public void setInvo(String[] invo) {
-		User.invo = invo;
-	}
 	public void setScore(int score) {
 		User.score = score;
 	}
@@ -148,19 +152,22 @@ public class User {
 	public static void setRightHand(String rightHand) {
 		User.rightHand = rightHand;
 	}
-	public void setLeftHand(String leftHand) {
+	public static void setLeftHand(String leftHand) {
 		User.leftHand = leftHand;
 	}
-	public void setFeet(String boots) {
+	public static void setFeet(String boots) {
 		User.feet = boots;
 	}
-	public void setLegs(String legs) {
+	public static void setLegs(String legs) {
 		User.legs = legs;
 	}
-	public void setTorso(String shirt) {
+	public static void setTorso(String shirt) {
 		User.torso = shirt;
 	}
-	public void setHead(String head) {
+	public static void setHead(String head) {
 		User.head = head;
+	}
+	public static void setBack(String back) {
+		User.back = back;
 	}
 }
