@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="14" version="2.0">
+<workbench progressCount="15" version="2.0">
 <workbenchAdvisor/>
 <window height="579" maximized="true" width="510" x="0" y="19">
 <fastViewData fastViewLocation="1024"/>
@@ -41,61 +41,25 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
-<part id="2"/>
-<part id="3"/>
-<part id="4"/>
-<part id="5"/>
-<part id="6"/>
-<part id="7"/>
-<part id="8"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Engine.java" partName="Engine.java" path="/home/zach/Documents/projectText/project/workspace/Game/src/engine/Engine.java" title="Engine.java" tooltip="Game/src/engine/Engine.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/src/engine/Engine.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="624" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Point.java" partName="Point.java" path="/home/zach/Documents/projectText/project/workspace/Game/maps/maps/Point.java" title="Point.java" tooltip="Game/maps/maps/Point.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/maps/maps/Point.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Move.java" partName="Move.java" path="/home/zach/Documents/projectText/project/workspace/Game/maps/maps/Move.java" title="Move.java" tooltip="Game/maps/maps/Move.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/maps/maps/Move.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="293" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10658" selectionTopPixel="6565"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="test.java" partName="test.java" path="/home/zach/Documents/projectText/project/workspace/Game/src/engine/test.java" title="test.java" tooltip="Game/src/engine/test.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/src/engine/test.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Item.java" partName="Item.java" path="/home/zach/Documents/projectText/project/workspace/Game/object/item/Item.java" title="Item.java" tooltip="Game/object/item/Item.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/object/item/Item.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="752" selectionTopPixel="162"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Armor.java" partName="Armor.java" path="/home/zach/Documents/projectText/project/workspace/Game/object/protection/Armor.java" title="Armor.java" tooltip="Game/object/protection/Armor.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/object/protection/Armor.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="732" selectionTopPixel="144"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Weapon.java" partName="Weapon.java" path="/home/zach/Documents/projectText/project/workspace/Game/object/weapons/Weapon.java" title="Weapon.java" tooltip="Game/object/weapons/Weapon.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/object/weapons/Weapon.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="727" selectionTopPixel="144"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IObject.java" partName="IObject.java" path="/home/zach/Documents/projectText/project/workspace/Game/object/objects/IObject.java" title="IObject.java" tooltip="Game/object/objects/IObject.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/object/objects/IObject.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="97" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="User.java" partName="User.java" path="/home/zach/Documents/projectText/project/workspace/Game/src/engine/User.java" title="User.java" tooltip="Game/src/engine/User.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/src/engine/User.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3296" selectionTopPixel="2546"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (26 items)"/>
+<category IMemento.internal.id="Warnings (25 items)"/>
 <category IMemento.internal.id="Warnings"/>
-<category IMemento.internal.id="Errors"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="280" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -105,14 +69,9 @@
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
 </viewState>
 </view>
-<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
-<viewState/>
-</view>
 <view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
 <viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="">
-<customFilters userDefinedPatternsEnabled="false">
-<xmlDefinedFilters>
-<child filterId="org.eclipse.jdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
+<customFilters userDefinedPatternsEnabled="false">&#x0A;<xmlDefinedFilters>&#x0A;<child filterId="org.eclipse.jdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.LocalTypesFilter" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.StaticsFilter" isEnabled="false"/>
 <child filterId="org.eclipse.pde.ui.ExternalPluginLibrariesFilter1" isEnabled="true"/>
@@ -296,7 +255,6 @@
 <hide_toolbar_item_id id="org.eclipse.debug.ui.commands.RunToLine"/>
 <hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
-<view id="org.eclipse.ui.console.ConsoleView"/>
 <fastViewBars>
 <fastViewBar fastViewLocation="1024" id="bottom" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="0">
 <fastViews>
@@ -312,7 +270,7 @@
 </fastViewBar>
 <fastViewBar fastViewLocation="131072" id="right" orientation="512" selectedTabId="org.eclipse.ui.views.ContentOutline" style="0">
 <fastViews>
-<view id="org.eclipse.ui.views.ContentOutline" ratio="0.29979035"/>
+<view id="org.eclipse.ui.views.ContentOutline" ratio="0.2995627"/>
 </fastViews>
 </fastViewBar>
 </fastViewBars>
@@ -361,14 +319,9 @@
 </folder>
 </info>
 </mainWindow>
-<detachedWindow height="578" width="1022" x="-2" y="918">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
-</folder>
-</detachedWindow>
+<hiddenWindow height="578" width="1022" x="0" y="918">
+<view id="org.eclipse.ui.console.ConsoleView"/>
+</hiddenWindow>
 </layout>
 </perspective>
 </perspectives>
@@ -381,73 +334,11 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/object/protection/Armor.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/object/objects/IObject.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/src/engine/User.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/src/engine/User.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/src/engine/test.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/maps/maps/Move.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/maps/maps/Point.java"/>
 </editors>
-<item historyLabel="Armor.java" index="3">
-<position info="not_deleted" x="66" y="0"/>
-</item>
-<item historyLabel="Item.java" index="2">
-<position info="not_deleted" x="59" y="17"/>
-</item>
-<item historyLabel="Weapon.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="IObject.java" index="4">
-<position info="not_deleted" x="101" y="0"/>
-</item>
-<item historyLabel="Weapon.java" index="1">
-<position info="not_deleted" x="81" y="0"/>
-</item>
-<item historyLabel="Armor.java" index="3">
-<position info="not_deleted" x="737" y="0"/>
-</item>
-<item historyLabel="Item.java" index="2">
-<position info="not_deleted" x="758" y="0"/>
-</item>
-<item historyLabel="Weapon.java" index="1">
-<position info="not_deleted" x="81" y="0"/>
-</item>
-<item historyLabel="IObject.java" index="4">
-<position info="not_deleted" x="101" y="0"/>
-</item>
-<item historyLabel="Engine.java" index="0">
-<position info="not_deleted" x="8437" y="0"/>
-</item>
-<item historyLabel="Weapon.java" index="1">
-<position info="not_deleted" x="81" y="0"/>
-</item>
-<item historyLabel="Armor.java" index="3">
-<position info="not_deleted" x="737" y="0"/>
-</item>
-<item historyLabel="Weapon.java" index="1">
-<position info="not_deleted" x="81" y="0"/>
-</item>
-<item historyLabel="Item.java" index="2">
-<position info="not_deleted" x="758" y="0"/>
-</item>
-<item historyLabel="Engine.java" index="0">
-<position info="not_deleted" x="8437" y="0"/>
-</item>
-<item historyLabel="IObject.java" index="4">
-<position info="not_deleted" x="101" y="0"/>
-</item>
-<item historyLabel="IObject.java" index="4">
-<position info="not_deleted" x="45" y="0"/>
-</item>
-<item historyLabel="Engine.java" index="0">
-<position info="not_deleted" x="8579" y="0"/>
-</item>
-<item historyLabel="Weapon.java" index="1">
-<position info="not_deleted" x="81" y="0"/>
-</item>
-<item historyLabel="IObject.java" index="4">
-<position info="not_deleted" x="97" y="0"/>
-</item>
-<item historyLabel="Weapon.java" index="1">
-<position info="not_deleted" x="81" y="0"/>
-</item>
-<item historyLabel="Armor.java" index="3">
-<position info="not_deleted" x="737" y="0"/>
-</item>
 <item historyLabel="Item.java" index="2">
 <position info="not_deleted" x="752" y="0"/>
 </item>
@@ -529,8 +420,74 @@
 <item historyLabel="Engine.java" index="0">
 <position info="not_deleted" x="2582" y="45"/>
 </item>
-<item active="true" historyLabel="Engine.java" index="0">
+<item historyLabel="Engine.java" index="0">
 <position info="not_deleted" x="3270" y="0"/>
+</item>
+<item historyLabel="User.java" index="6">
+<position info="not_deleted" x="3296" y="0"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="627" y="0"/>
+</item>
+<item historyLabel="test.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Move.java" index="8">
+<position info="not_deleted" x="293" y="0"/>
+</item>
+<item historyLabel="test.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Point.java" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="test.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="627" y="0"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="13532" y="0"/>
+</item>
+<item historyLabel="test.java" index="7">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="13532" y="0"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="13093" y="5"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="10256" y="5"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="10755" y="0"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="10418" y="0"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="10751" y="0"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="10553" y="0"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="10554" y="0"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="10555" y="0"/>
+</item>
+<item historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="10435" y="1"/>
+</item>
+<item active="true" historyLabel="Engine.java" index="0">
+<position info="not_deleted" x="10751" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>

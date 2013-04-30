@@ -25,7 +25,6 @@ public class Engine {
 	private static final int startY = 6;
 	private static IObject[] worldObjects;
 	private static Move[] worldMaps;
-	private static boolean admin;
 
 	/**
 	 * All the commands that a user can type in
@@ -100,6 +99,7 @@ public class Engine {
 		}
 		System.out.print("Equip what: ");
 		String item = in.nextLine();
+		// TODO: check if it is a weapon or armor
 		for (int j = 0; j < invo.size(); j++) {
 			if (item.toLowerCase().equals(invo.get(j).getName().toLowerCase())) {
 				if (invo.get(j).getObjectType().equals("weapon")) {
@@ -107,40 +107,34 @@ public class Engine {
 					equip = ((Weapon) invo.get(j)).getName() + " equiped";
 					invo.remove(j);
 					break;
-				} else if (invo.get(j).getObjectType().equals("armor")) {
+				}else if(invo.get(j).getObjectType().equals("armor")){
 					String type = ((Armor) invo.get(j)).getType();
-					switch (type) {
-					case "Hand":
-						User.setLeftHand(invo.get(j).getName());
-						equip = invo.get(j).getName() + " equiped";
-						invo.remove(j);
-						break;
-					case "Back":
-						User.setBack(invo.get(j).getName());
-						equip = invo.get(j).getName() + " equiped";
-						invo.remove(j);
-						break;
-					case "Legs":
-						User.setLegs(invo.get(j).getName());
-						equip = invo.get(j).getName() + " equiped";
-						invo.remove(j);
-						break;
-					case "Torso":
-						User.setTorso(invo.get(j).getName());
-						equip = invo.get(j).getName() + " equiped";
-						invo.remove(j);
-						break;
-					case "Head":
-						User.setHead(invo.get(j).getName());
-						equip = invo.get(j).getName() + " equiped";
-						invo.remove(j);
-						break;
-					case "Feet":
-						User.setFeet(invo.get(j).getName());
-						equip = invo.get(j).getName() + " equiped";
-						invo.remove(j);
-						break;
-					}
+			        switch (type) {
+			            case "Hand":  User.setLeftHand(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			            case "Back":  User.setBack(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			            case "Legs":  User.setLegs(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			            case "Torso":  User.setTorso(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			            case "Head":  User.setHead(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			            case "Feet":  User.setFeet(invo.get(j).getName());
+			            equip = invo.get(j).getName() + " equiped";
+			            invo.remove(j);
+			                     break;
+			        }
 				}
 			} else {
 				equip = "You can not equip that item!";
@@ -367,22 +361,6 @@ public class Engine {
 		Scanner in = new Scanner(System.in);
 		System.out.print("What is your name: ");
 		String name = in.nextLine();
-		if (name.toLowerCase().equals("admin")) {
-			for (int i = 0; i < 3; i++) {
-				System.out.print("Password: ");
-				String pass = in.nextLine();
-				if (pass.equals("7895123")) {
-					admin = true;
-					i = 3;
-				} else {
-					System.out.println("Please try again");
-				}
-			}
-			if (!admin) {
-				System.out.print("What is your name: ");
-				name = in.nextLine();
-			}
-		}
 		user = new User(name);
 		Heading = 3;
 		invo = new ArrayList<IObject>();
@@ -464,63 +442,55 @@ public class Engine {
 	}
 
 	public static String showMap() {
-		if (!admin) {
-			System.out
-					.println("Current Location : " + "("
-							+ (int) location.getX() + ","
-							+ (int) location.getY() + ")");
-			String sum = "";
-			int y = 0;
-			boolean start = true;
-			if (start == true) {
-				System.out.print(" ");
-				for (int topX = 0; topX < map[0].toString().length(); topX++) {
-					System.out.print(topX);
-				}
-				System.out.println();
-				start = false;
-			}
-			for (int i = 0; i < map.length; i++) {
-				System.out.print(y);
-				for (int j = 0; j < map[i].length(); j++) {
-					if (map[i].toString().charAt(j) == 'x') {
-						System.out.print("x");
-					} else {
-						System.out.print("o");
-					}
-				}
-				System.out.println();
-				y++;
+		System.out.println("Current Location : " + "(" + (int) location.getX()
+				+ "," + (int) location.getY() + ")");
+		String sum = "";
+		int y = 0;
+		boolean start = true;
+		if (start == true) {
+			System.out.print(" ");
+			for (int topX = 0; topX < map[0].toString().length(); topX++) {
+				System.out.print(topX);
 			}
 			System.out.println();
-			return sum;
-		} else {
-			// DEVELOPERS MAP //
-			System.out
-					.println("Current Location : " + "("
-							+ (int) location.getX() + ","
-							+ (int) location.getY() + ")");
-			String sum = "";
-			int y = 0;
-			boolean start = true;
-			if (start == true) {
-				System.out.print(" ");
-				for (int topX = 0; topX < map[0].toString().length(); topX++) {
-					System.out.print(topX);
-				}
-				System.out.println();
-				start = false;
-			}
-			for (int i = 0; i < map.length; i++) {
-				System.out.print(y);
-				for (int j = 0; j < map[i].length(); j++) {
-					System.out.print(map[i].toString().charAt(j));
-				}
-				System.out.println();
-				y++;
-			}
-			System.out.println();
-			return sum;
+			start = false;
 		}
+		for (int i = 0; i < map.length; i++) {
+			System.out.print(y);
+			for (int j = 0; j < map[i].length(); j++) {
+				if(map[i].toString().charAt(j) == 'o'){
+					System.out.print("o");
+				}else{
+					System.out.print("x");
+				}
+			}
+			System.out.println();
+			y++;
+		}
+		System.out.println();
+		return sum;
+//		System.out.println("Current Location : " + "(" + (int) location.getX()
+//				+ "," + (int) location.getY() + ")");
+//		String sum = "";
+//		int y = 0;
+//		boolean start = true;
+//		if (start == true) {
+//			System.out.print(" ");
+//			for (int topX = 0; topX < map[0].toString().length(); topX++) {
+//				System.out.print(topX);
+//			}
+//			System.out.println();
+//			start = false;
+//		}
+//		for (int i = 0; i < map.length; i++) {
+//			System.out.print(y);
+//			for (int j = 0; j < map[i].length(); j++) {
+//				System.out.print(map[i].toString().charAt(j));
+//			}
+//			System.out.println();
+//			y++;
+//		}
+//		System.out.println();
+//		return sum;
 	}
 }

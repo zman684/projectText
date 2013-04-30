@@ -100,6 +100,7 @@ public class Engine {
 		}
 		System.out.print("Equip what: ");
 		String item = in.nextLine();
+		// TODO: check if it is a weapon or armor
 		for (int j = 0; j < invo.size(); j++) {
 			if (item.toLowerCase().equals(invo.get(j).getName().toLowerCase())) {
 				if (invo.get(j).getObjectType().equals("weapon")) {
