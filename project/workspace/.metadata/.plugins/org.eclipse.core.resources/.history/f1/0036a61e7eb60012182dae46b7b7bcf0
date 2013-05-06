@@ -33,11 +33,8 @@ public class Engine {
 	public static void menu() {
 		while (true) {
 			Scanner in = new Scanner(System.in);
-			//Command line
 			System.out.print(": ");
 			String action = in.nextLine();
-			//A big "if" statement for all the commands
-			//  of the game
 			if (action.equals("forward") || action.equals("go forward")
 					|| action.equals("move forward")) {
 				goForward();
@@ -77,8 +74,6 @@ public class Engine {
 			} else if (action.equals("clear")) {
 				clear();
 			} else {
-				//If it is not in the command "if" block
-				//   it must not be a command
 				System.out
 						.println("That is not a correct command please try again.");
 			}
@@ -97,72 +92,56 @@ public class Engine {
 	 * Player types in equip then the console asks the user what they want to
 	 * equip
 	 */
-	//TODO: When you equip an item... When it unequips the item
-	//           they were wielding, this method should put that
-	//			 item in their invo
 	public static void equip() {
 		String equip = "";
 		Scanner in = new Scanner(System.in);
-		//Prints all the items in your equipmemt
 		for (int i = 0; i < invo.size(); i++) {
 			System.out.println(invo.get(i).getName());
 		}
 		System.out.print("Equip what: ");
 		String item = in.nextLine();
-		//Look for the item they entered and see if
-		//     it is an item, weapon, or armor
 		for (int j = 0; j < invo.size(); j++) {
-			//When the item they entered equals a items name
-			//     in their invo
 			if (item.toLowerCase().equals(invo.get(j).getName().toLowerCase())) {
-				//Check if it is a weapon
 				if (invo.get(j).getObjectType().equals("weapon")) {
-					//Set their right hand to that weapon
 					User.setRightHand(((Weapon) invo.get(j)).getName());
-					//Change the text
 					equip = ((Weapon) invo.get(j)).getName() + " equiped";
-					//Remove the item from the invo
 					invo.remove(j);
 					break;
-				//If it is armor
 				} else if (invo.get(j).getObjectType().equals("armor")) {
 					String type = ((Armor) invo.get(j)).getType();
-					//Check to see what type of armor it is
 					switch (type) {
-						case "Hand":
-							User.setLeftHand(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
-							invo.remove(j);
-							break;
-						case "Back":
-							User.setBack(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
-							invo.remove(j);
-							break;
-						case "Legs":
-							User.setLegs(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
-							invo.remove(j);
-							break;
-						case "Torso":
-							User.setTorso(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
-							invo.remove(j);
-							break;
-						case "Head":
-							User.setHead(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
-							invo.remove(j);
-							break;
-						case "Feet":
-							User.setFeet(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
-							invo.remove(j);
-							break;
+					case "Hand":
+						User.setLeftHand(invo.get(j).getName());
+						equip = invo.get(j).getName() + " equiped";
+						invo.remove(j);
+						break;
+					case "Back":
+						User.setBack(invo.get(j).getName());
+						equip = invo.get(j).getName() + " equiped";
+						invo.remove(j);
+						break;
+					case "Legs":
+						User.setLegs(invo.get(j).getName());
+						equip = invo.get(j).getName() + " equiped";
+						invo.remove(j);
+						break;
+					case "Torso":
+						User.setTorso(invo.get(j).getName());
+						equip = invo.get(j).getName() + " equiped";
+						invo.remove(j);
+						break;
+					case "Head":
+						User.setHead(invo.get(j).getName());
+						equip = invo.get(j).getName() + " equiped";
+						invo.remove(j);
+						break;
+					case "Feet":
+						User.setFeet(invo.get(j).getName());
+						equip = invo.get(j).getName() + " equiped";
+						invo.remove(j);
+						break;
 					}
 				}
-			//If it is not a Weapon or Armor then
-			//	 it must be an item
 			} else {
 				equip = "You can not equip that item!";
 			}
@@ -389,22 +368,16 @@ public class Engine {
 		System.out.print("What is your name: ");
 		String name = in.nextLine();
 		if (name.toLowerCase().equals("admin")) {
-			//Ask for the admin password three times
 			for (int i = 0; i < 3; i++) {
 				System.out.print("Password: ");
 				String pass = in.nextLine();
-				//If they got that password right
-				//   stop asking and log them in
 				if (pass.equals("7895123")) {
 					admin = true;
 					i = 3;
 				} else {
-				//Else ask again
 					System.out.println("Please try again");
 				}
 			}
-			//If they did not get the password right in the three
-			//   attempts then ask for their name again
 			if (!admin) {
 				System.out.print("What is your name: ");
 				name = in.nextLine();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="15" version="2.0">
+<workbench progressCount="14" version="2.0">
 <workbenchAdvisor/>
 <window height="579" maximized="true" width="510" x="0" y="19">
 <fastViewData fastViewLocation="1024"/>
@@ -47,7 +47,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Engine.java" partName="Engine.java" path="/home/zach/Documents/projectText/project/workspace/Game/src/engine/Engine.java" title="Engine.java" tooltip="Game/src/engine/Engine.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/src/engine/Engine.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10658" selectionTopPixel="6565"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8714" selectionTopPixel="5358"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="test.java" partName="test.java" path="/home/zach/Documents/projectText/project/workspace/Game/src/engine/test.java" title="test.java" tooltip="Game/src/engine/test.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Game/src/engine/test.java"/>
@@ -58,7 +58,6 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (25 items)"/>
 <category IMemento.internal.id="Warnings"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="280" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
@@ -338,10 +337,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/src/engine/test.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/maps/maps/Move.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/maps/maps/Point.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Game/src/engine/test.java"/>
 </editors>
-<item historyLabel="Item.java" index="2">
-<position info="not_deleted" x="752" y="0"/>
-</item>
 <item historyLabel="Armor.java" index="3">
 <position info="not_deleted" x="732" y="0"/>
 </item>
@@ -486,8 +483,11 @@
 <item historyLabel="Engine.java" index="0">
 <position info="not_deleted" x="10435" y="1"/>
 </item>
-<item active="true" historyLabel="Engine.java" index="0">
+<item historyLabel="Engine.java" index="0">
 <position info="not_deleted" x="10751" y="0"/>
+</item>
+<item active="true" historyLabel="test.java" index="10">
+<position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
