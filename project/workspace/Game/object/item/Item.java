@@ -43,4 +43,14 @@ public class Item implements IObject{
 		return objectType;
 	}
 
+	@Override
+	public int getDmg() {
+		return 0;
+	}
+
+	@Override
+	public int getDef() {
+		return 0;
+	}
+
 }

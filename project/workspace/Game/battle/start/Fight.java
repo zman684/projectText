@@ -40,6 +40,7 @@ public class Fight {
 			int damage = npc.getLevel() * 5;
 			
 			System.out.println("You have been hit!");
+            System.out.println(damage);
 			
 			player.setHealth(player.getHealth()-damage);
 			

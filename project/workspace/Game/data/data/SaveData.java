@@ -34,20 +34,20 @@ public class SaveData {
 
 				// Create a User object
 
-				User a = new User(parts[0], Integer.parseInt(parts[1]), Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), Integer.parseInt(parts[4]),
-						false, (int) Double.parseDouble(parts[5]), parts[6],parts[7],parts[8],parts[9],parts[10],parts[11],parts[12]);
-
-				// Add the object to the array
-				// (1) create a User array, with one extra element
-				User[] user2 = new User[user.length + 1];
-				// (2) copy all old elements into new
-				for(int i = 0;i < user.length; i++)  {
-					user2[i] = user[i];
-				}
-				// (3) assign new User object to last element of the array
-				user2[user2.length - 1] = a;
-				// (4) assign new array's address to user
-				user = user2;
+//				User a = new User(parts[0], Integer.parseInt(parts[1]), Double.parseDouble(parts[2]), Double.parseDouble(parts[3]), Integer.parseInt(parts[4]),
+//						false, (int) Double.parseDouble(parts[5]), parts[6],parts[7],parts[8],parts[9],parts[10],parts[11],parts[12]);
+//
+//				// Add the object to the array
+//				// (1) create a User array, with one extra element
+//				User[] user2 = new User[user.length + 1];
+//				// (2) copy all old elements into new
+//				for(int i = 0;i < user.length; i++)  {
+//					user2[i] = user[i];
+//				}
+//				// (3) assign new User object to last element of the array
+//				user2[user2.length - 1] = a;
+//				// (4) assign new array's address to user
+//				user = user2;
 
 			}
 

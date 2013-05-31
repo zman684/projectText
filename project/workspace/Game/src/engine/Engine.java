@@ -32,12 +32,13 @@ public class Engine {
 	 */
 	public static void menu() {
 		while (true) {
+			checker();
 			Scanner in = new Scanner(System.in);
-			//Command line
+			// Command line
 			System.out.print(": ");
 			String action = in.nextLine();
-			//A big "if" statement for all the commands
-			//  of the game
+			// A big "if" statement for all the commands
+			// of the game
 			if (action.equals("forward") || action.equals("go forward")
 					|| action.equals("move forward")) {
 				goForward();
@@ -77,8 +78,8 @@ public class Engine {
 			} else if (action.equals("clear")) {
 				clear();
 			} else {
-				//If it is not in the command "if" block
-				//   it must not be a command
+				// If it is not in the command "if" block
+				// it must not be a command
 				System.out
 						.println("That is not a correct command please try again.");
 			}
@@ -97,74 +98,99 @@ public class Engine {
 	 * Player types in equip then the console asks the user what they want to
 	 * equip
 	 */
-	//TODO: When you equip an item... When it unequips the item
-	//           they were wielding, this method should put that
-	//			 item in their invo
+	// TODO: When you equip an item... When it unequips the item
+	// they were wielding, this method should put that
+	// item in their invo
 	public static void equip() {
 		String equip = "";
 		Scanner in = new Scanner(System.in);
-		//Prints all the items in your equipmemt
+		// Prints all the items in your equipment
 		for (int i = 0; i < invo.size(); i++) {
 			System.out.println(invo.get(i).getName());
 		}
 		System.out.print("Equip what: ");
 		String item = in.nextLine();
-		//Look for the item they entered and see if
-		//     it is an item, weapon, or armor
+		// Look for the item they entered and see if
+		// it is an item, weapon, or armor
 		for (int j = 0; j < invo.size(); j++) {
-			//When the item they entered equals a items name
-			//     in their invo
-			if (item.toLowerCase().equals(invo.get(j).getName().toLowerCase())) {
-				//Check if it is a weapon
-				if (invo.get(j).getObjectType().equals("weapon")) {
-					//Set their right hand to that weapon
-					User.setRightHand(((Weapon) invo.get(j)).getName());
-					//Change the text
-					equip = ((Weapon) invo.get(j)).getName() + " equiped";
-					//Remove the item from the invo
-					invo.remove(j);
-					break;
-				//If it is armor
-				} else if (invo.get(j).getObjectType().equals("armor")) {
-					String type = ((Armor) invo.get(j)).getType();
-					//Check to see what type of armor it is
-					switch (type) {
-						case "Hand":
-							User.setLeftHand(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
-							invo.remove(j);
-							break;
+			// When the item they entered equals a items name
+			// in their invo
+			if (item != null) {
+				if (item.toLowerCase().equals(
+						invo.get(j).getName().toLowerCase())) {
+					System.out.println();
+					// Check if it is a weapon
+					if (invo.get(j).getObjectType().equals("weapon")) {
+						// Set their right hand to that weapon
+						System.out
+								.println("Would you like to equip to your right or left hand?");
+						String option = in.nextLine().toLowerCase();
+						if (option.equals("right")) {
+							if (user.getRightHand() != null) {
+								invo.add(user.getRightHand());
+							}
+							user.setRightHand(((Weapon) invo.get(j)));
+						}
+						if (option.equals("left")) {
+							if (user.getLeftHand() != null) {
+								invo.add(user.getLeftHand());
+							}
+							user.setLeftHand(((Weapon) invo.get(j)));
+						}
+						// Change the text
+						equip = ((Weapon) invo.get(j)).getName() + " equipped";
+						// Remove the item from the invo
+						invo.remove(j);
+						j = invo.size();
+						break;
+						// If it is armor
+					} else if (invo.get(j).getObjectType().equals("armor")) {
+						String type = ((Armor) invo.get(j)).getType();
+						// Check to see what type of armor it is
+						switch (type) {
 						case "Back":
-							User.setBack(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
+							invo.add(user.getBack());
+							user.setBack((Armor) check(invo.get(j).getName()));
+							equip = invo.get(j).getName() + " equipped";
 							invo.remove(j);
+							j = invo.size();
 							break;
 						case "Legs":
-							User.setLegs(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
+							invo.add(user.getLegs());
+							User.setLegs((Armor) check(invo.get(j).getName()));
+							equip = invo.get(j).getName() + " equipped";
 							invo.remove(j);
+							j = invo.size();
 							break;
 						case "Torso":
-							User.setTorso(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
+							invo.add(user.getTorso());
+							User.setTorso((Armor) check(invo.get(j).getName()));
+							equip = invo.get(j).getName() + " equipped";
 							invo.remove(j);
+							j = invo.size();
 							break;
 						case "Head":
-							User.setHead(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
+							invo.add(user.getHead());
+							user.setHead((Armor) check(invo.get(j).getName()));
+							equip = invo.get(j).getName() + " equipped";
 							invo.remove(j);
+							j = invo.size();
 							break;
 						case "Feet":
-							User.setFeet(invo.get(j).getName());
-							equip = invo.get(j).getName() + " equiped";
+							invo.add(user.getFeet());
+							user.setFeet((Armor) check(invo.get(j).getName()));
+							equip = invo.get(j).getName() + " equipped";
 							invo.remove(j);
+							j = invo.size();
 							break;
+						}
 					}
+
+					// If it is not a Weapon or Armor then
+					// it must be an item
+				} else {
+					equip = "You can not equip that item!";
 				}
-			//If it is not a Weapon or Armor then
-			//	 it must be an item
-			} else {
-				equip = "You can not equip that item!";
 			}
 		}
 		System.out.println(equip);
@@ -306,19 +332,11 @@ public class Engine {
 				itemIsValid = true;
 			}
 		}
-		// Yes or No
-		System.out.println("Do you want to pick up: " + item + "?");
-		String option = in.nextLine();
-
-		if (option.toLowerCase().equals("yes")) {
-			if (itemIsValid) {
-				invo.add(worldObjects[i]);
-				System.out.println("You picked up " + worldObjects[i]);
-			} else {
-				System.out.println("You can not pick that up.");
-			}
+		if (itemIsValid) {
+			invo.add(worldObjects[i]);
+			System.out.println("You picked up " + worldObjects[i]);
 		} else {
-			menu();
+			System.out.println("You can not pick that up.");
 		}
 	}
 
@@ -385,42 +403,6 @@ public class Engine {
 	 * Starts the game
 	 */
 	public static void start() {
-		Scanner in = new Scanner(System.in);
-		System.out.print("What is your name: ");
-		String name = in.nextLine();
-		if (name.toLowerCase().equals("admin")) {
-			//Ask for the admin password three times
-			for (int i = 0; i < 3; i++) {
-				System.out.print("Password: ");
-				String pass = in.nextLine();
-				//If they got that password right
-				//   stop asking and log them in
-				if (pass.equals("7895123")) {
-					admin = true;
-					i = 3;
-				} else {
-				//Else ask again
-					System.out.println("Please try again");
-				}
-			}
-			//If they did not get the password right in the three
-			//   attempts then ask for their name again
-			if (!admin) {
-				System.out.print("What is your name: ");
-				name = in.nextLine();
-			}
-		}
-		user = new User(name);
-		Heading = 3;
-		invo = new ArrayList<IObject>();
-		map = new Move[] { mapMaker("xxxxx"), mapMaker("xexxx"),
-				mapMaker("xoxxx"), mapMaker("xmxxx"), mapMaker("xooox"),
-				mapMaker("xoxtx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
-		location = new Point(startX, startY);
-		String summary = "\nWelcome " + name + "!";
-		summary += "\nIf you need help please type 'help'";
-		summary += "\nOr if you need to know the commands you can type in 'commands'";
-		System.out.println(summary);
 		// ALL DEFAULT MAPS, WEAPONS, AND ITEMS//
 		worldObjects = new IObject[] { new Weapon("Sword", "Melee", 5, 4.0),
 				new Weapon("Staff", "Magic", 5, 4.0),
@@ -439,6 +421,65 @@ public class Engine {
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
 				mapMaker("xxx") };
 
+		Scanner in = new Scanner(System.in);
+		System.out.print("What is your name: ");
+		String name = in.nextLine();
+		if (name.toLowerCase().equals("admin")) {
+			// Ask for the admin password three times
+			for (int i = 0; i < 3; i++) {
+				System.out.print("Password: ");
+				String pass = in.nextLine();
+				// If they got that password right
+				// stop asking and log them in
+				if (pass.equals("7895123")) {
+					admin = true;
+					i = 3;
+				} else {
+					// Else ask again
+					System.out.println("Please try again");
+				}
+			}
+			// If they did not get the password right in the three
+			// attempts then ask for their name again
+			if (!admin) {
+				System.out.print("What is your name: ");
+				name = in.nextLine();
+			}
+		}
+		user = new User(name);
+		Heading = 3;
+		if (admin) {
+			invo = new ArrayList<IObject>();
+			for (IObject o : worldObjects) {
+				invo.add(o);
+			}
+		} else {
+			invo = new ArrayList<IObject>();
+		}
+		map = new Move[] { mapMaker("xxxxx"), mapMaker("xexxx"),
+				mapMaker("xoxxx"), mapMaker("xmxxx"), mapMaker("xooox"),
+				mapMaker("xoxtx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
+		location = new Point(startX, startY);
+		String summary = "\nWelcome " + name + "!";
+		summary += "\nIf you need help please type 'help'";
+		summary += "\nOr if you need to know the commands you can type in 'commands'";
+		System.out.println(summary);
+	}
+
+	/**
+	 * Checks the name to see if it is a game item
+	 *
+	 * @param name
+	 *            name of the the item they, most likely, want to pickup
+	 * @return the real item's info
+	 */
+	public static IObject check(String name) {
+		for (IObject o : worldObjects) {
+			if (o.getName().toLowerCase().equals(name.toLowerCase())) {
+				return o;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -449,6 +490,7 @@ public class Engine {
 		invoList += "Weapons:";
 		invoList += "\n";
 		for (IObject a : invo) {
+			System.out.println(a);
 			if (a.getObjectType().equals("weapon")) {
 				invoList += "\t" + a.getName();
 				invoList += "\n";
@@ -488,6 +530,14 @@ public class Engine {
 
 	public static char read(int x, int y) {
 		return map[y].toString().charAt(x);
+	}
+
+	public static void checker() {
+		for (int i = 0; i < invo.size(); i++) {
+			if (invo.get(i) == null) {
+				invo.remove(i);
+			}
+		}
 	}
 
 	public static String showMap() {

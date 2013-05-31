@@ -19,7 +19,7 @@
 <fullyQualifiedTypeName name="java.io.FileReader"/>
 <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
 <fullyQualifiedTypeName name="maps.Move"/>
-<fullyQualifiedTypeName name="objects.IObject"/>
 <fullyQualifiedTypeName name="item.Item"/>
+<fullyQualifiedTypeName name="objects.IObject"/>
 <fullyQualifiedTypeName name="protection.Armor"/>
 </qualifiedTypeNameHistroy>
