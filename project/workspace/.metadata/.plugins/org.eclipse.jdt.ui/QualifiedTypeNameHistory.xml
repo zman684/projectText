@@ -9,10 +9,8 @@
 <fullyQualifiedTypeName name="java.io.FileWriter"/>
 <fullyQualifiedTypeName name="org.toorealcommunity.zach.game.maps.Point"/>
 <fullyQualifiedTypeName name="maps.Tutorial"/>
-<fullyQualifiedTypeName name="weapons.Weapon"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="engine.User"/>
-<fullyQualifiedTypeName name="monsters.Monster"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
@@ -22,4 +20,8 @@
 <fullyQualifiedTypeName name="item.Item"/>
 <fullyQualifiedTypeName name="objects.IObject"/>
 <fullyQualifiedTypeName name="protection.Armor"/>
+<fullyQualifiedTypeName name="weapons.Weapon"/>
+<fullyQualifiedTypeName name="engine.Engine"/>
+<fullyQualifiedTypeName name="monsters.Monster"/>
+<fullyQualifiedTypeName name="start.Fight"/>
 </qualifiedTypeNameHistroy>

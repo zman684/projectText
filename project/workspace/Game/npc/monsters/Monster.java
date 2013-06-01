@@ -1,49 +1,129 @@
 package monsters;
 
+import engine.Engine;
+import objects.IObject;
+import protection.Armor;
+import weapons.Weapon;
+
 public class Monster {
 	private static String name;
 	private static double health;
 	private static int level;
 	private static double mana;
-	private static String rightHand;
-	private static String leftHand;
-	private static String feet;
-	private static String legs;
-	private static String torso;
-	private static String head;
-	private static String back;
-	
-	
+	private static IObject rightHand;
+	private static IObject leftHand;
+	private static Armor feet;
+	private static Armor legs;
+	private static Armor torso;
+	private static Armor head;
+	private static Armor back;
+
 	public Monster(String name,double health,int level) {
-		Monster.name = name;
-		Monster.health = 100;
-		Monster.mana = 100;
-		Monster.level = level;
-		Monster.rightHand = "Stick";
-		Monster.leftHand = "nothing";
-		Monster.feet = "nothing";
-		Monster.legs = "Rags";
-		Monster.torso = "Monster Armor";
-		Monster.head = "nothing";
-		Monster.back = "nothing";
+		this.name = name;
+		this.health = health;
+		mana = 100;
+		this.level = level;
+		rightHand = new Weapon("Sword", "Melee", 5, 3.0);
+		leftHand = null;
+		feet = (Armor) Engine.getWorldObject(7);
+		legs = (Armor) Engine.getWorldObject(6);;
+		torso = (Armor) Engine.getWorldObject(5);;
+		head = (Armor) Engine.getWorldObject(4);;
+		back = null;
 	}
-	
+
 	public String toString() {
+		int def = 0;
+		if (legs != null) {
+			def += legs.getDef();
+		}
+		if (head != null) {
+			def += head.getDef();
+		}
+		if (torso != null) {
+			def += torso.getDef();
+		}
+		if (feet != null) {
+			def += feet.getDef();
+		}
+		if (back != null) {
+			def += back.getDef();
+		}
+		int att = 0;
+		if (rightHand != null) {
+			if (rightHand.getObjectType().equals("weapon")) {
+				att += rightHand.getDmg();
+			} else {
+				def += rightHand.getDef();
+			}
+		}
+		if (leftHand != null) {
+			if (leftHand.getObjectType().equals("weapon")) {
+				att += leftHand.getDmg();
+			} else {
+				def += rightHand.getDef();
+			}
+		}
 		String summary = "Name: " + name;
-				summary += "\nHealth: " + health;
-				summary += "\nMana: " + mana;
+		summary += "\nHealth: " + health;
+		summary += "\nMana: " + mana;
+		summary += "\nAttack: " + att;
+		summary += "\nDefence: " + def;
+		summary += "\nLevel: " + level;
 		return summary;
 	}
-	
-	public String equipment(){
+
+	public String equipment() {
+		String right = "";
+		String left = "";
+		String head = "";
+		String torso = "";
+		String legs = "";
+		String feet = "";
+		String back = "";
+		if (rightHand == null) {
+			right = "Nothing";
+		} else {
+			right = "" + rightHand;
+		}
+		if (leftHand == null) {
+			left = "Nothing";
+		} else {
+			left = "" + leftHand;
+		}
+		if (this.head == null) {
+			head = "Nothing";
+		} else {
+			head = "" + this.head;
+		}
+		if (this.torso == null) {
+			torso = "Nothing";
+		} else {
+			torso = "" + this.torso;
+		}
+		if (this.legs == null) {
+			legs = "Nothing";
+		} else {
+			legs = "" + this.legs;
+		}
+		if (this.feet == null) {
+			feet = "Nothing";
+		} else {
+			feet = "" + this.feet;
+		}
+		if (this.back == null) {
+			back = "Nothing";
+		} else {
+			back = "" + this.back;
+		}
 		String summary = "Equipment:";
-			summary += "\nRight Hand: " + rightHand;
-			summary += "\nLeft Hand: " + leftHand;
-			summary += "\nHead: " + head;
-			summary += "\nTorso: " + torso;
-			summary += "\nLegs: " + legs;
-			summary += "\nFeet: " + feet;
-			summary += "\nBack " + back;
+		summary += "\nRight Hand: " + right;
+		summary += "\nLeft Hand: " + left;
+		summary += "\nHead: " + head;
+		summary += "\nTorso: " + torso;
+		summary += "\nLegs: " + legs;
+		summary += "\nFeet: " + feet;
+		summary += "\nBack " + back;
 		return summary;
 	}
 
@@ -57,27 +137,115 @@ public class Monster {
 	public double getMana() {
 		return mana;
 	}
-	public String getRightHand() {
+	public IObject getRightHand() {
 		return rightHand;
 	}
-	public String getLeftHand() {
+	public IObject getLeftHand() {
 		return leftHand;
 	}
-	public String getFeet() {
+	public Armor getFeet() {
 		return feet;
 	}
-	public String getLegs() {
+	public Armor getLegs() {
 		return legs;
 	}
-	public String getTorso() {
+	public Armor getTorso() {
 		return torso;
 	}
-	public String getHead() {
+	public Armor getHead() {
 		return head;
 	}
 	public int getLevel(){
 		return level;
 	}
+	public int getDmg(){
+		int att = 0;
+		if (rightHand != null) {
+			if (rightHand.getObjectType().equals("weapon")) {
+				att += rightHand.getDmg();
+			} else {
+				//Do nothing
+			}
+		}
+		if (leftHand != null) {
+			if (leftHand.getObjectType().equals("weapon")) {
+				att += leftHand.getDmg();
+			} else {
+				//Do nothing
+			}
+		}
+		return att;
+	}
+	public int getDef(){
+		int def = 0;
+		if (legs != null) {
+			def += legs.getDef();
+		}
+		if (head != null) {
+			def += head.getDef();
+		}
+		if (torso != null) {
+			def += torso.getDef();
+		}
+		if (feet != null) {
+			def += feet.getDef();
+		}
+		if (back != null) {
+			def += back.getDef();
+		}
+		int att = 0;
+		if (rightHand != null) {
+			if (rightHand.getObjectType().equals("weapon")) {
+				//Do nothing
+			} else {
+				def += rightHand.getDef();
+			}
+		}
+		if (leftHand != null) {
+			if (leftHand.getObjectType().equals("weapon")) {
+				//Do nothing
+			} else {
+				def += rightHand.getDef();
+			}
+		}
+		return def;
+	}
+
+	public static int getWt(){
+		int wt = 0;
+		if (legs != null) {
+			wt += legs.getWeight();
+		}
+		if (head != null) {
+			wt += head.getWeight();
+		}
+		if (torso != null) {
+			wt += torso.getWeight();
+		}
+		if (feet != null) {
+			wt += feet.getWeight();
+		}
+		if (back != null) {
+			wt += back.getWeight();
+		}
+		int att = 0;
+		if (rightHand != null) {
+			if (rightHand.getObjectType().equals("weapon")) {
+				wt += ((Weapon) rightHand).getWeight();
+			} else {
+				wt += ((Armor) rightHand).getWeight();
+			}
+		}
+		if (leftHand != null) {
+			if (leftHand.getObjectType().equals("weapon")) {
+				wt += ((Weapon) leftHand).getWeight();
+			} else {
+				wt += ((Armor) leftHand).getWeight();
+			}
+		}
+		return wt;
+	}
+
 	//Setters
 	public void setName(String name) {
 		Monster.name = name;
@@ -88,22 +256,22 @@ public class Monster {
 	public void setMana(double mana) {
 		Monster.mana = mana;
 	}
-	public void setRightHand(String rightHand) {
+	public void setRightHand(IObject rightHand) {
 		Monster.rightHand = rightHand;
 	}
-	public void setLeftHand(String leftHand) {
+	public void setLeftHand(IObject leftHand) {
 		Monster.leftHand = leftHand;
 	}
-	public void setFeet(String boots) {
+	public void setFeet(Armor boots) {
 		Monster.feet = boots;
 	}
-	public void setLegs(String legs) {
+	public void setLegs(Armor legs) {
 		Monster.legs = legs;
 	}
-	public void setTorso(String shirt) {
+	public void setTorso(Armor shirt) {
 		Monster.torso = shirt;
 	}
-	public void setHead(String head) {
+	public void setHead(Armor head) {
 		Monster.head = head;
 	}
 }

@@ -10,10 +10,12 @@ import java.util.Scanner;
 
 import objects.IObject;
 import protection.Armor;
+import start.Fight;
 import weapons.Weapon;
 import maps.Move;
 import maps.Point;
 import methods.Invo;
+import monsters.Monster;
 
 public class Engine {
 	private static User user;
@@ -26,6 +28,7 @@ public class Engine {
 	private static IObject[] worldObjects;
 	private static Move[] worldMaps;
 	private static boolean admin;
+	private static Monster goblin;
 
 	/**
 	 * All the commands that a user can type in
@@ -33,6 +36,10 @@ public class Engine {
 	public static void menu() {
 		while (true) {
 			checker();
+			if(location.getX() == 1 && location.getY() == 5){
+				Fight test = new Fight(user, goblin, "Plains");
+				test.battle();
+			}
 			Scanner in = new Scanner(System.in);
 			// Command line
 			System.out.print(": ");
@@ -404,22 +411,28 @@ public class Engine {
 	 */
 	public static void start() {
 		// ALL DEFAULT MAPS, WEAPONS, AND ITEMS//
-		worldObjects = new IObject[] { new Weapon("Sword", "Melee", 5, 4.0),
-				new Weapon("Staff", "Magic", 5, 4.0),
-				new Weapon("Bow", "Range", 5, 4.0),
-				new Weapon("Dagger", "Melee", 5, 4.0),
-				new Armor("Helm", "Head", 5, 4.0),
-				new Armor("Top", "Torso", 5, 4.0),
-				new Armor("Legs", "Legs", 5, 4.0),
-				new Armor("Boots", "Feet", 5, 4.0),
-				new Armor("Gloves", "Hand", 5, 4.0),
-				new Armor("Cape", "Back", 5, 4.0),
-				new Item("Beer", "Alchahol", -1, 10) };
+		worldObjects = new IObject[] { new Weapon("Sword", "Melee", 5, 4.0),//0
+				new Weapon("Staff", "Magic", 5, 4.0),//1
+				new Weapon("Bow", "Range", 5, 4.0),//2
+				new Weapon("Dagger", "Melee", 5, 4.0),//3
+				new Armor("Helm", "Head", 5, 4.0),//4
+				new Armor("Top", "Torso", 5, 4.0),//5
+				new Armor("Legs", "Legs", 5, 4.0),//6
+				new Armor("Boots", "Feet", 5, 4.0),//7
+				new Armor("Gloves", "Hand", 5, 4.0),//8
+				new Armor("Cape", "Back", 5, 4.0),//9
+				new Item("Beer", "Alchahol", -1, 10) };//10
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
 		worldMaps = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
 				mapMaker("xxx") };
+		//CREATE THE MONSTERS HERE//
+		  //Then put the monsters//
+		  //in the if statement to//
+		  //check if the player//
+		  //step on one//
+		goblin = new Monster("Goblin", 100, 1);
 
 		Scanner in = new Scanner(System.in);
 		System.out.print("What is your name: ");
@@ -599,5 +612,9 @@ public class Engine {
 			System.out.println();
 			return sum;
 		}
+	}
+
+	public static IObject getWorldObject(int i){
+		return worldObjects[i];
 	}
 }
