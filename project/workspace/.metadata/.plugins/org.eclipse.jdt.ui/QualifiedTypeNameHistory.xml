@@ -11,7 +11,6 @@
 <fullyQualifiedTypeName name="maps.Tutorial"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="engine.User"/>
-<fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="java.util.Random"/>
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 <fullyQualifiedTypeName name="java.io.FileReader"/>
@@ -24,4 +23,5 @@
 <fullyQualifiedTypeName name="engine.Engine"/>
 <fullyQualifiedTypeName name="monsters.Monster"/>
 <fullyQualifiedTypeName name="start.Fight"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
 </qualifiedTypeNameHistroy>

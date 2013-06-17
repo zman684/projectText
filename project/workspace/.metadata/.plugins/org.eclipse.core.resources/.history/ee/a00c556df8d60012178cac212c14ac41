@@ -122,10 +122,9 @@ public class Fight {
 	public static double[] hitPer() {
 		int playerDmg = (int) ((player.getLevel() * player.getDmg()) - (npc
 				.getDef() / 2));
-		System.out.println(playerDmg);
 		int d = 1;
 		double[] dmgPer = new double[playerDmg];
-		int j = playerDmg-1;
+		int j = playerDmg;
 		for (int i = 0; i < playerDmg; i++) {
 			dmgPer[i] = 1 / playerDmg;
 			System.out.println(dmgPer[i]);

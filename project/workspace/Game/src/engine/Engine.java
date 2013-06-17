@@ -36,10 +36,7 @@ public class Engine {
 	public static void menu() {
 		while (true) {
 			checker();
-			if(location.getX() == 1 && location.getY() == 5){
-				Fight test = new Fight(user, goblin, "Plains");
-				test.battle();
-			}
+			mapChecker();
 			Scanner in = new Scanner(System.in);
 			// Command line
 			System.out.print(": ");
@@ -91,6 +88,15 @@ public class Engine {
 						.println("That is not a correct command please try again.");
 			}
 		}
+	}
+
+	private static void mapChecker() {
+		//ALL MONSTER LOCATION//
+		if(location.getX() == 1 && location.getY() == 5){
+			Fight test = new Fight(user, goblin, "Plains");
+			System.out.println(test.battle());
+		}
+
 	}
 
 	/**
@@ -466,6 +472,7 @@ public class Engine {
 			for (IObject o : worldObjects) {
 				invo.add(o);
 			}
+			user.setRightHand(worldObjects[0]);
 		} else {
 			invo = new ArrayList<IObject>();
 		}

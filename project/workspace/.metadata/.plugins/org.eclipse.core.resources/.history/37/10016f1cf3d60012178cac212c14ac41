@@ -1,0 +1,57 @@
+package firstproject;
+
+import java.util.Scanner;
+
+public class first {
+	private static String name;
+	private static int age;
+	private static String grade;
+	private static String[] pets = new String[2];
+	private static char gender;
+	private static String race;
+	private static int[] favNums = new int[1];
+
+	public first() {
+		name = "Ally Taylor";
+		age = 16;
+		grade = "Junior";
+		pets[0] = "Simon";
+		pets[1] = "Grace";
+		gender = 'f';
+		race = "white";
+		favNums[0] = 5;
+	}
+
+	public static void menu() {
+		Scanner in = new Scanner(System.in);
+		System.out.println("What do you want to know about me?");
+		System.out.println("Name");
+		System.out.println("Age");
+		System.out.println("Grade");
+		System.out.println("Pets");
+		System.out.println("Gender");
+		System.out.println("Race");
+		System.out.println("Favorite Number");
+		System.out.print(":");
+		String option = in.nextLine().toLowerCase();
+		if (option.equals("name")) {
+			System.out.println(name);
+		} else if (option.equals("age")) {
+			System.out.println(age);
+		} else if (option.equals("grade")) {
+			System.out.println(grade);
+		} else if (option.equals("pets")) {
+			for (int i = 0; i < pets.length; i++) {
+				System.out.println(pets[i]);
+			}
+		} else if (option.equals("gender")) {
+			System.out.println(gender);
+		} else if (option.equals("race")) {
+			System.out.println(race);
+		} else if (option.equals("favNums")) {
+			for (int i = 0; i < favNums.length; i++) {
+				System.out.println(favNums[i]);
+			}
+		}
+	}
+}

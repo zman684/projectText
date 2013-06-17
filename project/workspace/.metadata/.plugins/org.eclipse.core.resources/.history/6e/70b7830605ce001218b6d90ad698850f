@@ -23,10 +23,10 @@ public class Fight {
 		boolean flee = false;
 		Scanner in = new Scanner(System.in);
 
-		// System.out.println(player.getName() + " VS " + npc.getName());
-		// System.out.println(player);
-		// System.out.println(npc);
-		// System.out.println();
+//		System.out.println(player.getName() + " VS " + npc.getName());
+//		System.out.println(player);
+//		System.out.println(npc);
+//		System.out.println();
 		while (true) {
 			System.out.println("Please choose your move:");
 			System.out.println("Attack");// Calls the attack method
@@ -43,9 +43,9 @@ public class Fight {
 					break;
 				}
 				System.out.println();
-				attack(1);
-				System.out.println();
 				attack(2);
+				System.out.println();
+				attack(1);
 				System.out.println();
 			} else if (option.toLowerCase().equals("use item")) {
 
@@ -77,7 +77,6 @@ public class Fight {
 		int npcDmg = (npc.getLevel() * npc.getDmg()) - (player.getDef() / 2);
 		int playerDmg = (int) ((player.getLevel() * player.getDmg()) - (npc
 				.getDef() / 2));
-		hitPer();
 		if (attacker == 1) {
 			if ((int) (Math.random() * 100) + 1 <= dodge()) {
 				System.out.println("You dodged their attack!");
@@ -119,28 +118,4 @@ public class Fight {
 		return (int) block;
 	}
 
-	public static double[] hitPer() {
-		int playerDmg = (int) ((player.getLevel() * player.getDmg()) - (npc
-				.getDef() / 2));
-		System.out.println(playerDmg);
-		int d = 1;
-		double[] dmgPer = new double[playerDmg];
-		int j = playerDmg-1;
-		for (int i = 0; i < playerDmg; i++) {
-			dmgPer[i] = 1 / playerDmg;
-			System.out.println(dmgPer[i]);
-		}
-		for (int w = d; w < (playerDmg / 2) - d; w++) {
-			for (int i = 0; i < 2; i++) {
-				dmgPer[i] = (1 / playerDmg) / (playerDmg - 2);
-				System.out.println(dmgPer[i]);
-				dmgPer[j] = (1 / playerDmg) / (playerDmg - 2);
-				j--;
-			}
-			dmgPer[w] = (1 / playerDmg) / (playerDmg - 2) + (1 / playerDmg);
-			System.out.println(dmgPer[w]);
-		}
-		d++;
-		return null;
-	}
 }
