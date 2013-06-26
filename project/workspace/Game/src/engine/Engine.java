@@ -73,7 +73,7 @@ public class Engine {
 			} else if (action.equals("commands")) {
 				commands();
 			} else if (action.equals("look around")) {
-				System.out.println("You look are and see...");
+				look();
 			} else if (action.equals("invo")) {
 				System.out.println(invo());
 			} else if (action.equals("exit")) {
@@ -86,6 +86,16 @@ public class Engine {
 				// it must not be a command
 				System.out
 						.println("That is not a correct command please try again.");
+			}
+		}
+	}
+
+	private static void look() {
+		if(location.getX() == 1 && location.getY() == 6){
+			if (Heading == 3) {
+				System.out.println("There is a monster ahead!");
+			}else{
+				System.out.println("There is a dense forest...");
 			}
 		}
 	}
