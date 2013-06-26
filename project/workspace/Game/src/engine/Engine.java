@@ -90,6 +90,7 @@ public class Engine {
 		}
 	}
 
+    //Look method for *ALLY TAYLOR*
 	private static void look() {
 		if(location.getX() == 1 && location.getY() == 6){
 			if (Heading == 3) {
