@@ -1,0 +1,12 @@
+Hello everybody!
+
+if(you != "new"){
+	read("Please edit this with info that you think would
+	be useful for the new developers that might join.");
+}else{
+	read("This game is a bit-by-bit game meaning that we
+	work not daily on it. So if you have ideas or want to
+	know what you should work on email 'toorealc@yahoo.com'
+	or post and issue on github!")
+}
+(I thought this was a funny idea :P)

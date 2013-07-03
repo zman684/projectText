@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Game/Untitled 1&apos; to &apos;DevReadMe&apos;" description="Rename resource &apos;Untitled 1&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Untitled 1" name="DevReadMe" stamp="1372885514541" updateReferences="true"/>
+</session>

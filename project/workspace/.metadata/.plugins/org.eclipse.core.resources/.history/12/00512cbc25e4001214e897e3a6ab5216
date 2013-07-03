@@ -26,7 +26,7 @@ public class Engine {
 	private static final int startY = 6;
 	private static IObject[] worldObjects;
 	private static Move[] worldMaps;
-	private static boolean dev;
+	private static boolean admin;
 	private static Monster goblin;
 
 	/**
@@ -456,15 +456,15 @@ public class Engine {
 		while (done != true) {
 			System.out.print("What is your name: ");
 			name = in.nextLine();
-			if (name.toLowerCase().equals("dev")) {
-				// Ask for the dev password three times
+			if (name.toLowerCase().equals("admin")) {
+				// Ask for the admin password three times
 				for (int i = 0; i < 3; i++) {
 					System.out.print("Password: ");
 					String pass = in.nextLine();
 					// If they got that password right
 					// stop asking and log them in
 					if (pass.equals("7895123")) {
-						dev = true;
+						admin = true;
 						i = 3;
 						done = true;
 					} else {
@@ -474,7 +474,7 @@ public class Engine {
 				}
 				// If they did not get the password right in the three
 				// attempts then ask for their name again
-				if (!dev) {
+				if (!admin) {
 				}
 			} else if (name.length() < 3) {
 				System.out.println("That name is too short...");
@@ -484,12 +484,12 @@ public class Engine {
 		}
 		user = new User(name);
 		Heading = 3;
-		if (dev) {
+		if (admin) {
 			invo = new ArrayList<IObject>();
 			for (IObject o : worldObjects) {
 				invo.add(o);
 			}
-			//Sets so the dev will have a sword in their hand
+			//Sets so the admin will have a sword in their hand
 			user.setRightHand(worldObjects[0]);
 		} else {
 			invo = new ArrayList<IObject>();
@@ -579,7 +579,7 @@ public class Engine {
 	}
 
 	public static String showMap() {
-		if (!dev) {
+		if (!admin) {
 			System.out
 					.println("Current Location : " + "("
 							+ (int) location.getX() + ","
