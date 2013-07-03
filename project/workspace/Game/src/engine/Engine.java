@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import objects.IObject;
 import protection.Armor;
 import start.Fight;
@@ -67,7 +66,7 @@ public class Engine {
 			} else if (action.equals("map")) {
 				showMap();
 			} else if (action.equals("status")) {
-				System.out.println(user.toString());
+				System.out.println(user);
 			} else if (action.equals("help")) {
 				help();
 			} else if (action.equals("commands")) {
@@ -90,20 +89,20 @@ public class Engine {
 		}
 	}
 
-    //Look method for *ALLY TAYLOR*
+	// Look method for *ALLY TAYLOR*
 	private static void look() {
-		if(location.getX() == 1 && location.getY() == 6){
+		if (location.getX() == 1 && location.getY() == 6) {
 			if (Heading == 3) {
 				System.out.println("There is a monster ahead!");
-			}else{
+			} else {
 				System.out.println("There is a dense forest...");
 			}
 		}
 	}
 
 	private static void mapChecker() {
-		//ALL MONSTER LOCATION//
-		if(location.getX() == 1 && location.getY() == 5){
+		// ALL MONSTER LOCATION//
+		if (location.getX() == 1 && location.getY() == 5) {
 			Fight test = new Fight(user, goblin, "Plains");
 			System.out.println(test.battle());
 		}
@@ -428,52 +427,59 @@ public class Engine {
 	 */
 	public static void start() {
 		// ALL DEFAULT MAPS, WEAPONS, AND ITEMS//
-		worldObjects = new IObject[] { new Weapon("Sword", "Melee", 5, 4.0),//0
-				new Weapon("Staff", "Magic", 5, 4.0),//1
-				new Weapon("Bow", "Range", 5, 4.0),//2
-				new Weapon("Dagger", "Melee", 5, 4.0),//3
-				new Armor("Helm", "Head", 5, 4.0),//4
-				new Armor("Top", "Torso", 5, 4.0),//5
-				new Armor("Legs", "Legs", 5, 4.0),//6
-				new Armor("Boots", "Feet", 5, 4.0),//7
-				new Armor("Gloves", "Hand", 5, 4.0),//8
-				new Armor("Cape", "Back", 5, 4.0),//9
-				new Item("Beer", "Alchahol", -1, 10) };//10
+		worldObjects = new IObject[] { new Weapon("Sword", "Melee", 5, 4.0),// 0
+				new Weapon("Staff", "Magic", 5, 4.0),// 1
+				new Weapon("Bow", "Range", 5, 4.0),// 2
+				new Weapon("Dagger", "Melee", 5, 4.0),// 3
+				new Armor("Helm", "Head", 5, 4.0),// 4
+				new Armor("Top", "Torso", 5, 4.0),// 5
+				new Armor("Legs", "Legs", 5, 4.0),// 6
+				new Armor("Boots", "Feet", 5, 4.0),// 7
+				new Armor("Gloves", "Hand", 5, 4.0),// 8
+				new Armor("Cape", "Back", 5, 4.0),// 9
+				new Item("Beer", "Alchahol", -1, 10) };// 10
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
 		worldMaps = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
 				mapMaker("xxx") };
-		//CREATE THE MONSTERS HERE//
-		  //Then put the monsters//
-		  //in the if statement to//
-		  //check if the player//
-		  //step on one//
+		// CREATE THE MONSTERS HERE//
+		// Then put the monsters//
+		// in the if statement to//
+		// check if the player//
+		// step on one//
 		goblin = new Monster("Goblin", 100, 1);
 
 		Scanner in = new Scanner(System.in);
-		System.out.print("What is your name: ");
-		String name = in.nextLine();
-		if (name.toLowerCase().equals("admin")) {
-			// Ask for the admin password three times
-			for (int i = 0; i < 3; i++) {
-				System.out.print("Password: ");
-				String pass = in.nextLine();
-				// If they got that password right
-				// stop asking and log them in
-				if (pass.equals("7895123")) {
-					admin = true;
-					i = 3;
-				} else {
-					// Else ask again
-					System.out.println("Please try again");
+		String name = "";
+		boolean done = false;
+		while (done != true) {
+			System.out.print("What is your name: ");
+			name = in.nextLine();
+			if (name.toLowerCase().equals("admin")) {
+				// Ask for the admin password three times
+				for (int i = 0; i < 3; i++) {
+					System.out.print("Password: ");
+					String pass = in.nextLine();
+					// If they got that password right
+					// stop asking and log them in
+					if (pass.equals("7895123")) {
+						admin = true;
+						i = 3;
+						done = true;
+					} else {
+						// Else ask again
+						System.out.println("Please try again");
+					}
 				}
-			}
-			// If they did not get the password right in the three
-			// attempts then ask for their name again
-			if (!admin) {
-				System.out.print("What is your name: ");
-				name = in.nextLine();
+				// If they did not get the password right in the three
+				// attempts then ask for their name again
+				if (!admin) {
+				}
+			} else if (name.length() < 3) {
+				System.out.println("That name is too short...");
+			}else{
+				done = true;
 			}
 		}
 		user = new User(name);
@@ -632,7 +638,7 @@ public class Engine {
 		}
 	}
 
-	public static IObject getWorldObject(int i){
+	public static IObject getWorldObject(int i) {
 		return worldObjects[i];
 	}
 }
