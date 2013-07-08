@@ -42,6 +42,7 @@ public class Engine {
 			String action = in.nextLine();
 			// A big "if" statement for all the commands
 			// of the game
+			System.out.println(action.substring(0,4));
 			if (action.equals("forward") || action.equals("go forward")
 					|| action.equals("move forward")) {
 				goForward();
@@ -60,8 +61,8 @@ public class Engine {
 				System.out.println(user.equipment());
 			} else if (action.equals("equip")) {
 				equip();
-			}else if (action.substring(0,6).equals("equip ")){
-				equipItem(action.substring(6,action.length()));
+			}else if (action.substring(0,4).equals("equip")){
+				System.out.println("hello");
 			} else if (action.equals("pickup")) {
 				pickUp();
 			} else if (action.equals("map")) {
@@ -88,93 +89,6 @@ public class Engine {
 						.println("That is not a correct command please try again.");
 			}
 		}
-	}
-
-	private static void equipItem(String item) {
-		String equip = "";
-		Scanner in = new Scanner(System.in);
-		for (int j = 0; j < invo.size(); j++) {
-			// When the item they entered equals a items name
-			// in their invo
-			if (item != null) {
-				if (item.toLowerCase().equals(
-						invo.get(j).getName().toLowerCase())) {
-					System.out.println();
-					// Check if it is a weapon
-					if (invo.get(j).getObjectType().equals("weapon")) {
-						// Set their right hand to that weapon
-						System.out
-								.println("Would you like to equip to your right or left hand?");
-						String option = in.nextLine().toLowerCase();
-						if (option.equals("right")) {
-							if (user.getRightHand() != null) {
-								invo.add(user.getRightHand());
-							}
-							user.setRightHand(((Weapon) invo.get(j)));
-						}
-						if (option.equals("left")) {
-							if (user.getLeftHand() != null) {
-								invo.add(user.getLeftHand());
-							}
-							user.setLeftHand(((Weapon) invo.get(j)));
-						}
-						// Change the text
-						equip = ((Weapon) invo.get(j)).getName() + " equipped";
-						// Remove the item from the invo
-						invo.remove(j);
-						j = invo.size();
-						break;
-						// If it is armor
-					} else if (invo.get(j).getObjectType().equals("armor")) {
-						String type = ((Armor) invo.get(j)).getType();
-						// Check to see what type of armor it is
-						switch (type) {
-						case "Back":
-							invo.add(user.getBack());
-							user.setBack((Armor) check(invo.get(j).getName()));
-							equip = invo.get(j).getName() + " equipped";
-							invo.remove(j);
-							j = invo.size();
-							break;
-						case "Legs":
-							invo.add(user.getLegs());
-							User.setLegs((Armor) check(invo.get(j).getName()));
-							equip = invo.get(j).getName() + " equipped";
-							invo.remove(j);
-							j = invo.size();
-							break;
-						case "Torso":
-							invo.add(user.getTorso());
-							User.setTorso((Armor) check(invo.get(j).getName()));
-							equip = invo.get(j).getName() + " equipped";
-							invo.remove(j);
-							j = invo.size();
-							break;
-						case "Head":
-							invo.add(user.getHead());
-							user.setHead((Armor) check(invo.get(j).getName()));
-							equip = invo.get(j).getName() + " equipped";
-							invo.remove(j);
-							j = invo.size();
-							break;
-						case "Feet":
-							invo.add(user.getFeet());
-							user.setFeet((Armor) check(invo.get(j).getName()));
-							equip = invo.get(j).getName() + " equipped";
-							invo.remove(j);
-							j = invo.size();
-							break;
-						}
-					}
-
-					// If it is not a Weapon or Armor then
-					// it must be an item
-				} else {
-					equip = "You can not equip that item!";
-				}
-			}
-		}
-		System.out.println(equip);
 	}
 
 	// Look method for *ALLY TAYLOR*
@@ -209,6 +123,9 @@ public class Engine {
 	 * Player types in equip then the console asks the user what they want to
 	 * equip
 	 */
+	// TODO: When you equip an item... When it unequips the item
+	// they were wielding, this method should put that
+	// item in their invo
 	public static void equip() {
 		String equip = "";
 		Scanner in = new Scanner(System.in);
@@ -520,8 +437,9 @@ public class Engine {
 				new Armor("Top", "Torso", 5, 4.0),// 5
 				new Armor("Legs", "Legs", 5, 4.0),// 6
 				new Armor("Boots", "Feet", 5, 4.0),// 7
-				new Armor("Cape", "Back", 5, 4.0),// 8
-				new Item("Beer", "Alchahol", -1, 10) };// 9
+				new Armor("Gloves", "Hand", 5, 4.0),// 8
+				new Armor("Cape", "Back", 5, 4.0),// 9
+				new Item("Beer", "Alchahol", -1, 10) };// 10
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
 		worldMaps = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),

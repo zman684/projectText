@@ -28,13 +28,6 @@ public class Fight {
 		// System.out.println(npc);
 		// System.out.println();
 		while (true) {
-			if (player.getHealth() <= 0) {
-				break;
-			}
-			if (npc.getHealth() <= 0) {
-				playerWin = true;
-				break;
-			}
 			System.out.println("Please choose your move:");
 			System.out.println("Attack");// Calls the attack method
 			System.out.println("Use item");//
@@ -42,6 +35,13 @@ public class Fight {
 			String option = in.nextLine();
 
 			if (option.toLowerCase().equals("attack")) {
+				if (player.getHealth() <= 0) {
+					break;
+				}
+				if (npc.getHealth() <= 0) {
+					playerWin = true;
+					break;
+				}
 				System.out.println();
 				attack(1);
 				System.out.println();
@@ -91,10 +91,9 @@ public class Fight {
 //		System.out.println(playerDmg);
 //		System.out.println(npcDmg);
 		if (attacker == 1) {
-//			if ((int) (Math.random() * 100) + 1 <= dodge()) {
-//				System.out.println("You dodged their attack!");
-//			} else
-			if ((int) (Math.random() * 100) + 1 <= block()) {
+			if ((int) (Math.random() * 100) + 1 <= dodge()) {
+				System.out.println("You dodged their attack!");
+			} else if ((int) (Math.random() * 100) + 1 <= block()) {
 				System.out.println("You blocked their attack!");
 			} else if (npcDmg > 0) {
 				System.out.println("You have been hit!");
@@ -130,10 +129,10 @@ public class Fight {
 
 	}
 
-//	public static int dodge() {
-//		double dodge = (npc.getWt() / player.getWt()) * 10;
-//		return (int) dodge;
-//	}
+	public static int dodge() {
+		double dodge = (npc.getWt() / player.getWt()) * 10;
+		return (int) dodge;
+	}
 
 	public static int block() {
 		double block = (player.getDef() / npc.getDmg()) * 10;

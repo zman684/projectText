@@ -61,6 +61,7 @@ public class Engine {
 			} else if (action.equals("equip")) {
 				equip();
 			}else if (action.substring(0,6).equals("equip ")){
+				System.out.println("hello");
 				equipItem(action.substring(6,action.length()));
 			} else if (action.equals("pickup")) {
 				pickUp();
@@ -209,6 +210,9 @@ public class Engine {
 	 * Player types in equip then the console asks the user what they want to
 	 * equip
 	 */
+	// TODO: When you equip an item... When it unequips the item
+	// they were wielding, this method should put that
+	// item in their invo
 	public static void equip() {
 		String equip = "";
 		Scanner in = new Scanner(System.in);
@@ -520,8 +524,9 @@ public class Engine {
 				new Armor("Top", "Torso", 5, 4.0),// 5
 				new Armor("Legs", "Legs", 5, 4.0),// 6
 				new Armor("Boots", "Feet", 5, 4.0),// 7
-				new Armor("Cape", "Back", 5, 4.0),// 8
-				new Item("Beer", "Alchahol", -1, 10) };// 9
+				new Armor("Gloves", "Hand", 5, 4.0),// 8
+				new Armor("Cape", "Back", 5, 4.0),// 9
+				new Item("Beer", "Alchahol", -1, 10) };// 10
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
 		worldMaps = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),

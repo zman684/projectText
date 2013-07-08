@@ -91,10 +91,9 @@ public class Fight {
 //		System.out.println(playerDmg);
 //		System.out.println(npcDmg);
 		if (attacker == 1) {
-//			if ((int) (Math.random() * 100) + 1 <= dodge()) {
-//				System.out.println("You dodged their attack!");
-//			} else
-			if ((int) (Math.random() * 100) + 1 <= block()) {
+			if ((int) (Math.random() * 100) + 1 <= dodge()) {
+				System.out.println("You dodged their attack!");
+			} else if ((int) (Math.random() * 100) + 1 <= block()) {
 				System.out.println("You blocked their attack!");
 			} else if (npcDmg > 0) {
 				System.out.println("You have been hit!");
@@ -130,10 +129,10 @@ public class Fight {
 
 	}
 
-//	public static int dodge() {
-//		double dodge = (npc.getWt() / player.getWt()) * 10;
-//		return (int) dodge;
-//	}
+	public static int dodge() {
+		double dodge = (npc.getWt() / player.getWt()) * 10;
+		return (int) dodge;
+	}
 
 	public static int block() {
 		double block = (player.getDef() / npc.getDmg()) * 10;
