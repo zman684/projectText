@@ -23,7 +23,6 @@ public class Engine {
 	private static int Heading;
 	private static Move[] map;
 	private static int startX;
-	private static char curLoc;
 	private static final int startY = 6;
 	private static IObject[] worldObjects;
 	private static Move[] worldMaps;
@@ -73,7 +72,7 @@ public class Engine {
 				commands();
 			} else if (action.equals("look around")) {
 				lookAround();
-			} else if (action.equals("look")) {
+			}else if (action.equals("look")){
 				look();
 			} else if (action.equals("invo")) {
 				System.out.println(invo());
@@ -85,11 +84,9 @@ public class Engine {
 			} else if (action.length() > 6) {
 				if (action.substring(0, 6).equals("equip ")) {
 					equipItem(action.substring(6, action.length()));
-				} else if(action.substring(0, 7).equals("pickup ")){
-					pickupItem(action.substring(7, action.length()));
 				}else{
 					System.out
-							.println("That is not a correct command please try again.");
+					.println("That is not a correct command please try again.");
 				}
 			} else {
 				// If it is not in the command "if" block
@@ -100,44 +97,33 @@ public class Engine {
 		}
 	}
 
-	private static void pickupItem(String item) {
-		int i = 0;
-		boolean itemIsValid = false;
-		for (int j = 0; j < worldObjects.length; j++) {
-			// Makes sure the item is by them and they don't just put in a
-			// random name
-			if (worldObjects[j].getName().toLowerCase()
-					.equals(item.toLowerCase())) {
-				i = j;
-				itemIsValid = true;
-			}
-		}
-		if (itemIsValid) {
-			invo.add(worldObjects[i]);
-			System.out.println("You picked up " + worldObjects[i]);
-		} else {
-			System.out.println("You can not pick that up.");
-		}
-	}
-
 	private static void lookAround() {
-		// Does 4 turns and 4 looks
-		int end = Heading;
-		for (int i = 0; i < 4; i++) {
-			checker();
-			if (Heading == 1) {
-				System.out.print("To the south ");
-			} else if (Heading == 2) {
-				System.out.print("To the east ");
-			} else if (Heading == 3) {
-				System.out.print("To the north ");
-			} else if (Heading == 4) {
-				System.out.print("To the west ");
+		//Does 4 turns and 4 looks
+//		if(Heading == 3){
+//			System.out.print("To the north");
+//		}
+//		look();//north
+//		turnRight();//east
+//		look();//east
+//		turnRight();//south
+//		look();//south
+//		turnRight();//west
+//		look();//west
+//		turnRight();//north
+
+		for(int i = 0; i < 4; i++){
+			if(Heading == 1){
+				System.out.print("To the south");
+			}else if(Heading == 2){
+				System.out.print("To the east");
+			}else if(Heading == 3){
+				System.out.print("To the north");
+			}else{
+				System.out.print("To the west");
 			}
 			look();
 			turnRight();
 		}
-		Heading = end;
 
 	}
 
@@ -229,37 +215,39 @@ public class Engine {
 	}
 
 	/**
-	 * 1 = south 2 = east 3 = north 4 = west =========== m = monster e = end t =
-	 * treasure x = forest or wall
+	 * 1 = south
+	 * 2 = east
+	 * 3 = north
+	 * 4 = west
+	 * ===========
+	 * m = monster
+	 * e = end
+	 * t = treasure
+	 * x = forest or wall
 	 */
 	private static void look() {
-		char front = map[(int) location.getY() - 1].toString().charAt(
-				(int) (location.getX()));
-		if (Heading == 1) {
-			front = map[(int) location.getY() + 1].toString().charAt(
-					(int) (location.getX()));
-		} else if (Heading == 3) {
-			front = map[(int) location.getY() - 1].toString().charAt(
-					(int) (location.getX()));
-		} else if (Heading == 2) {
-			front = map[(int) location.getY()].toString().charAt(
-					(int) (location.getX() + 1));
-		} else {
-			front = map[(int) location.getY()].toString().charAt(
-					(int) (location.getX() - 1));
+		char front = map[(int) location.getY() - 1].toString().charAt((int) (location.getX()));
+		if(Heading == 1){
+			front = map[(int) location.getY() + 1].toString().charAt((int) (location.getX()));
+		}else if(Heading == 3){
+			front = map[(int) location.getY() - 1].toString().charAt((int) (location.getX()));
+		}else if(Heading == 2){
+			front = map[(int) location.getY()].toString().charAt((int) (location.getX() + 1));
+		}else{
+			front = map[(int) location.getY()].toString().charAt((int) (location.getX() - 1));
 		}
 		if (front == 'm') {
 			System.out.println("There is a monster ahead!");
-		} else if (front == 'x') {
+		}else if(front == 'x'){
 			System.out.println("A dense forest lies ahead...");
-		} else if (front == 'o') {
+		}else if(front == 'o'){
 			System.out.println("You see a trail.");
 		}
 	}
 
 	private static void mapChecker() {
 		// ALL MONSTER LOCATION//
-		if (curLoc == 'm') {
+		if (location.getX() == 1 && location.getY() == 5) {
 			Fight test = new Fight(user, goblin, "Plains");
 			System.out.println(test.battle());
 		}
@@ -271,9 +259,6 @@ public class Engine {
 	 */
 	// TODO: Clear the menu
 	private static void clear() {
-		for(int i = 0; i < 25; i++){
-			System.out.println();
-		}
 		menu();
 	}
 
@@ -486,8 +471,10 @@ public class Engine {
 			System.out.println("You are facing North.");
 		} else if (Heading == 4) {
 			System.out.println("You are facing West.");
-		} else {
-			System.out.println(Heading);
+		} else if (Heading > 4) {
+			Heading = 1;
+		} else if (Heading < 1) {
+			Heading = 4;
 		}
 		System.out.println("Your Coords are, " + location.toString());
 	}
@@ -593,14 +580,10 @@ public class Engine {
 				new Armor("Cape", "Back", 5, 4.0),// 8
 				new Item("Beer", "Alchahol", -1, 10) };// 9
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
-		//TODO: make a array of maps//
 		worldMaps = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
 				mapMaker("xxx") };
-		map = new Move[] { mapMaker("xxxxx"), mapMaker("xexxx"),
-				mapMaker("xoxxx"), mapMaker("xmxxx"), mapMaker("xooox"),
-				mapMaker("xoxtx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
 		// CREATE THE MONSTERS HERE//
 		// Then put the monsters//
 		// in the if statement to//
@@ -652,9 +635,10 @@ public class Engine {
 		} else {
 			invo = new ArrayList<IObject>();
 		}
+		map = new Move[] { mapMaker("xxxxx"), mapMaker("xexxx"),
+				mapMaker("xoxxx"), mapMaker("xmxxx"), mapMaker("xooox"),
+				mapMaker("xoxtx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
 		location = new Point(startX, startY);
-		curLoc = map[(int) location.getY()].toString().charAt(
-				(int) (location.getX()));
 		String summary = "\nWelcome " + name + "!";
 		summary += "\nIf you need help please type 'help'";
 		summary += "\nOr if you need to know the commands you can type in 'commands'";
@@ -728,16 +712,10 @@ public class Engine {
 	}
 
 	public static void checker() {
-		mapChecker();
 		for (int i = 0; i < invo.size(); i++) {
 			if (invo.get(i) == null) {
 				invo.remove(i);
 			}
-		}
-		if (Heading > 4) {
-			Heading = 1;
-		} else if (Heading < 1) {
-			Heading = 4;
 		}
 	}
 
@@ -761,9 +739,7 @@ public class Engine {
 			for (int i = 0; i < map.length; i++) {
 				System.out.print(y);
 				for (int j = 0; j < map[i].length(); j++) {
-					if(i == location.getY() && j == location.getX()){
-						System.out.print("C");
-					}else if (map[i].toString().charAt(j) == 'x') {
+					if (map[i].toString().charAt(j) == 'x') {
 						System.out.print("x");
 					} else {
 						System.out.print("o");

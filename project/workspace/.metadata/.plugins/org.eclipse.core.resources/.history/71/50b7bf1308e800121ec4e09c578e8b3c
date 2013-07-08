@@ -271,9 +271,27 @@ public class Engine {
 	 */
 	// TODO: Clear the menu
 	private static void clear() {
-		for(int i = 0; i < 25; i++){
-			System.out.println();
-		}
+
+		System.out.println();
+		System.out.println();
+
+		System.out.println();
+
+		System.out.println();
+
+		System.out.println();
+
+		System.out.println();
+		System.out.println();
+
+
+		System.out.println();
+		System.out.println();
+
+		System.out.println();
+
+		System.out.println();
+		System.out.println();
 		menu();
 	}
 

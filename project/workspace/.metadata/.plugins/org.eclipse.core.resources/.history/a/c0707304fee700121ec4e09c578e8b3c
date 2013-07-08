@@ -23,7 +23,6 @@ public class Engine {
 	private static int Heading;
 	private static Move[] map;
 	private static int startX;
-	private static char curLoc;
 	private static final int startY = 6;
 	private static IObject[] worldObjects;
 	private static Move[] worldMaps;
@@ -259,6 +258,8 @@ public class Engine {
 
 	private static void mapChecker() {
 		// ALL MONSTER LOCATION//
+		char curLoc = map[(int) location.getY()].toString().charAt(
+				(int) (location.getX()));
 		if (curLoc == 'm') {
 			Fight test = new Fight(user, goblin, "Plains");
 			System.out.println(test.battle());
@@ -271,9 +272,6 @@ public class Engine {
 	 */
 	// TODO: Clear the menu
 	private static void clear() {
-		for(int i = 0; i < 25; i++){
-			System.out.println();
-		}
 		menu();
 	}
 
@@ -593,14 +591,10 @@ public class Engine {
 				new Armor("Cape", "Back", 5, 4.0),// 8
 				new Item("Beer", "Alchahol", -1, 10) };// 9
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
-		//TODO: make a array of maps//
 		worldMaps = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
 				mapMaker("xxx") };
-		map = new Move[] { mapMaker("xxxxx"), mapMaker("xexxx"),
-				mapMaker("xoxxx"), mapMaker("xmxxx"), mapMaker("xooox"),
-				mapMaker("xoxtx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
 		// CREATE THE MONSTERS HERE//
 		// Then put the monsters//
 		// in the if statement to//
@@ -652,9 +646,10 @@ public class Engine {
 		} else {
 			invo = new ArrayList<IObject>();
 		}
+		map = new Move[] { mapMaker("xxxxx"), mapMaker("xexxx"),
+				mapMaker("xoxxx"), mapMaker("xmxxx"), mapMaker("xooox"),
+				mapMaker("xoxtx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
 		location = new Point(startX, startY);
-		curLoc = map[(int) location.getY()].toString().charAt(
-				(int) (location.getX()));
 		String summary = "\nWelcome " + name + "!";
 		summary += "\nIf you need help please type 'help'";
 		summary += "\nOr if you need to know the commands you can type in 'commands'";
@@ -761,9 +756,7 @@ public class Engine {
 			for (int i = 0; i < map.length; i++) {
 				System.out.print(y);
 				for (int j = 0; j < map[i].length(); j++) {
-					if(i == location.getY() && j == location.getX()){
-						System.out.print("C");
-					}else if (map[i].toString().charAt(j) == 'x') {
+					if (map[i].toString().charAt(j) == 'x') {
 						System.out.print("x");
 					} else {
 						System.out.print("o");

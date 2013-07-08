@@ -271,9 +271,6 @@ public class Engine {
 	 */
 	// TODO: Clear the menu
 	private static void clear() {
-		for(int i = 0; i < 25; i++){
-			System.out.println();
-		}
 		menu();
 	}
 
@@ -593,7 +590,7 @@ public class Engine {
 				new Armor("Cape", "Back", 5, 4.0),// 8
 				new Item("Beer", "Alchahol", -1, 10) };// 9
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
-		//TODO: make a array of maps//
+		//TODO: make a array of maps
 		worldMaps = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
