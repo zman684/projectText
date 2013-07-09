@@ -5,7 +5,7 @@ package maps;
 	public class Point {
 		private double x;
 		private double y;
-		
+
 		/**
 		 * Constructs a point object using the specified parameters
 		 * @param x x-coord
@@ -22,11 +22,19 @@ package maps;
 		public double getY() {
 			return y;
 		}
-		
+
+		public void setX(double x){
+			this.x = x;
+		}
+
+		public void setY(double y){
+			this.y = y;
+		}
+
 		public String toString(){
 			//formats the coord with 2 decimal values
 			DecimalFormat d = new DecimalFormat("0.00");
-			
+
 			return "(" + d.format(x) + ", " + d.format(y) + ")";
 		}
 }

@@ -10,6 +10,7 @@ public class Fight {
 	private static Monster npc;
 	private static String area;
 	private static boolean playerWin;
+	private static boolean playerDie;
 
 	public Fight(User player, Monster npc, String area) {
 		this.player = player;
@@ -17,6 +18,7 @@ public class Fight {
 		this.area = area;
 		turns = 0;
 		playerWin = false;
+		playerDie = false;
 	}
 	//TODO: remove the monster
 	public static String battle() {
@@ -24,11 +26,13 @@ public class Fight {
 		Scanner in = new Scanner(System.in);
 
 		 System.out.println(player.getName() + " VS " + npc.getName());
+		 System.out.println();
 		// System.out.println(player);
 		// System.out.println(npc);
 		// System.out.println();
 		while (true) {
-			if (player.getHealth() <= 0) {
+			if (player.getHealth() <= 0){
+				playerDie = true;
 				break;
 			}
 			if (npc.getHealth() <= 0) {
@@ -177,5 +181,20 @@ public class Fight {
 		}
 		d++;
 		return null;
+	}
+	public static boolean isPlayerDead() {
+		return playerDie;
+	}
+	public static boolean playerWin() {
+		return playerWin;
+	}
+	public static void restart(){
+		npc.setHealth(100);
+		turns = 0;
+		playerWin = false;
+		playerDie = false;
+	}
+	public static void respawn(){
+		playerDie = false;
 	}
 }

@@ -1,7 +1,6 @@
 package engine;
 
 import item.Item;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,17 +23,20 @@ public class Engine {
 	private static Move[] map;
 	private static int startX;
 	private static char curLoc;
-	private static final int startY = 6;
+	private static int startY;
 	private static IObject[] worldObjects;
 	private static Move[] worldMaps;
 	private static boolean dev;
 	private static Monster goblin;
+	private static Move[] level1;
+	private static Move[] level2;
+	private static boolean end;
 
 	/**
 	 * All the commands that a user can type in
 	 */
 	public static void menu() {
-		while (true) {
+		while (!end) {
 			checker();
 			mapChecker();
 			Scanner in = new Scanner(System.in);
@@ -85,9 +87,9 @@ public class Engine {
 			} else if (action.length() > 6) {
 				if (action.substring(0, 6).equals("equip ")) {
 					equipItem(action.substring(6, action.length()));
-				} else if(action.substring(0, 7).equals("pickup ")){
+				} else if (action.substring(0, 7).equals("pickup ")) {
 					pickupItem(action.substring(7, action.length()));
-				}else{
+				} else {
 					System.out
 							.println("That is not a correct command please try again.");
 				}
@@ -259,11 +261,53 @@ public class Engine {
 
 	private static void mapChecker() {
 		// ALL MONSTER LOCATION//
+		curLoc = map[(int) location.getY()].toString().charAt(
+				(int) (location.getX()));
 		if (curLoc == 'm') {
 			Fight test = new Fight(user, goblin, "Plains");
+			// TODO:fix after battle
 			System.out.println(test.battle());
+			if (test.isPlayerDead() == true) {
+				goBack();
+				test.respawn();
+				//Put them at the 's' on the map
+			}
+			if (test.playerWin() == true) {
+				removeMonster();
+				test.restart();
+			}
+		}
+		if(curLoc == 'f'){
+			System.out.println("YOU WON!");
+			end = true;
+		}else if (curLoc == 'e') {
+			newLevel(level2);
+			map = level2;
+			System.out.println("You enter a new area");
 		}
 
+	}
+
+	private static void removeMonster() {
+		char letter;
+		String line = "";
+		Move[] newMap = new Move[map.length];
+		for (int i = 0; i < map.length; i++) {
+			if (i != location.getY()) {
+				newMap[i] = map[i];
+			} else {
+				for (int j = map[i].toString().length()-1; j >= 0; j--) {
+					if(j != location.getX()){
+						letter = map[(int) location.getY()].toString().charAt(j);
+					}else{
+						letter = 'o';
+					}
+					line = letter + line;
+				}
+				newMap[(int) location.getY()] = mapMaker(line);
+			}
+		}
+		map = newMap;
 	}
 
 	/**
@@ -271,7 +315,7 @@ public class Engine {
 	 */
 	// TODO: Clear the menu
 	private static void clear() {
-		for(int i = 0; i < 25; i++){
+		for (int i = 0; i < 25; i++) {
 			System.out.println();
 		}
 		menu();
@@ -591,16 +635,18 @@ public class Engine {
 				new Armor("Legs", "Legs", 5, 4.0),// 6
 				new Armor("Boots", "Feet", 5, 4.0),// 7
 				new Armor("Cape", "Back", 5, 4.0),// 8
-				new Item("Beer", "Alchahol", -1, 10) };// 9
+				new Item("Beer", "Alchahol", -1, 10),//9
+				new Weapon("GodSword", "Melee", 1000, 1.0)};// 10
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
-		//TODO: make a array of maps//
-		worldMaps = new Move[] { mapMaker("xxx"), mapMaker("xex"),
+		level1 = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
 				mapMaker("xxx") };
-		map = new Move[] { mapMaker("xxxxx"), mapMaker("xexxx"),
-				mapMaker("xoxxx"), mapMaker("xmxxx"), mapMaker("xooox"),
+		level2 = new Move[] { mapMaker("xxxxx"), mapMaker("xfxxx"),
+				mapMaker("xoxxx"), mapMaker("xmxxx"), mapMaker("xomox"),
 				mapMaker("xoxtx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
+		mapStart(level1);
+		map = level1;
 		// CREATE THE MONSTERS HERE//
 		// Then put the monsters//
 		// in the if statement to//
@@ -610,6 +656,7 @@ public class Engine {
 
 		Scanner in = new Scanner(System.in);
 		String name = "";
+		boolean end = false;
 		boolean done = false;
 		while (done != true) {
 			System.out.print("What is your name: ");
@@ -648,7 +695,7 @@ public class Engine {
 				invo.add(o);
 			}
 			// Sets so the dev will have a sword in their hand
-			user.setRightHand(worldObjects[0]);
+			user.setRightHand(worldObjects[10]);
 		} else {
 			invo = new ArrayList<IObject>();
 		}
@@ -715,12 +762,24 @@ public class Engine {
 	 *            The map
 	 */
 	public static Move mapMaker(String str) {
-		for (int i = 0; i < str.length(); i++) {
-			if (str.charAt(i) == 's') {
-				startX = i;
+		return new Move(str);
+	}
+
+	public static void mapStart(Move[] map) {
+		for (int i = 0; i < map.length; i++) {
+			for (int j = 0; j < map[i].length(); j++) {
+				if (map[i].toString().charAt(j) == 's') {
+					startX = j;
+					startY = i;
+				}
 			}
 		}
-		return new Move(str);
+	}
+
+	public static void newLevel(Move[] map) {
+		mapStart(map);
+		location.setX(startX);
+		location.setY(startY);
 	}
 
 	public static char read(int x, int y) {
@@ -761,9 +820,9 @@ public class Engine {
 			for (int i = 0; i < map.length; i++) {
 				System.out.print(y);
 				for (int j = 0; j < map[i].length(); j++) {
-					if(i == location.getY() && j == location.getX()){
+					if (i == location.getY() && j == location.getX()) {
 						System.out.print("C");
-					}else if (map[i].toString().charAt(j) == 'x') {
+					} else if (map[i].toString().charAt(j) == 'x') {
 						System.out.print("x");
 					} else {
 						System.out.print("o");
@@ -794,7 +853,11 @@ public class Engine {
 			for (int i = 0; i < map.length; i++) {
 				System.out.print(y);
 				for (int j = 0; j < map[i].length(); j++) {
-					System.out.print(map[i].toString().charAt(j));
+					if (i == location.getY() && j == location.getX()) {
+						System.out.print("C");
+					} else {
+						System.out.print(map[i].toString().charAt(j));
+					}
 				}
 				System.out.println();
 				y++;

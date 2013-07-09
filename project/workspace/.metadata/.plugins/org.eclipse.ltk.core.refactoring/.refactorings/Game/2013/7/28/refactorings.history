@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;start.Fight.playerDie&apos; in &apos;start.Fight&apos;&#x0A;- Original project: &apos;Game&apos;&#x0A;- Original element: &apos;start.Fight.playerDie&apos;&#x0A;- Getter method name: &apos;isPlayerDead&apos;&#x0A;- Setter method name: &apos;setPlayerDie&apos;&#x0A;- Field visibility: &apos;public&apos;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;playerDie&apos;" flags="589830" getter="isPlayerDead" id="org.eclipse.jdt.ui.self.encapsulate" input="/battle&lt;start{Fight.java[Fight^playerDie" insertion="5" setter="setPlayerDie" stamp="1373387361431" version="1.0" visibility="1"/>
+</session>
