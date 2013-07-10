@@ -21,7 +21,7 @@ public class Fight {
 		playerDie = false;
 	}
 	//TODO: remove the monster
-	public String battle() {
+	public static String battle() {
 		boolean flee = false;
 		Scanner in = new Scanner(System.in);
 
@@ -76,7 +76,7 @@ public class Fight {
 	/**
 	 * 1 == npc (this method will mainly use one) 2 == user
 	 */
-	public void attack(int attacker) {
+	public static void attack(int attacker) {
 //		System.out.println("npc" + npc.getDef());
 //		System.out.println("npc dmg " + npc.getDmg());
 //		System.out.println("player" + player.getDef());
@@ -139,12 +139,12 @@ public class Fight {
 //		return (int) dodge;
 //	}
 
-	public int block() {
+	public static int block() {
 		double block = (player.getDef() / npc.getDmg()) * 10;
 		return (int) block;
 	}
 
-	public int range(int range){
+	public static int range(int range){
 		int rand = (int)(Math.random() * range);
 		int posneg = (int) (Math.random()*2);
 		if(posneg == 0){//0 adds the rand
@@ -158,7 +158,7 @@ public class Fight {
 		}
 	}
 
-	public double[] hitPer() {
+	public static double[] hitPer() {
 		int playerDmg = (int) ((player.getLevel() * player.getDmg()) - (npc
 				.getDef() / 2));
 		System.out.println(playerDmg);
@@ -182,19 +182,19 @@ public class Fight {
 		d++;
 		return null;
 	}
-	public boolean isPlayerDead() {
+	public static boolean isPlayerDead() {
 		return playerDie;
 	}
-	public boolean playerWin() {
+	public static boolean playerWin() {
 		return playerWin;
 	}
-	public void restart(){
+	public static void restart(){
 		npc.setHealth(100);
 		turns = 0;
 		playerWin = false;
 		playerDie = false;
 	}
-	public void respawn(){
+	public static void respawn(){
 		playerDie = false;
 	}
 }

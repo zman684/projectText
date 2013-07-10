@@ -16,28 +16,28 @@ import methods.Invo;
 import monsters.Monster;
 
 public class Engine {
-	private static User user;
-	private static ArrayList<IObject> invo;
-	private static Point location;
-	private static int Heading;
-	private static Move[] map;
-	private static int startX;
-	private static char curLoc;
-	private static int startY;
-	private static IObject[] worldObjects;
-	private static Move[] worldMaps;
-	private static boolean dev;
-	private static Monster goblin;
-	private static Move[] level1;
-	private static Move[] level2;
-	private static boolean end;
-	private static boolean level2Lever;
-	private static Move[] leverTest;
+	private  User user;
+	private  ArrayList<IObject> invo;
+	private  Point location;
+	private  int Heading;
+	private  Move[] map;
+	private  int startX;
+	private  char curLoc;
+	private  int startY;
+	private  IObject[] worldObjects;
+	private  Move[] worldMaps;
+	private  boolean dev;
+	private  Monster goblin;
+	private  Move[] level1;
+	private  Move[] level2;
+	private  boolean end;
+	private  boolean level2Lever;
+	private  Move[] leverTest;
 
 	/**
 	 * All the commands that a user can type in
 	 */
-	public static void menu() {
+	public  void menu() {
 		while (!end) {
 			checker();
 			mapChecker();
@@ -106,7 +106,7 @@ public class Engine {
 		}
 	}
 
-	private static void pullLever() {
+	private  void pullLever() {
 		if (curLoc == 'l') {
 			System.out.print("You pull the lever and ");
 			if (level2Lever == false) {
@@ -136,7 +136,7 @@ public class Engine {
 		map = newMap;
 	}
 
-	private static void pickupItem(String item) {
+	private  void pickupItem(String item) {
 		int i = 0;
 		boolean itemIsValid = false;
 		for (int j = 0; j < worldObjects.length; j++) {
@@ -156,7 +156,7 @@ public class Engine {
 		}
 	}
 
-	private static void lookAround() {
+	private  void lookAround() {
 		// Does 4 turns and 4 looks
 		int end = Heading;
 		mapChecker();
@@ -178,7 +178,7 @@ public class Engine {
 
 	}
 
-	private static void equipItem(String item) {
+	private void equipItem(String item) {
 		String equip = "";
 		Scanner in = new Scanner(System.in);
 		for (int j = 0; j < invo.size(); j++) {
@@ -269,7 +269,7 @@ public class Engine {
 	 * 1 = south 2 = east 3 = north 4 = west =========== m = monster e = end t =
 	 * treasure x = forest or wall
 	 */
-	private static void look() {
+	private  void look() {
 		char front = map[(int) location.getY() - 1].toString().charAt(
 				(int) (location.getX()));
 		if (Heading == 1) {
@@ -296,7 +296,7 @@ public class Engine {
 		}
 	}
 
-	private static void mapChecker() {
+	private  void mapChecker() {
 		// ALL MONSTER LOCATION//
 		curLoc = map[(int) location.getY()].toString().charAt(
 				(int) (location.getX()));
@@ -327,7 +327,7 @@ public class Engine {
 		}
 	}
 
-	private static void removeMonster() {
+	private  void removeMonster() {
 		char letter;
 		String line = "";
 		Move[] newMap = new Move[map.length];
@@ -354,7 +354,7 @@ public class Engine {
 	 * Clears the menu so all text is gone
 	 */
 	// TODO: Clear the menu
-	private static void clear() {
+	private  void clear() {
 		for (int i = 0; i < 25; i++) {
 			System.out.println();
 		}
@@ -365,7 +365,7 @@ public class Engine {
 	 * Player types in equip then the console asks the user what they want to
 	 * equip
 	 */
-	public static void equip() {
+	public  void equip() {
 		String equip = "";
 		Scanner in = new Scanner(System.in);
 		// Prints all the items in your equipment
@@ -464,7 +464,7 @@ public class Engine {
 	 * moves forward one adds or subtracts x or y depending on which way they
 	 * are facing
 	 */
-	public static void goForward() {
+	public  void goForward() {
 		// north == 1
 		// east == 2
 		// south == 3
@@ -495,7 +495,7 @@ public class Engine {
 	 * Moves back one adds or subtracts x or y depending on which way they are
 	 * facing
 	 */
-	public static void goBack() {
+	public  void goBack() {
 		Point newLocation;
 		if (Heading == 1) {
 			newLocation = new Point(location.getX(), location.getY() - 1);
@@ -521,21 +521,21 @@ public class Engine {
 	/**
 	 * Turns right once and changes the heading
 	 */
-	public static void turnLeft() {
+	public  void turnLeft() {
 		Heading += 1;
 	}
 
 	/**
 	 * Turns left once and changes the heading
 	 */
-	public static void turnRight() {
+	public  void turnRight() {
 		Heading -= 1;
 	}
 
 	/**
 	 * Tells the user which direction they are facing and what their location is
 	 */
-	public static void location() {
+	public  void location() {
 		if (Heading == 1) {
 			System.out.println("You are facing South.");
 		} else if (Heading == 2) {
@@ -553,7 +553,7 @@ public class Engine {
 	/**
 	 * Player types in pickup then the console will ask what to pick up
 	 */
-	public static void pickUp() {
+	public  void pickUp() {
 		int i = 0;
 		boolean itemIsValid = false;
 		Scanner in = new Scanner(System.in);
@@ -580,11 +580,11 @@ public class Engine {
 	 * Saves the item to the invo (autosave)
 	 *
 	 * @param path
-	 * static  static  static  static  static  static Which file to save to
+	 *            Which file to save to
 	 * @param acqs
-	 * static  static  static  static  static  static Array of invo
+	 *            Array of invo
 	 */
-	public static void saveItem(String path, Invo[] acqs) {
+	public  void saveItem(String path, Invo[] acqs) {
 		BufferedWriter file;
 
 		try {
@@ -602,7 +602,7 @@ public class Engine {
 	/**
 	 * Lists of commands that the user name use
 	 */
-	public static void commands() {
+	public  void commands() {
 		String commands = "Commands:\n-help";
 		commands += "\n-forward";
 		commands += "\n-back";
@@ -622,7 +622,7 @@ public class Engine {
 	/**
 	 * Help and promotion message
 	 */
-	public static void help() {
+	public  void help() {
 		String help = "Help:\n";
 		help += "This game is a text adventure created by";
 		help += "\nZach Eriksen, if you need to know your";
@@ -638,7 +638,7 @@ public class Engine {
 	/**
 	 * Starts the game
 	 */
-	public static void start() {
+	public  void start() {
 		// ALL DEFAULT MAPS, WEAPONS, AND ITEMS//
 		worldObjects = new IObject[] { new Weapon("Sword", "Melee", 5, 4.0),// 0
 				new Weapon("Staff", "Magic", 5, 4.0),// 1
@@ -661,8 +661,8 @@ public class Engine {
 		level2 = new Move[] { mapMaker("xxxxx"), mapMaker("xfxxx"),
 				mapMaker("xLxxx"), mapMaker("xmxxx"), mapMaker("xomox"),
 				mapMaker("xoxlx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
-		mapStart(level2);
-		map = level2;
+		mapStart(leverTest);
+		map = leverTest;
 		// CREATE THE MONSTERS HERE//
 		// Then put the monsters//
 		// in the if statement to//
@@ -729,10 +729,10 @@ public class Engine {
 	 * Checks the name to see if it is a game item
 	 *
 	 * @param name
-	 * static  static  static  static  static  static name of the the item they, most likely, want to pickup
+	 *            name of the the item they, most likely, want to pickup
 	 * @return the real item's info
 	 */
-	public static IObject check(String name) {
+	public  IObject check(String name) {
 		for (IObject o : worldObjects) {
 			if (o.getName().toLowerCase().equals(name.toLowerCase())) {
 				return o;
@@ -744,7 +744,7 @@ public class Engine {
 	/**
 	 * @return prints out all of the Items and Weapons in the users Invo
 	 */
-	public static String invo() {
+	public  String invo() {
 		String invoList = "";
 		invoList += "Weapons:";
 		invoList += "\n";
@@ -776,13 +776,13 @@ public class Engine {
 
 	/**
 	 * @param str
-	 * static  static  static  static  static  static The map
+	 *            The map
 	 */
-	public static Move mapMaker(String str) {
+	public  Move mapMaker(String str) {
 		return new Move(str);
 	}
 
-	public static void mapStart(Move[] map) {
+	public  void mapStart(Move[] map) {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length(); j++) {
 				if (map[i].toString().charAt(j) == 's') {
@@ -793,17 +793,17 @@ public class Engine {
 		}
 	}
 
-	public static void newLevel(Move[] map) {
+	public  void newLevel(Move[] map) {
 		mapStart(map);
 		location.setX(startX);
 		location.setY(startY);
 	}
 
-	public static char read(int x, int y) {
+	public  char read(int x, int y) {
 		return map[y].toString().charAt(x);
 	}
 
-	public static void checker() {
+	public  void checker() {
 		if (!end) {
 			for (int i = 0; i < invo.size(); i++) {
 				if (invo.get(i) == null) {
@@ -818,7 +818,7 @@ public class Engine {
 		}
 	}
 
-	public static String showMap() {
+	public  String showMap() {
 		if (!dev) {
 			System.out
 					.println("Current Location : " + "("
@@ -886,7 +886,7 @@ public class Engine {
 		}
 	}
 
-	public static IObject getWorldObject(int i) {
+	public  IObject getWorldObject(int i) {
 		return worldObjects[i];
 	}
 }

@@ -12,8 +12,7 @@ public class User {
 	private int password;
 	private double health;
 	private double mana;
-	private int level;
-	private double exp;
+	private double level;
 	private ArrayList<Weapon> wepInvo;
 	private int score;
 	private boolean end;
@@ -36,8 +35,7 @@ public class User {
 		password = 1234;
 		health = 100;
 		mana = 100;
-		level = 1;
-		exp = 0.0;
+		level = 1.0;
 		wepInvo = new ArrayList<Weapon>();
 		score = 0;
 		end = false;
@@ -51,7 +49,7 @@ public class User {
 	}
 
 	public User(String name, int password, double health, double mana,
-			int level, double exp, boolean end, int score, IObject rightHand,
+			double level, boolean end, int score, IObject rightHand,
 			IObject leftHand, Armor feet, Armor legs, Armor torso, Armor head,
 			Armor back) {
 		this.name = name;
@@ -59,7 +57,6 @@ public class User {
 		this.health = health;
 		this.mana = mana;
 		this.level = level;
-		this.exp = exp;
 		this.end = end;
 		// wepInvo = new ArrayList<Weapon>();
 		this.score = score;

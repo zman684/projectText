@@ -32,7 +32,6 @@ public class Engine {
 	private static Move[] level2;
 	private static boolean end;
 	private static boolean level2Lever;
-	private static Move[] leverTest;
 
 	/**
 	 * All the commands that a user can type in
@@ -84,7 +83,7 @@ public class Engine {
 			} else if (action.equals("exit")) {
 				System.out.println("goodbye");
 				break;
-			} else if (action.equals("pull lever")) {
+			}else if (action.equals("pull lever")){
 				pullLever();
 			} else if (action.equals("clear")) {
 				clear();
@@ -107,33 +106,9 @@ public class Engine {
 	}
 
 	private static void pullLever() {
-		if (curLoc == 'l') {
-			System.out.print("You pull the lever and ");
-			if (level2Lever == false) {
-				System.out.println("you hear something move!");
-				level2Lever = true;
-			} else {
-				System.out.println("nothing happens...");
-			}
-		} else {
-			System.out.println("There is nothing to pull.");
+		if (curLoc == 'l'){
+
 		}
-		char letter;
-		String line = "";
-		Move[] newMap = new Move[map.length];
-		for (int i = 0; i < map.length; i++) {
-			for (int j = map[i].toString().length() - 1; j >= 0; j--) {
-				if (map[i].toString().charAt(j) != 'L') {
-					letter = map[i].toString().charAt(j);
-				} else {
-					letter = 'o';
-				}
-				line = letter + line;
-			}
-			newMap[i] = mapMaker(line);
-			line = "";
-		}
-		map = newMap;
 	}
 
 	private static void pickupItem(String item) {
@@ -159,7 +134,6 @@ public class Engine {
 	private static void lookAround() {
 		// Does 4 turns and 4 looks
 		int end = Heading;
-		mapChecker();
 		for (int i = 0; i < 4; i++) {
 			checker();
 			if (Heading == 1) {
@@ -226,14 +200,14 @@ public class Engine {
 							break;
 						case "Legs":
 							invo.add(user.getLegs());
-							user.setLegs((Armor) check(invo.get(j).getName()));
+							User.setLegs((Armor) check(invo.get(j).getName()));
 							equip = invo.get(j).getName() + " equipped";
 							invo.remove(j);
 							j = invo.size();
 							break;
 						case "Torso":
 							invo.add(user.getTorso());
-							user.setTorso((Armor) check(invo.get(j).getName()));
+							User.setTorso((Armor) check(invo.get(j).getName()));
 							equip = invo.get(j).getName() + " equipped";
 							invo.remove(j);
 							j = invo.size();
@@ -300,16 +274,7 @@ public class Engine {
 		// ALL MONSTER LOCATION//
 		curLoc = map[(int) location.getY()].toString().charAt(
 				(int) (location.getX()));
-		if (curLoc == 'f') {// f == End Game
-			System.out.println("YOU WON!");
-			end = true;
-		} else if (curLoc == 'e') {// e == End Area
-			newLevel(level2);
-			map = level2;
-			System.out.println("You enter a new area");
-		} else if (curLoc == 'l') {//l == Lever
-			System.out.println("You are by a lever.");
-		}else if (curLoc == 'm') {// m == Monster (will change)
+		if (curLoc == 'm') {// m == Monster (will change)
 			Fight level2 = new Fight(user, goblin, "Plains");
 			// TODO:fix after battle
 			System.out.println(level2.battle());
@@ -322,9 +287,18 @@ public class Engine {
 				removeMonster();
 				level2.restart();
 			}
-		}else{
-
 		}
+		if (curLoc == 'f') {// f == End Game
+			System.out.println("YOU WON!");
+			end = true;
+		} else if (curLoc == 'e') {// e == End Area
+			newLevel(level2);
+			map = level2;
+			System.out.println("You enter a new area");
+		}else if (curLoc == 'l'){
+			System.out.println("You are by a lever.");
+		}
+
 	}
 
 	private static void removeMonster() {
@@ -421,14 +395,14 @@ public class Engine {
 							break;
 						case "Legs":
 							invo.add(user.getLegs());
-							user.setLegs((Armor) check(invo.get(j).getName()));
+							User.setLegs((Armor) check(invo.get(j).getName()));
 							equip = invo.get(j).getName() + " equipped";
 							invo.remove(j);
 							j = invo.size();
 							break;
 						case "Torso":
 							invo.add(user.getTorso());
-							user.setTorso((Armor) check(invo.get(j).getName()));
+							User.setTorso((Armor) check(invo.get(j).getName()));
 							equip = invo.get(j).getName() + " equipped";
 							invo.remove(j);
 							j = invo.size();
@@ -469,25 +443,38 @@ public class Engine {
 		// east == 2
 		// south == 3
 		// west == 4
-		Point newLocation;
 		if (Heading == 1) {
-			newLocation = new Point(location.getX(), location.getY() + 1);
+			Point newLocation = new Point(location.getX(), location.getY() + 1);
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
+				location = newLocation;
+				System.out.println("You moved forward");
+			} else {
+				System.out.println("You can't go that way!");
+			}
 		} else if (Heading == 2) {
-			newLocation = new Point(location.getX() + 1, location.getY());
+			Point newLocation = new Point(location.getX() + 1, location.getY());
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
+				location = newLocation;
+				System.out.println("You moved forward");
+			} else {
+				System.out.println("You can't go that way!");
+			}
 		} else if (Heading == 3) {
-			newLocation = new Point(location.getX(), location.getY() - 1);
+			Point newLocation = new Point(location.getX(), location.getY() - 1);
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
+				location = newLocation;
+				System.out.println("You moved forward");
+			} else {
+				System.out.println("You can't go that way!");
+			}
 		} else {
-			newLocation = new Point(location.getX() - 1, location.getY());
-		}
-		char nextLoc = read((int) newLocation.getX(), (int) newLocation.getY());
-		if (nextLoc != 'x' && nextLoc != 'L') {
-			location = newLocation;
-			System.out.println("You moved forward");
-		} else if (nextLoc == 'L') {
-			System.out
-					.println("You see a wall... but something seems different");
-		} else {
-			System.out.println("You can't go that way!");
+			Point newLocation = new Point(location.getX() - 1, location.getY());
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
+				location = newLocation;
+				System.out.println("You moved forward");
+			} else {
+				System.out.println("You can't go that way!");
+			}
 		}
 	}
 
@@ -496,25 +483,38 @@ public class Engine {
 	 * facing
 	 */
 	public static void goBack() {
-		Point newLocation;
 		if (Heading == 1) {
-			newLocation = new Point(location.getX(), location.getY() - 1);
+			Point newLocation = new Point(location.getX(), location.getY() - 1);
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
+				location = newLocation;
+				System.out.println("You moved back");
+			} else {
+				System.out.println("You can't go that way!");
+			}
 		} else if (Heading == 2) {
-			newLocation = new Point(location.getX() - 1, location.getY());
+			Point newLocation = new Point(location.getX() - 1, location.getY());
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
+				location = newLocation;
+				System.out.println("You moved back");
+			} else {
+				System.out.println("You can't go that way!");
+			}
 		} else if (Heading == 3) {
-			newLocation = new Point(location.getX(), location.getY() + 1);
+			Point newLocation = new Point(location.getX(), location.getY() + 1);
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
+				location = newLocation;
+				System.out.println("You moved back");
+			} else {
+				System.out.println("You can't go that way!");
+			}
 		} else {
-			newLocation = new Point(location.getX() + 1, location.getY());
-		}
-		char nextLoc = read((int) newLocation.getX(), (int) newLocation.getY());
-		if (nextLoc != 'x' && nextLoc != 'L') {
-			location = newLocation;
-			System.out.println("You moved forward");
-		} else if (nextLoc == 'L') {
-			System.out
-					.println("You see a wall... but something seems different");
-		} else {
-			System.out.println("You can't go that way!");
+			Point newLocation = new Point(location.getX() + 1, location.getY());
+			if (read((int) newLocation.getX(), (int) newLocation.getY()) != 'x') {
+				location = newLocation;
+				System.out.println("You moved back");
+			} else {
+				System.out.println("You can't go that way!");
+			}
 		}
 	}
 
@@ -580,9 +580,9 @@ public class Engine {
 	 * Saves the item to the invo (autosave)
 	 *
 	 * @param path
-	 * static  static  static  static  static  static Which file to save to
+	 *            Which file to save to
 	 * @param acqs
-	 * static  static  static  static  static  static Array of invo
+	 *            Array of invo
 	 */
 	public static void saveItem(String path, Invo[] acqs) {
 		BufferedWriter file;
@@ -652,17 +652,15 @@ public class Engine {
 				new Item("Beer", "Alchahol", -1, 10),// 9
 				new Weapon("GodSword", "Melee", 1000, 1.0) };// 10
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
-		leverTest = new Move[]{mapMaker("xxx"), mapMaker("xLxxx"),mapMaker("xsoolx"),
-				mapMaker("xxxxx")};
 		level1 = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
 				mapMaker("xxx") };
 		level2 = new Move[] { mapMaker("xxxxx"), mapMaker("xfxxx"),
-				mapMaker("xLxxx"), mapMaker("xmxxx"), mapMaker("xomox"),
+				mapMaker("xxxxx"), mapMaker("xmxxx"), mapMaker("xomox"),
 				mapMaker("xoxlx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
-		mapStart(level2);
-		map = level2;
+		mapStart(level1);
+		map = level1;
 		// CREATE THE MONSTERS HERE//
 		// Then put the monsters//
 		// in the if statement to//
@@ -729,7 +727,7 @@ public class Engine {
 	 * Checks the name to see if it is a game item
 	 *
 	 * @param name
-	 * static  static  static  static  static  static name of the the item they, most likely, want to pickup
+	 *            name of the the item they, most likely, want to pickup
 	 * @return the real item's info
 	 */
 	public static IObject check(String name) {
@@ -776,7 +774,7 @@ public class Engine {
 
 	/**
 	 * @param str
-	 * static  static  static  static  static  static The map
+	 *            The map
 	 */
 	public static Move mapMaker(String str) {
 		return new Move(str);
@@ -804,17 +802,16 @@ public class Engine {
 	}
 
 	public static void checker() {
-		if (!end) {
-			for (int i = 0; i < invo.size(); i++) {
-				if (invo.get(i) == null) {
-					invo.remove(i);
-				}
+		mapChecker();
+		for (int i = 0; i < invo.size(); i++) {
+			if (invo.get(i) == null) {
+				invo.remove(i);
 			}
-			if (Heading > 4) {
-				Heading = 1;
-			} else if (Heading < 1) {
-				Heading = 4;
-			}
+		}
+		if (Heading > 4) {
+			Heading = 1;
+		} else if (Heading < 1) {
+			Heading = 4;
 		}
 	}
 
@@ -840,8 +837,7 @@ public class Engine {
 				for (int j = 0; j < map[i].length(); j++) {
 					if (i == location.getY() && j == location.getX()) {
 						System.out.print("C");
-					} else if (map[i].toString().charAt(j) == 'x'
-							|| map[i].toString().charAt(j) == 'L') {
+					} else if (map[i].toString().charAt(j) == 'x') {
 						System.out.print("x");
 					} else {
 						System.out.print("o");

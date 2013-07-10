@@ -3,36 +3,36 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="304" key="DIALOG_WIDTH"/>
 		<item value="45" key="DIALOG_Y_ORIGIN"/>
-		<item value="581" key="DIALOG_X_ORIGIN"/>
 		<item value="389" key="DIALOG_HEIGHT"/>
+		<item value="581" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="curLoc" key="selection"/>
+		<item value=" static " key="selection"/>
 		<list key="findhistory">
+			<item value="  "/>
+			<item value="static"/>
+			<item value="checker"/>
 			<item value="curLoc"/>
 			<item value="if (l"/>
 			<item value="if ("/>
 			<item value="if("/>
 			<item value="admin"/>
-			<item value="acqs"/>
-			<item value="Acquaintance"/>
-			<item value="Goblin"/>
 		</list>
 		<list key="replacehistory">
+			<item value=" static "/>
+			<item value=""/>
 			<item value="dev"/>
 			<item value="weapon"/>
 			<item value="Weapon"/>
 			<item value="Monster"/>
 			<item value="Goblin"/>
 			<item value="this"/>
-			<item value="userInvo"/>
-			<item value="Invo"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">

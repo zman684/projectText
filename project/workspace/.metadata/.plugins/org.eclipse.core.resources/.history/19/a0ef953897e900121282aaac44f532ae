@@ -51,7 +51,7 @@ public class User {
 	}
 
 	public User(String name, int password, double health, double mana,
-			int level, double exp, boolean end, int score, IObject rightHand,
+			int level,double exp boolean end, int score, IObject rightHand,
 			IObject leftHand, Armor feet, Armor legs, Armor torso, Armor head,
 			Armor back) {
 		this.name = name;

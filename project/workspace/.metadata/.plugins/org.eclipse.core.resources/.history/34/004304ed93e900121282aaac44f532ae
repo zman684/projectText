@@ -1,0 +1,11 @@
+package engine;
+
+public class test {
+	public void main(String[] args) {
+		//Starts the game
+		Engine.start();
+		//Tutorial.readMap();
+		//Runs the game
+		Engine.menu();
+	}
+}

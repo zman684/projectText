@@ -661,8 +661,8 @@ public class Engine {
 		level2 = new Move[] { mapMaker("xxxxx"), mapMaker("xfxxx"),
 				mapMaker("xLxxx"), mapMaker("xmxxx"), mapMaker("xomox"),
 				mapMaker("xoxlx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
-		mapStart(level2);
-		map = level2;
+		mapStart(leverTest);
+		map = leverTest;
 		// CREATE THE MONSTERS HERE//
 		// Then put the monsters//
 		// in the if statement to//
