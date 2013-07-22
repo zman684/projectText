@@ -27,12 +27,14 @@ public class Engine {
 	private static IObject[] worldObjects;
 	private static Move[] worldMaps;
 	private static boolean dev;
-	private static Monster goblin;
 	private static Move[] level1;
 	private static Move[] level2;
 	private static boolean end;
 	private static boolean level2Lever;
 	private static Move[] leverTest;
+	private static Move[] monsterTest;
+	private static Move[] devMap;
+	private static double expLimit;
 
 	/**
 	 * All the commands that a user can type in
@@ -106,7 +108,7 @@ public class Engine {
 		}
 	}
 
-	private static void pullLever() {
+	public static void pullLever() {
 		if (curLoc == 'l') {
 			System.out.print("You pull the lever and ");
 			if (level2Lever == false) {
@@ -136,7 +138,7 @@ public class Engine {
 		map = newMap;
 	}
 
-	private static void pickupItem(String item) {
+	public static void pickupItem(String item) {
 		int i = 0;
 		boolean itemIsValid = false;
 		for (int j = 0; j < worldObjects.length; j++) {
@@ -156,7 +158,7 @@ public class Engine {
 		}
 	}
 
-	private static void lookAround() {
+	public static void lookAround() {
 		// Does 4 turns and 4 looks
 		int end = Heading;
 		mapChecker();
@@ -178,7 +180,7 @@ public class Engine {
 
 	}
 
-	private static void equipItem(String item) {
+	public static void equipItem(String item) {
 		String equip = "";
 		Scanner in = new Scanner(System.in);
 		for (int j = 0; j < invo.size(); j++) {
@@ -269,7 +271,7 @@ public class Engine {
 	 * 1 = south 2 = east 3 = north 4 = west =========== m = monster e = end t =
 	 * treasure x = forest or wall
 	 */
-	private static void look() {
+	public static void look() {
 		char front = map[(int) location.getY() - 1].toString().charAt(
 				(int) (location.getX()));
 		if (Heading == 1) {
@@ -296,7 +298,7 @@ public class Engine {
 		}
 	}
 
-	private static void mapChecker() {
+	public static void mapChecker() {
 		// ALL MONSTER LOCATION//
 		curLoc = map[(int) location.getY()].toString().charAt(
 				(int) (location.getX()));
@@ -307,27 +309,41 @@ public class Engine {
 			newLevel(level2);
 			map = level2;
 			System.out.println("You enter a new area");
-		} else if (curLoc == 'l') {//l == Lever
+		} else if (curLoc == 'l') {// l == Lever
 			System.out.println("You are by a lever.");
-		}else if (curLoc == 'm') {// m == Monster (will change)
-			Fight level2 = new Fight(user, goblin, "Plains");
-			// TODO:fix after battle
-			System.out.println(level2.battle());
-			if (level2.isPlayerDead() == true) {
+		}
+		if (curLoc == 'g') {
+			Monster goblin = new Monster("Goblin", 150, 1);
+			Fight goblinFight = new Fight(user, goblin, "Plains");
+			System.out.println(goblinFight.battle());
+			if (goblinFight.isPlayerDead() == true) {
 				goBack();
-				level2.respawn();
-				// Put them at the 's' on the map
+				goblinFight.respawn();
 			}
-			if (level2.playerWin() == true) {
+			if (goblinFight.playerWin() == true) {
 				removeMonster();
-				level2.restart();
+				goblinFight.restart();
+				checker();
 			}
-		}else{
+		} else if (curLoc == 't') {
+			Monster troll = new Monster("Troll", 500, 5);
+			Fight trollFight = new Fight(user, troll, "Plains");
+			System.out.println(trollFight.battle());
+			if (trollFight.isPlayerDead() == true) {
+				goBack();
+				trollFight.respawn();
+			}
+			if (trollFight.playerWin() == true) {
+				removeMonster();
+				trollFight.restart();
+				checker();
+			}
+		} else {
 
 		}
 	}
 
-	private static void removeMonster() {
+	public static void removeMonster() {
 		char letter;
 		String line = "";
 		Move[] newMap = new Move[map.length];
@@ -354,7 +370,7 @@ public class Engine {
 	 * Clears the menu so all text is gone
 	 */
 	// TODO: Clear the menu
-	private static void clear() {
+	public static void clear() {
 		for (int i = 0; i < 25; i++) {
 			System.out.println();
 		}
@@ -579,10 +595,7 @@ public class Engine {
 	/**
 	 * Saves the item to the invo (autosave)
 	 *
-	 * @param path
-	 * static  static  static  static  static  static Which file to save to
-	 * @param acqs
-	 * static  static  static  static  static  static Array of invo
+	 * @param acqs Array of invo
 	 */
 	public static void saveItem(String path, Invo[] acqs) {
 		BufferedWriter file;
@@ -650,25 +663,37 @@ public class Engine {
 				new Armor("Boots", "Feet", 5, 4.0),// 7
 				new Armor("Cape", "Back", 5, 4.0),// 8
 				new Item("Beer", "Alchahol", -1, 10),// 9
-				new Weapon("GodSword", "Melee", 1000, 1.0) };// 10
+				new Weapon("GodSword", "Melee", 10000, 1.0),// 10
+				new Armor("Dev Boots", "Feet", 10000, 1.0) };
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
-		leverTest = new Move[]{mapMaker("xxx"), mapMaker("xLxxx"),mapMaker("xsoolx"),
-				mapMaker("xxxxx")};
+		//MONSTERS//
+		// g == Goblin
+		// t == troll
+		//NPCS//
+		//OBJECTS//
+		// l == lever && L == wall that will open
+		devMap = new Move[] { mapMaker("xxxxxxxxxx"), mapMaker("xoooooooox"),
+				mapMaker("xoooooooox"), mapMaker("xoooooooox"),
+				mapMaker("xoooooooox"), mapMaker("xoooooooox"),
+				mapMaker("xoooooooox"), mapMaker("xoooosooox"),
+				mapMaker("xoooooooox"), mapMaker("xxxxxxxxxx") };
+		leverTest = new Move[] { mapMaker("xxx"), mapMaker("xLxxx"),
+				mapMaker("xsoolx"), mapMaker("xxxxx") };
+		monsterTest = new Move[] { mapMaker("xxx"), mapMaker("xtx"),
+				mapMaker("xtx"), mapMaker("xgx"), mapMaker("xtx"),
+				mapMaker("xtx"), mapMaker("xgx"), mapMaker("xgx"),
+				mapMaker("xgx"), mapMaker("xgx"), mapMaker("xgx"),
+				mapMaker("xtx"), mapMaker("xgx"), mapMaker("xtx"),
+				mapMaker("xgx"), mapMaker("xsx"), mapMaker("xxx"), };
 		level1 = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
 				mapMaker("xxx") };
 		level2 = new Move[] { mapMaker("xxxxx"), mapMaker("xfxxx"),
-				mapMaker("xLxxx"), mapMaker("xmxxx"), mapMaker("xomox"),
+				mapMaker("xLxxx"), mapMaker("xgxxx"), mapMaker("xotox"),
 				mapMaker("xoxlx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
-		mapStart(level2);
-		map = level2;
-		// CREATE THE MONSTERS HERE//
-		// Then put the monsters//
-		// in the if statement to//
-		// check if the player//
-		// step on one//
-		goblin = new Monster("Goblin", 100, 1);
+		mapStart(monsterTest);
+		map = monsterTest;
 
 		Scanner in = new Scanner(System.in);
 		String name = "";
@@ -713,6 +738,7 @@ public class Engine {
 			}
 			// Sets so the dev will have a sword in their hand
 			user.setRightHand(worldObjects[10]);
+			user.setFeet((Armor) worldObjects[11]);
 		} else {
 			invo = new ArrayList<IObject>();
 		}
@@ -722,14 +748,17 @@ public class Engine {
 		String summary = "\nWelcome " + name + "!";
 		summary += "\nIf you need help please type 'help'";
 		summary += "\nOr if you need to know the commands you can type in 'commands'";
+//		summary += "\nThis is (World name), it is world of chaos"
 		System.out.println(summary);
+		expLimit = user.getLevel() * 1000;
 	}
 
 	/**
 	 * Checks the name to see if it is a game item
 	 *
 	 * @param name
-	 * static  static  static  static  static  static name of the the item they, most likely, want to pickup
+	 *            name of the the item
+	 *            they, most likely, want to pickup
 	 * @return the real item's info
 	 */
 	public static IObject check(String name) {
@@ -775,8 +804,7 @@ public class Engine {
 	}
 
 	/**
-	 * @param str
-	 * static  static  static  static  static  static The map
+	 * @param str The map
 	 */
 	public static Move mapMaker(String str) {
 		return new Move(str);
@@ -805,6 +833,13 @@ public class Engine {
 
 	public static void checker() {
 		if (!end) {
+			expLimit = user.getLevel() * 1000;
+			if (user.getExp() > expLimit) {
+				user.addLevel();
+				System.out.println("You Leved up... you are now "
+						+ user.getLevel());
+				checker();
+			}
 			for (int i = 0; i < invo.size(); i++) {
 				if (invo.get(i) == null) {
 					invo.remove(i);
@@ -835,23 +870,47 @@ public class Engine {
 				System.out.println();
 				start = false;
 			}
-			for (int i = 0; i < map.length; i++) {
-				System.out.print(y);
-				for (int j = 0; j < map[i].length(); j++) {
-					if (i == location.getY() && j == location.getX()) {
-						System.out.print("C");
-					} else if (map[i].toString().charAt(j) == 'x'
-							|| map[i].toString().charAt(j) == 'L') {
-						System.out.print("x");
+			if (map.length > 9) {
+				for (int i = 0; i < map.length; i++) {
+					if (i < 10) {
+						System.out.print(y + " ");
 					} else {
-						System.out.print("o");
+						System.out.print(y);
 					}
+					for (int j = 0; j < map[i].length(); j++) {
+						if (i == location.getY() && j == location.getX()) {
+							System.out.print("C");
+						} else if (map[i].toString().charAt(j) == 'x'
+								|| map[i].toString().charAt(j) == 'L') {
+							System.out.print("x");
+						} else {
+							System.out.print("o");
+						}
+					}
+					System.out.println();
+					y++;
 				}
 				System.out.println();
-				y++;
+				return sum;
+			} else {
+				for (int i = 0; i < map.length; i++) {
+					System.out.print(y);
+					for (int j = 0; j < map[i].length(); j++) {
+						if (i == location.getY() && j == location.getX()) {
+							System.out.print("C");
+						} else if (map[i].toString().charAt(j) == 'x'
+								|| map[i].toString().charAt(j) == 'L') {
+							System.out.print("x");
+						} else {
+							System.out.print("o");
+						}
+					}
+					System.out.println();
+					y++;
+				}
+				System.out.println();
+				return sum;
 			}
-			System.out.println();
-			return sum;
 		} else {
 			// DEVELOPERS MAP //
 			System.out
@@ -869,20 +928,41 @@ public class Engine {
 				System.out.println();
 				start = false;
 			}
-			for (int i = 0; i < map.length; i++) {
-				System.out.print(y);
-				for (int j = 0; j < map[i].length(); j++) {
-					if (i == location.getY() && j == location.getX()) {
-						System.out.print("C");
+			if (map.length > 9) {
+				for (int i = 0; i < map.length; i++) {
+					if (i < 10) {
+						System.out.print(y + " ");
 					} else {
-						System.out.print(map[i].toString().charAt(j));
+						System.out.print(y);
 					}
+					for (int j = 0; j < map[i].length(); j++) {
+						if (i == location.getY() && j == location.getX()) {
+							System.out.print("C");
+						} else {
+							System.out.print(map[i].toString().charAt(j));
+						}
+					}
+					System.out.println();
+					y++;
 				}
 				System.out.println();
-				y++;
+				return sum;
+			} else {
+				for (int i = 0; i < map.length; i++) {
+					System.out.print(y);
+					for (int j = 0; j < map[i].length(); j++) {
+						if (i == location.getY() && j == location.getX()) {
+							System.out.print("C");
+						} else {
+							System.out.print(map[i].toString().charAt(j));
+						}
+					}
+					System.out.println();
+					y++;
+				}
+				System.out.println();
+				return sum;
 			}
-			System.out.println();
-			return sum;
 		}
 	}
 

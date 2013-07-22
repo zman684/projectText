@@ -1,6 +1,5 @@
 package monsters;
 
-import engine.Engine;
 import objects.IObject;
 import protection.Armor;
 import weapons.Weapon;

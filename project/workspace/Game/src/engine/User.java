@@ -24,6 +24,7 @@ public class User {
 	private Armor torso;
 	private Armor head;
 	private Armor back;
+	private int expLimit;
 
 	/**
 	 * Constructor for the user
@@ -37,6 +38,7 @@ public class User {
 		health = 100;
 		mana = 100;
 		level = 1;
+		expLimit = level * 1000;
 		exp = 0.0;
 		wepInvo = new ArrayList<Weapon>();
 		score = 0;
@@ -112,6 +114,18 @@ public class User {
 		summary += "\nAttack: " + att;
 		summary += "\nDefence: " + def;
 		summary += "\nLevel: " + level;
+		summary += "\nExp to next level: " + expLimit;
+		summary += "\nExp: " + exp;
+		int j = (int) ((exp / expLimit) * 25);
+		String bar = "[";
+		for (int l = 0; l < j; l++) {
+			bar += "|";
+		}
+		for (int i = 0; i < (25 - j); i++) {
+			bar += " ";
+		}
+		bar += "]";
+		summary += "\n" + bar;
 		return summary;
 	}
 
@@ -230,25 +244,26 @@ public class User {
 		return back;
 	}
 
-	public int getDmg(){
+	public int getDmg() {
 		int att = 0;
 		if (rightHand != null) {
 			if (rightHand.getObjectType().equals("weapon")) {
 				att += rightHand.getDmg();
 			} else {
-				//Do nothing
+				// Do nothing
 			}
 		}
 		if (leftHand != null) {
 			if (leftHand.getObjectType().equals("weapon")) {
 				att += leftHand.getDmg();
 			} else {
-				//Do nothing
+				// Do nothing
 			}
 		}
 		return att;
 	}
-	public int getDef(){
+
+	public int getDef() {
 		int def = 0;
 		if (legs != null) {
 			def += legs.getDef();
@@ -268,14 +283,14 @@ public class User {
 		int att = 0;
 		if (rightHand != null) {
 			if (rightHand.getObjectType().equals("weapon")) {
-				//Do nothing
+				// Do nothing
 			} else {
 				def += rightHand.getDef();
 			}
 		}
 		if (leftHand != null) {
 			if (leftHand.getObjectType().equals("weapon")) {
-				//Do nothing
+				// Do nothing
 			} else {
 				def += rightHand.getDef();
 			}
@@ -283,7 +298,7 @@ public class User {
 		return def;
 	}
 
-	public int getWt(){
+	public int getWt() {
 		int wt = 0;
 		if (legs != null) {
 			wt += legs.getWeight();
@@ -369,5 +384,22 @@ public class User {
 
 	public void setBack(Armor back) {
 		this.back = back;
+	}
+
+	public void addExp(double number) {
+		exp = exp + number;
+		System.out.println(exp);
+	}
+
+	public double getExp() {
+		return exp;
+	}
+
+	public void addLevel() {
+		level++;
+		exp = exp - expLimit;
+		expLimit = level * 1000;
+		health = health + 100;
+		mana = mana + 100;
 	}
 }
