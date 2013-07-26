@@ -354,6 +354,7 @@ public class Engine {
 				if (a.getLevel() <= (user.getLevel() + 2)) {
 					counter++;
 				}
+				System.out.println(a);
 			}
 		}
 		Integer[] numbers = new Integer[counter];
@@ -365,19 +366,18 @@ public class Engine {
 					numbers[count] = armor;
 					count++;
 				}
+				System.out.println(a);
 			}
 			armor++;
 		}
 		int armNum = (int) ((Math.random() * counter) + 1);
 		while (true) {
-			for(Integer i : numbers){
-				if( armNum == i){
-					armNum = i;
-					break;
-				}
+			if (armNum == count) {
+				armNum = count;
+				break;
 			}
-			break;
 		}
+		System.out.println(armNum);
 		System.out.println(worldObjects[armNum]);
 	}
 

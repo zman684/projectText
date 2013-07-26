@@ -45,8 +45,8 @@ public class User {
 		end = false;
 		rightHand = null;
 		leftHand = null;
-		feet = new Armor("Boots", "feet", 0, 1);
-		legs = new Armor("Rags", "legs", 0, 1);
+		feet = new Armor("Boots", "feet", 0, 1, 0);
+		legs = new Armor("Rags", "legs", 0, 1, 0);
 		torso = null;
 		head = null;
 		back = null;

@@ -53,4 +53,10 @@ public class Item implements IObject{
 		return 0;
 	}
 
+	@Override
+	public int getLevel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

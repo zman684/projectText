@@ -8,16 +8,18 @@ public class Weapon implements IObject{
 	private double weight;
 	private String type;
 	private final String objectType = "weapon";
+	private int level;
 
-	public Weapon(String name, String type, int dmg, double weight){
+	public Weapon(String name, String type, int dmg, double weight, int level){
 		this.name = name;
 		this.type = type;
 		this.dmg = dmg;
 		this.weight = weight;
+		this.level = level;
 	}
 
 	public String toString(){
-		String summary = name + ", " + type + ", " + dmg + ", " + weight;
+		String summary = name + ", " + type + ", " + dmg + ", " + weight + ", " + level;
 		return summary;
 	}
 
@@ -45,6 +47,11 @@ public class Weapon implements IObject{
 	@Override
 	public int getDef() {
 		return 0;
+	}
+
+	@Override
+	public int getLevel() {
+		return level;
 	}
 
 }

@@ -1,44 +1,70 @@
-package monsters;
+package engine;
+
+import java.util.ArrayList;
 
 import objects.IObject;
 import protection.Armor;
+
 import weapons.Weapon;
 
-public class Monster {
-	private static String name;
-	private static double health;
-	private static int level;
-	private static double mana;
-	private static IObject rightHand;
-	private static IObject leftHand;
-	private static Armor feet;
-	private static Armor legs;
-	private static Armor torso;
-	private static Armor head;
-	private static Armor back;
+public class User {
+	private String name;
+	private int password;
+	private double health;
+	private double mana;
+	private int level;
+	private double exp;
+	private ArrayList<Weapon> wepInvo;
+	private int score;
+	private boolean end;
+	private IObject rightHand;
+	private IObject leftHand;
+	private Armor feet;
+	private Armor legs;
+	private Armor torso;
+	private Armor head;
+	private Armor back;
+	private int expLimit;
 
-	public Monster(String name,double health,int level) {
+	/**
+	 * Constructor for the user
+	 *
+	 * @param name
+	 *            the users name
+	 */
+	public User(String name) {
 		this.name = name;
-		this.health = health;
+		password = 1234;
+		health = 100;
 		mana = 100;
-		this.level = level;
-		rightHand = new Weapon("Stick", "Melee", 2, 2.0, 1);
+		level = 1;
+		expLimit = level * 1000;
+		exp = 0.0;
+		wepInvo = new ArrayList<Weapon>();
+		score = 0;
+		end = false;
+		rightHand = null;
 		leftHand = null;
-		feet = new Armor("Boots", "Feet", 1, 2.0, 1);
-		legs = new Armor("Rags", "Legs", 0, 1.0, 1);
-		torso = new Armor("Goblin Mail", "Torso", 2, 5.0, 1);
+		feet = new Armor("Boots", "feet", 0, 1);
+		legs = new Armor("Rags", "legs", 0, 1);
+		torso = null;
 		head = null;
-		back = new Armor("Backpack", "Back", 0, 3.0, 1);
+		back = null;
 	}
 
-	public Monster(String name, double health, double mana,
-			int level, IObject rightHand,
+	public User(String name, int password, double health, double mana,
+			int level, double exp, boolean end, int score, IObject rightHand,
 			IObject leftHand, Armor feet, Armor legs, Armor torso, Armor head,
 			Armor back) {
 		this.name = name;
+		this.password = password;
 		this.health = health;
 		this.mana = mana;
 		this.level = level;
+		this.exp = exp;
+		this.end = end;
+		// wepInvo = new ArrayList<Weapon>();
+		this.score = score;
 		this.rightHand = rightHand;
 		this.leftHand = leftHand;
 		this.feet = feet;
@@ -84,9 +110,22 @@ public class Monster {
 		String summary = "Name: " + name;
 		summary += "\nHealth: " + health;
 		summary += "\nMana: " + mana;
+		summary += "\nScore: " + score;
 		summary += "\nAttack: " + att;
 		summary += "\nDefence: " + def;
 		summary += "\nLevel: " + level;
+		summary += "\nExp to next level: " + expLimit;
+		summary += "\nExp: " + exp;
+		int j = (int) ((exp / expLimit) * 25);
+		String bar = "[";
+		for (int l = 0; l < j; l++) {
+			bar += "|";
+		}
+		for (int i = 0; i < (25 - j); i++) {
+			bar += " ";
+		}
+		bar += "]";
+		summary += "\n" + bar;
 		return summary;
 	}
 
@@ -144,56 +183,87 @@ public class Monster {
 		return summary;
 	}
 
-	//Getters
+	// Getters
 	public String getName() {
 		return name;
 	}
+
+	public int getPassword() {
+		return password;
+	}
+
 	public double getHealth() {
 		return health;
 	}
+
+	public double getLevel() {
+		return level;
+	}
+
 	public double getMana() {
 		return mana;
 	}
+
+	public ArrayList<Weapon> getInvo() {
+		return wepInvo;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public boolean isEnd() {
+		return end;
+	}
+
 	public IObject getRightHand() {
 		return rightHand;
 	}
+
 	public IObject getLeftHand() {
 		return leftHand;
 	}
+
 	public Armor getFeet() {
 		return feet;
 	}
+
 	public Armor getLegs() {
 		return legs;
 	}
+
 	public Armor getTorso() {
 		return torso;
 	}
+
 	public Armor getHead() {
 		return head;
 	}
-	public int getLevel(){
-		return level;
+
+	public Armor getBack() {
+		return back;
 	}
-	public int getDmg(){
+
+	public int getDmg() {
 		int att = 0;
 		if (rightHand != null) {
 			if (rightHand.getObjectType().equals("weapon")) {
 				att += rightHand.getDmg();
 			} else {
-				//Do nothing
+				// Do nothing
 			}
 		}
 		if (leftHand != null) {
 			if (leftHand.getObjectType().equals("weapon")) {
 				att += leftHand.getDmg();
 			} else {
-				//Do nothing
+				// Do nothing
 			}
 		}
 		return att;
 	}
-	public int getDef(){
+
+	public int getDef() {
 		int def = 0;
 		if (legs != null) {
 			def += legs.getDef();
@@ -213,14 +283,14 @@ public class Monster {
 		int att = 0;
 		if (rightHand != null) {
 			if (rightHand.getObjectType().equals("weapon")) {
-				//Do nothing
+				// Do nothing
 			} else {
 				def += rightHand.getDef();
 			}
 		}
 		if (leftHand != null) {
 			if (leftHand.getObjectType().equals("weapon")) {
-				//Do nothing
+				// Do nothing
 			} else {
 				def += rightHand.getDef();
 			}
@@ -228,7 +298,7 @@ public class Monster {
 		return def;
 	}
 
-	public static int getWt(){
+	public int getWt() {
 		int wt = 0;
 		if (legs != null) {
 			wt += legs.getWeight();
@@ -263,32 +333,73 @@ public class Monster {
 		return wt;
 	}
 
-	//Setters
+	// Setters
 	public void setName(String name) {
-		Monster.name = name;
+		this.name = name;
 	}
+
+	public void setPassword(int password) {
+		this.password = password;
+	}
+
 	public void setHealth(double health) {
-		Monster.health = health;
+		this.health = health;
 	}
+
 	public void setMana(double mana) {
-		Monster.mana = mana;
+		this.mana = mana;
 	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public void setEnd(boolean end) {
+		this.end = end;
+	}
+
 	public void setRightHand(IObject rightHand) {
-		Monster.rightHand = rightHand;
+		this.rightHand = rightHand;
 	}
+
 	public void setLeftHand(IObject leftHand) {
-		Monster.leftHand = leftHand;
+		this.leftHand = leftHand;
 	}
+
 	public void setFeet(Armor boots) {
-		Monster.feet = boots;
+		this.feet = boots;
 	}
+
 	public void setLegs(Armor legs) {
-		Monster.legs = legs;
+		this.legs = legs;
 	}
+
 	public void setTorso(Armor shirt) {
-		Monster.torso = shirt;
+		this.torso = shirt;
 	}
+
 	public void setHead(Armor head) {
-		Monster.head = head;
+		this.head = head;
+	}
+
+	public void setBack(Armor back) {
+		this.back = back;
+	}
+
+	public void addExp(double number) {
+		exp = exp + number;
+		System.out.println(exp);
+	}
+
+	public double getExp() {
+		return exp;
+	}
+
+	public void addLevel() {
+		level++;
+		exp = exp - expLimit;
+		expLimit = level * 1000;
+		health = health + 100;
+		mana = mana + 100;
 	}
 }

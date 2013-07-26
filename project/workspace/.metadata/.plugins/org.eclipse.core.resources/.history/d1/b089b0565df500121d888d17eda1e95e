@@ -378,6 +378,7 @@ public class Engine {
 			}
 			break;
 		}
+		System.out.println(armNum);
 		System.out.println(worldObjects[armNum]);
 	}
 

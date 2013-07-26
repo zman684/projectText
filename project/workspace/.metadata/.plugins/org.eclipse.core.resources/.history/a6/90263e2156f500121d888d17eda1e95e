@@ -190,9 +190,8 @@ public class Engine {
 				if (item.toLowerCase().equals(
 						invo.get(j).getName().toLowerCase())) {
 					System.out.println();
-					if (invo.get(j).getLevel() > user.getLevel()) {
-						System.out.println("You are to low level for that!");
-					} else if (invo.get(j).getObjectType().equals("weapon")) {
+					// Check if it is a weapon
+					if (invo.get(j).getObjectType().equals("weapon")) {
 						// Set their right hand to that weapon
 						System.out
 								.println("Would you like to equip to your right or left hand?");
@@ -312,7 +311,7 @@ public class Engine {
 			System.out.println("You enter a new area");
 		} else if (curLoc == 'l') {// l == Lever
 			System.out.println("You are by a lever.");
-		} else if (curLoc == 'a') {
+		}else if(curLoc == 'a'){
 			System.out.println("You found some armour");
 			armorDraw();
 		}
@@ -348,37 +347,11 @@ public class Engine {
 	}
 
 	private static void armorDraw() {
-		int counter = 0;
-		for (IObject a : worldObjects) {
-			if (a.getObjectType().equals("armor")) {
-				if (a.getLevel() <= (user.getLevel() + 2)) {
-					counter++;
-				}
+		for(IObject a : worldObjects){
+			if(a.getObjectType().equals("Armor")){
+				System.out.println(a);
 			}
 		}
-		Integer[] numbers = new Integer[counter];
-		int count = 0;
-		int armor = 0;
-		for (IObject a : worldObjects) {
-			if (a.getObjectType().equals("armor")) {
-				if (a.getLevel() <= (user.getLevel() + 2)) {
-					numbers[count] = armor;
-					count++;
-				}
-			}
-			armor++;
-		}
-		int armNum = (int) ((Math.random() * counter) + 1);
-		while (true) {
-			for(Integer i : numbers){
-				if( armNum == i){
-					armNum = i;
-					break;
-				}
-			}
-			break;
-		}
-		System.out.println(worldObjects[armNum]);
 	}
 
 	public static void removeMonster() {
@@ -437,9 +410,8 @@ public class Engine {
 				if (item.toLowerCase().equals(
 						invo.get(j).getName().toLowerCase())) {
 					System.out.println();
-					if (invo.get(j).getLevel() > user.getLevel()) {
-						System.out.println("You are to low level for that!");
-					} else if (invo.get(j).getObjectType().equals("weapon")) {
+					// Check if it is a weapon
+					if (invo.get(j).getObjectType().equals("weapon")) {
 						// Set their right hand to that weapon
 						System.out
 								.println("Would you like to equip to your right or left hand?");
@@ -634,8 +606,7 @@ public class Engine {
 	/**
 	 * Saves the item to the invo (autosave)
 	 *
-	 * @param acqs
-	 *            Array of invo
+	 * @param acqs Array of invo
 	 */
 	public static void saveItem(String path, Invo[] acqs) {
 		BufferedWriter file;
@@ -693,24 +664,24 @@ public class Engine {
 	 */
 	public static void start() {
 		// ALL DEFAULT MAPS, WEAPONS, AND ITEMS//
-		worldObjects = new IObject[] { new Weapon("Sword", "Melee", 5, 4.0, 1),// 0
-				new Weapon("Staff", "Magic", 5, 4.0, 1),// 1
-				new Weapon("Bow", "Range", 5, 4.0, 1),// 2
-				new Weapon("level5", "Melee", 5, 4.0, 5),// 3
-				new Armor("Helm", "Head", 5, 4.0, 1),// 4
-				new Armor("Top", "Torso", 5, 4.0, 1),// 5
-				new Armor("Legs", "Legs", 5, 4.0, 1),// 6
-				new Armor("Boots", "Feet", 5, 4.0, 1),// 7
-				new Armor("Cape", "Back", 5, 4.0, 1),// 8
+		worldObjects = new IObject[] { new Weapon("Sword", "Melee", 5, 4.0),// 0
+				new Weapon("Staff", "Magic", 5, 4.0),// 1
+				new Weapon("Bow", "Range", 5, 4.0),// 2
+				new Weapon("Dagger", "Melee", 5, 4.0),// 3
+				new Armor("Helm", "Head", 5, 4.0),// 4
+				new Armor("Top", "Torso", 5, 4.0),// 5
+				new Armor("Legs", "Legs", 5, 4.0),// 6
+				new Armor("Boots", "Feet", 5, 4.0),// 7
+				new Armor("Cape", "Back", 5, 4.0),// 8
 				new Item("Beer", "Alchahol", -1, 10),// 9
-				new Weapon("GodSword", "Melee", 10000, 1.0, 0),// 10
-				new Armor("Dev Boots", "Feet", 10000, 1.0, 0) };
+				new Weapon("GodSword", "Melee", 10000, 1.0),// 10
+				new Armor("Dev Boots", "Feet", 10000, 1.0) };
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
-		// MONSTERS//
+		//MONSTERS//
 		// g == Goblin
 		// t == troll
-		// NPCS//
-		// OBJECTS//
+		//NPCS//
+		//OBJECTS//
 		// l == lever && L == wall that will open
 		devMap = new Move[] { mapMaker("xxxxxxxxxx"), mapMaker("xoooooooox"),
 				mapMaker("xoooooooox"), mapMaker("xoooooooox"),
@@ -724,7 +695,7 @@ public class Engine {
 				mapMaker("xtx"), mapMaker("xgx"), mapMaker("xgx"),
 				mapMaker("xgx"), mapMaker("xgx"), mapMaker("xgx"),
 				mapMaker("xtx"), mapMaker("xax"), mapMaker("xtx"),
-				mapMaker("xax"), mapMaker("xsx"), mapMaker("xxx"), };
+				mapMaker("xgx"), mapMaker("xsx"), mapMaker("xxx"), };
 		level1 = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
@@ -788,7 +759,7 @@ public class Engine {
 		String summary = "\nWelcome " + name + "!";
 		summary += "\nIf you need help please type 'help'";
 		summary += "\nOr if you need to know the commands you can type in 'commands'";
-		// summary += "\nThis is (World name), it is world of chaos"
+//		summary += "\nThis is (World name), it is world of chaos"
 		System.out.println(summary);
 		expLimit = user.getLevel() * 1000;
 	}
@@ -797,7 +768,8 @@ public class Engine {
 	 * Checks the name to see if it is a game item
 	 *
 	 * @param name
-	 *            name of the the item they, most likely, want to pickup
+	 *            name of the the item
+	 *            they, most likely, want to pickup
 	 * @return the real item's info
 	 */
 	public static IObject check(String name) {
@@ -843,8 +815,7 @@ public class Engine {
 	}
 
 	/**
-	 * @param str
-	 *            The map
+	 * @param str The map
 	 */
 	public static Move mapMaker(String str) {
 		return new Move(str);
@@ -873,12 +844,6 @@ public class Engine {
 
 	public static void checker() {
 		if (!end) {
-			// for(IObject a : user.getInvo()){
-			// for(IObject b : worldObjects){
-			// if(a == b){
-			// }
-			// }
-			// }
 			expLimit = user.getLevel() * 1000;
 			if (user.getExp() > expLimit) {
 				user.addLevel();

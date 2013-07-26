@@ -39,7 +39,7 @@ public class Utils {
 					}
 					// (3) Assign a new Weapon object to the last element of the
 					// arrray
-//					temp[temp.length - 1] = a;
+					temp[temp.length - 1] = a;
 					// (4) assign new array's address to weapon
 					weapons = temp;
 				}
