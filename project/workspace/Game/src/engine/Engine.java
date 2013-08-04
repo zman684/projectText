@@ -35,6 +35,7 @@ public class Engine {
 	private static Move[] monsterTest;
 	private static Move[] devMap;
 	private static double expLimit;
+	private static Move[] pickupTest;
 
 	/**
 	 * All the commands that a user can type in
@@ -315,6 +316,10 @@ public class Engine {
 		} else if (curLoc == 'a') {
 			System.out.println("You found some armour");
 			armorDraw();
+		} else if (curLoc == 'w') {
+			weaponDraw();
+		} else if (curLoc == 'i') {
+			itemDraw();
 		}
 		if (curLoc == 'g') {
 			Monster goblin = new Monster("Goblin", 150, 1);
@@ -325,7 +330,7 @@ public class Engine {
 				goblinFight.respawn();
 			}
 			if (goblinFight.playerWin() == true) {
-				removeMonster();
+				removeCurLoc();
 				goblinFight.restart();
 				checker();
 			}
@@ -338,13 +343,98 @@ public class Engine {
 				trollFight.respawn();
 			}
 			if (trollFight.playerWin() == true) {
-				removeMonster();
+				removeCurLoc();
 				trollFight.restart();
 				checker();
 			}
 		} else {
 
 		}
+	}
+
+	private static void itemDraw() {
+		int counter = 0;
+		for (IObject a : worldObjects) {
+			if (a.getObjectType().equals("item")) {
+				if (a.getLevel() <= (user.getLevel() + 2)) {
+					counter++;
+				}
+			}
+		}
+		//
+		Integer[] numbers = new Integer[counter];
+		int count = 0;
+		int item = 0;
+		for (IObject a : worldObjects) {
+			if (a.getObjectType().equals("item")) {
+				if (a.getLevel() <= (user.getLevel() + 2)) {
+					System.out.println(item);
+					System.out.println(worldObjects[item]);
+					numbers[count] = item;
+					count++;
+				}
+			}
+			item++;
+		}
+		int itemNum = 0;
+		boolean breakNow = false;
+		while (breakNow == false) {
+			itemNum = (int) ((Math.random() * worldObjects.length) + 1);
+			for (Integer i : numbers) {
+				System.out.println(i + " = " + itemNum);
+				if (i == itemNum) {
+					breakNow = true;
+					break;
+				}
+			}
+		}
+		System.out.println(itemNum);
+		System.out.println("hi");
+		invo.add(worldObjects[itemNum]);
+		System.out.println(worldObjects[itemNum]);
+		removeCurLoc();
+	}
+
+	private static void weaponDraw() {
+		int counter = 0;
+		for (IObject a : worldObjects) {
+			if (a.getObjectType().equals("weapon")) {
+				if (a.getLevel() <= (user.getLevel() + 2)) {
+					counter++;
+				}
+			}
+		}
+		Integer[] numbers = new Integer[counter];
+		int count = 0;
+		int weapon = 0;
+		for (IObject a : worldObjects) {
+			if (a.getObjectType().equals("weapon")) {
+				if (a.getLevel() <= (user.getLevel() + 2)) {
+					System.out.println(a);
+					numbers[count] = weapon;
+					count++;
+				}
+			}
+			weapon++;
+		}
+		int weaponNum = 0;
+		boolean breakNow = false;
+		while (breakNow == false) {
+			weaponNum = (int) ((Math.random() * worldObjects.length) + 1);
+			for (Integer i : numbers) {
+				System.out.println(i);
+				System.out.println(i + " = " + weaponNum);
+				if (i == weaponNum) {
+					if (!worldObjects[weaponNum].getName().equals("Null")) {
+						breakNow = true;
+						break;
+					}
+				}
+			}
+		}
+		invo.add(worldObjects[weaponNum]);
+		System.out.println(worldObjects[weaponNum]);
+		removeCurLoc();
 	}
 
 	private static void armorDraw() {
@@ -362,26 +452,31 @@ public class Engine {
 		for (IObject a : worldObjects) {
 			if (a.getObjectType().equals("armor")) {
 				if (a.getLevel() <= (user.getLevel() + 2)) {
+					System.out.println(a);
 					numbers[count] = armor;
 					count++;
 				}
 			}
 			armor++;
 		}
-		int armNum = (int) ((Math.random() * counter) + 1);
-		while (true) {
-			for(Integer i : numbers){
-				if( armNum == i){
-					armNum = i;
+		int armNum = 0;
+		boolean breakNow = false;
+		while (breakNow == false) {
+			armNum = (int) ((Math.random() * worldObjects.length) + 1);
+			for (Integer i : numbers) {
+				System.out.println(i + " = " + armNum);
+				if (i == armNum) {
+					breakNow = true;
 					break;
 				}
 			}
-			break;
 		}
+		invo.add(worldObjects[armNum]);
 		System.out.println(worldObjects[armNum]);
+		removeCurLoc();
 	}
 
-	public static void removeMonster() {
+	public static void removeCurLoc() {
 		char letter;
 		String line = "";
 		Move[] newMap = new Move[map.length];
@@ -692,19 +787,26 @@ public class Engine {
 	 * Starts the game
 	 */
 	public static void start() {
+		System.out.println(Math.ceil(3.5));
 		// ALL DEFAULT MAPS, WEAPONS, AND ITEMS//
-		worldObjects = new IObject[] { new Weapon("Sword", "Melee", 5, 4.0, 1),// 0
+		worldObjects = new IObject[] {
+				new Weapon("Null", "Null", 0, 0, 0),
+				new Weapon("Sword", "Melee", 5, 4.0, 1),// 0
 				new Weapon("Staff", "Magic", 5, 4.0, 1),// 1
 				new Weapon("Bow", "Range", 5, 4.0, 1),// 2
-				new Weapon("level5", "Melee", 5, 4.0, 5),// 3
+				new Weapon("Dagger", "Melee", 5, 4.0, 5),
+				new Weapon("dumb1", "Melee", 0, 1.0, 0),
+				new Weapon("dumb2", "Melee", 0, 1.0, 0),
+				new Weapon("dumb3", "Melee", 0, 1.0, 0),
+				new Weapon("dumb4", "Melee", 0, 1.0, 0),
+				new Weapon("GodSword", "Melee", 10000, 1.0, 0),
 				new Armor("Helm", "Head", 5, 4.0, 1),// 4
 				new Armor("Top", "Torso", 5, 4.0, 1),// 5
 				new Armor("Legs", "Legs", 5, 4.0, 1),// 6
 				new Armor("Boots", "Feet", 5, 4.0, 1),// 7
 				new Armor("Cape", "Back", 5, 4.0, 1),// 8
-				new Item("Beer", "Alchahol", -1, 10),// 9
-				new Weapon("GodSword", "Melee", 10000, 1.0, 0),// 10
-				new Armor("Dev Boots", "Feet", 10000, 1.0, 0) };
+				new Armor("Dev Boots", "Feet", 10000, 1.0, 0),
+				new Item("Beer", "Alchahol", -1, 10) };
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
 		// MONSTERS//
 		// g == Goblin
@@ -723,7 +825,7 @@ public class Engine {
 				mapMaker("xtx"), mapMaker("xgx"), mapMaker("xtx"),
 				mapMaker("xtx"), mapMaker("xgx"), mapMaker("xgx"),
 				mapMaker("xgx"), mapMaker("xgx"), mapMaker("xgx"),
-				mapMaker("xtx"), mapMaker("xax"), mapMaker("xtx"),
+				mapMaker("xwx"), mapMaker("xix"), mapMaker("xtx"),
 				mapMaker("xax"), mapMaker("xsx"), mapMaker("xxx"), };
 		level1 = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
@@ -732,8 +834,10 @@ public class Engine {
 		level2 = new Move[] { mapMaker("xxxxx"), mapMaker("xfxxx"),
 				mapMaker("xLxxx"), mapMaker("xgxxx"), mapMaker("xotox"),
 				mapMaker("xoxlx"), mapMaker("xsxxx"), mapMaker("xxxxx") };
-		mapStart(monsterTest);
-		map = monsterTest;
+		pickupTest = new Move[] { mapMaker("xxxxx"), mapMaker("xxwxx"),
+				mapMaker("xxsax"), mapMaker("xxixx") };
+		mapStart(pickupTest);
+		map = pickupTest;
 
 		Scanner in = new Scanner(System.in);
 		String name = "";
@@ -873,12 +977,11 @@ public class Engine {
 
 	public static void checker() {
 		if (!end) {
-			// for(IObject a : user.getInvo()){
-			// for(IObject b : worldObjects){
-			// if(a == b){
-			// }
-			// }
-			// }
+			for (Weapon a : user.getInvo()) {
+				if (a.getName().equals("Null")) {
+					user.getInvo().remove(a);
+				}
+			}
 			expLimit = user.getLevel() * 1000;
 			if (user.getExp() > expLimit) {
 				user.addLevel();
