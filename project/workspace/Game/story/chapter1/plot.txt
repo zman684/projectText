@@ -1,0 +1,25 @@
+Setting: House
+NPC: Dad, Mom
+Weapon: Wooden Sword
+
+story:
+*player enters*
+Dad: "(Player Name) pick up the wooden sword and equip it.."
+System: use "pickup wooden sword" then "equip wooden sword"
+Dad: "Now go forward and attack!"
+    battle{
+        if(win){
+            Dad: "Nice job son lets go in"
+        }else{
+            Dad: "Son..."
+        }
+    }
+!When player enters the house!
+Mom: "Good you too are done (player) it's time for bed!"
+!Flash ahead!
+System: 2 hours later
+Mom: "AHHHHH!"
+(Once player goes to the door)
+System: You again see your mom and dad lying there lifeless, you see is your raided house, and (Bandit leaders name)
+(player): "Two days and I'll be at your camp (Bandit leader), you just wait...
+>Next Chapter>

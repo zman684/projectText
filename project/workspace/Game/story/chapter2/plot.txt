@@ -1,0 +1,19 @@
+Setting: Forest
+NPC:
+Weapon: Bronze dagger, Leather Chaps, Cloth Body, Boots
+Map Weapons: bone bow, iron sword, oak staff
+Pet: Dog
+
+story:
+(player moves forward)
+System: You see an angel fly down
+Angel: "You can not expect to kill (Bandit Leader with just a dagger, I've been sent to give you a weapon..."
+Angel: "Please choose one:
+        Iron Sword
+        Bone Bow
+        Oak Staff"
+(player chooses one)
+Angel: "Good luck (player) we will meet again, 
+for God favors you. Now go and slay (Bandit Leader)"
+(player travels and fights a goblin a few spots away)
+
