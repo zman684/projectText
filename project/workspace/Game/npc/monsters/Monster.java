@@ -31,6 +31,12 @@ public class Monster {
 		back = new Armor("Backpack", "Back", 0, 3.0, 1);
 	}
 
+	public Monster(){
+		name = "Dummy";
+		health = 10;
+		level = 0;
+	}
+
 	public Monster(String name, double health, double mana,
 			int level, IObject rightHand,
 			IObject leftHand, Armor feet, Armor legs, Armor torso, Armor head,

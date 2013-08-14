@@ -15,7 +15,7 @@ Dad: "Now go forward and attack!"
         }
     }
 !When player enters the house!
-Mom: "Good you too are done (player) it's time for bed!"
+Mom: "Good you to are done (player) it's time for bed!"
 !Flash ahead!
 System: 2 hours later
 Mom: "AHHHHH!"

@@ -42,8 +42,6 @@ public class Engine {
 	private static IObject[] mapObjects;
 	private static boolean pickup;
 	private static int pickupItem;
-	private static int story;
-	private static Move[] chapter1Dream;
 
 	/**
 	 * All the commands that a user can type in
@@ -148,7 +146,6 @@ public class Engine {
 		map = newMap;
 	}
 
-	// TODO: FIX THAT YOU CAN PICK UP THE ITEM AS MANY TIMES AS YOU WANT
 	public static void pickupItem(String item) {
 		int i = 0;
 		boolean itemIsValid = false;
@@ -317,8 +314,6 @@ public class Engine {
 		if (curLoc == 'f') {// f == End Game
 			System.out.println("YOU WON!");
 			end = true;
-		} else if (curLoc == 'n') {
-			convo();
 		} else if (curLoc == 'e') {// e == End Area
 			level++;
 			newLevel(level);
@@ -374,54 +369,14 @@ public class Engine {
 				removeCurLoc();
 				firstFight.restart();
 				checker();
-				convo();
+				System.out.println("Dad: Nice son!...");
+				System.out.println("Mom: "+user.getName()+" it is time for bed!");
 			}
 		} else {
 
 		}
 	}
-
-	public static void convo() {
-		if (story == 0) {
-			System.out.println("Dad: " + user.getName()
-					+ " go get the Wooden Sword in front of you.");
-			wait(700);
-			System.out
-					.println("System: "
-							+ "Use 'pickup wooden sword' then 'equip wooden sword', if you need help type in 'help' or 'commands'");
-		} else if (story == 1) {
-			System.out.println("Dad: Nice son!...");
-			wait(400);
-			System.out.println("Mom: " + user.getName()
-					+ " it is time for bed!");
-		} else if (story == 2) {
-			System.out.println("System: You go to your bed and fall asleep...");
-			newLevel(1);
-			wait(1000);
-			System.out.println("3 Hours later");
-			wait(1000);
-			System.out.println("Mom: AHHHHHHH!");
-		} else if (story == 3) {
-			System.out
-					.println("System: You again see your mom and dad lying there lifeless, you see your raided house, and Sargent Gelecki walking away.");
-			newLevel(2);
-			wait(1500);
-			System.out.println("You wake from your dream..");
-			wait(500);
-			System.out
-					.println("Two days and I'll be at your camp (Bandit leader), you just wait...");
-		}
-		story++;
-	}
-
-	public static void wait(int i) {
-		try {
-			Thread.sleep(i);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
+	
 	private static void itemDraw() {
 		int counter = 0;
 		for (IObject a : mapObjects) {
@@ -764,8 +719,7 @@ public class Engine {
 	 */
 	public static void pickUp() {
 		if (pickup == true) {
-			System.out.println("You picked up "
-					+ mapObjects[pickupItem].getName());
+			System.out.println("You picked up " + mapObjects[pickupItem].getName());
 			invo.add(mapObjects[pickupItem]);
 		} else {
 			int i = 0;
@@ -793,7 +747,7 @@ public class Engine {
 
 	/**
 	 * Saves the item to the invo (autosave)
-	 * 
+	 *
 	 * @param acqs
 	 *            Array of invo
 	 */
@@ -869,6 +823,7 @@ public class Engine {
 		// new Armor("Boots", "Feet", 5, 4.0, 1),// 7
 		// new Armor("Cape", "Back", 5, 4.0, 1),// 8
 		// new Armor("Dev Boots", "Feet", 10000, 1.0, 0),
+		// new Item("Beer", "Alchahol", -1, 10) };
 		chapter1Objects = new IObject[] { new Weapon("Null", "Null", 0, 0, 0),
 				new Weapon("Wooden Sword", "Melee", 1, 2.0, 0) };
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
@@ -887,13 +842,9 @@ public class Engine {
 				mapMaker("xwx"), mapMaker("xix"), mapMaker("xtx"),
 				mapMaker("xax"), mapMaker("xsx"), mapMaker("xxx"), };
 		chapter1 = new Move[] { mapMaker("xxxxxxx"), mapMaker("xoooxxx"),
-				mapMaker("xxxoxox"), mapMaker("xooooox"), mapMaker("xxxnxxx"),
+				mapMaker("xxxoxox"), mapMaker("xooooox"), mapMaker("xxxoxxx"),
 				mapMaker("zxooxzz"), mapMaker("zxdxxzz"), mapMaker("zxwxzzz"),
 				mapMaker("zxsxzzz"), mapMaker("zxxxzzz") };
-		chapter1Dream = new Move[] { mapMaker("xxxxxxx"), mapMaker("xosoxxx"),
-				mapMaker("xxxnxox"), mapMaker("xooooox"), mapMaker("xxxoxxx"),
-				mapMaker("zxooxzz"), mapMaker("zxdxxzz"), mapMaker("zxoxzzz"),
-				mapMaker("zxoxzzz"), mapMaker("zxxxzzz") };
 		chapter2 = new Move[] { mapMaker("xxx"), mapMaker("xex"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xox"),
 				mapMaker("xox"), mapMaker("xox"), mapMaker("xsx"),
@@ -941,14 +892,21 @@ public class Engine {
 				done = true;
 			}
 		}
-		story = 0;
 		user = new User(name);
-		convo();
+		System.out.println("Dad: " + user.getName()
+				+ " go get the Wooden Sword in front of you.");
+		System.out
+				.println("System: "
+						+ "Use 'pickup wooden sword' then 'equip wooden sword', if you need help type in 'help' or 'commands'");
 		Heading = 3;
 		if (dev) {
 			invo = new ArrayList<IObject>();
+			for (IObject o : worldObjects) {
+				invo.add(o);
+			}
 			// Sets so the dev will have a sword in their hand
-			user.setRightHand(new Weapon("GodSword", "God", 10000, 0, 0));
+			user.setRightHand(worldObjects[10]);
+			user.setFeet((Armor) worldObjects[11]);
 		} else {
 			invo = new ArrayList<IObject>();
 		}
@@ -966,7 +924,7 @@ public class Engine {
 
 	/**
 	 * Checks the name to see if it is a game item
-	 * 
+	 *
 	 * @param name
 	 *            name of the the item they, most likely, want to pickup
 	 * @return the real item's info
@@ -1033,12 +991,7 @@ public class Engine {
 	}
 
 	public static void newLevel(int level) {
-		if (level == 1) {
-			map = chapter1Dream;
-			mapStart(map);
-			location.setX(startX);
-			location.setY(startY);
-		} else if (level == 2) {
+		if (level == 2) {
 			map = chapter2;
 			mapStart(map);
 			// mapObjects = chapter2Objects;

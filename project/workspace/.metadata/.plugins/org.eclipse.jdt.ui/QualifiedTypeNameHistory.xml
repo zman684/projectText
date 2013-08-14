@@ -23,5 +23,6 @@
 <fullyQualifiedTypeName name="engine.Engine"/>
 <fullyQualifiedTypeName name="monsters.Monster"/>
 <fullyQualifiedTypeName name="start.Fight"/>
+<fullyQualifiedTypeName name="monsters.Dummy"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 </qualifiedTypeNameHistroy>

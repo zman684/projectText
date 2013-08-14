@@ -19,7 +19,7 @@ public class Weapon implements IObject{
 	}
 
 	public String toString(){
-		String summary = name + ", " + type + ", " + dmg + ", " + weight + ", " + level;
+		String summary = name + ", " + type + ", "  + "Dmg: " + dmg + ", " + "lb: " + weight + ", " + "Lvl: " + level;
 		return summary;
 	}
 

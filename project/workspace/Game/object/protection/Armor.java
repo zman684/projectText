@@ -19,7 +19,7 @@ public class Armor implements IObject{
 	}
 
 	public String toString() {
-		String summary = name + ", " + type + ", " + def + ", " + weight + ", " + level;
+		String summary = name + ", " + type + ", " + "Def: " + def + ", " + "lb: " + weight + ", " + "Lvl: " + level;
 		return summary;
 	}
 

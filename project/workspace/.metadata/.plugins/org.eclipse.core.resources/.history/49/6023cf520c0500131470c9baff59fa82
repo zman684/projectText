@@ -148,7 +148,6 @@ public class Engine {
 		map = newMap;
 	}
 
-	// TODO: FIX THAT YOU CAN PICK UP THE ITEM AS MANY TIMES AS YOU WANT
 	public static void pickupItem(String item) {
 		int i = 0;
 		boolean itemIsValid = false;
@@ -317,7 +316,7 @@ public class Engine {
 		if (curLoc == 'f') {// f == End Game
 			System.out.println("YOU WON!");
 			end = true;
-		} else if (curLoc == 'n') {
+		}else if(curLoc == 'n'){
 			convo();
 		} else if (curLoc == 'e') {// e == End Area
 			level++;
@@ -385,41 +384,25 @@ public class Engine {
 		if (story == 0) {
 			System.out.println("Dad: " + user.getName()
 					+ " go get the Wooden Sword in front of you.");
-			wait(700);
 			System.out
 					.println("System: "
 							+ "Use 'pickup wooden sword' then 'equip wooden sword', if you need help type in 'help' or 'commands'");
 		} else if (story == 1) {
 			System.out.println("Dad: Nice son!...");
-			wait(400);
 			System.out.println("Mom: " + user.getName()
 					+ " it is time for bed!");
 		} else if (story == 2) {
 			System.out.println("System: You go to your bed and fall asleep...");
-			newLevel(1);
-			wait(1000);
+			newLevel(level);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			System.out.println("3 Hours later");
-			wait(1000);
 			System.out.println("Mom: AHHHHHHH!");
-		} else if (story == 3) {
-			System.out
-					.println("System: You again see your mom and dad lying there lifeless, you see your raided house, and Sargent Gelecki walking away.");
-			newLevel(2);
-			wait(1500);
-			System.out.println("You wake from your dream..");
-			wait(500);
-			System.out
-					.println("Two days and I'll be at your camp (Bandit leader), you just wait...");
 		}
 		story++;
-	}
-
-	public static void wait(int i) {
-		try {
-			Thread.sleep(i);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	private static void itemDraw() {
@@ -888,7 +871,7 @@ public class Engine {
 				mapMaker("xax"), mapMaker("xsx"), mapMaker("xxx"), };
 		chapter1 = new Move[] { mapMaker("xxxxxxx"), mapMaker("xoooxxx"),
 				mapMaker("xxxoxox"), mapMaker("xooooox"), mapMaker("xxxnxxx"),
-				mapMaker("zxooxzz"), mapMaker("zxdxxzz"), mapMaker("zxwxzzz"),
+				mapMaker("zxooxzz"), mapMaker("zxdxxzz"), mapMaker("zxoxzzz"),
 				mapMaker("zxsxzzz"), mapMaker("zxxxzzz") };
 		chapter1Dream = new Move[] { mapMaker("xxxxxxx"), mapMaker("xosoxxx"),
 				mapMaker("xxxnxox"), mapMaker("xooooox"), mapMaker("xxxoxxx"),

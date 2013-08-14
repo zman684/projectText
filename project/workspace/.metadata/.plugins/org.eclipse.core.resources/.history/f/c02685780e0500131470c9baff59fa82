@@ -148,7 +148,7 @@ public class Engine {
 		map = newMap;
 	}
 
-	// TODO: FIX THAT YOU CAN PICK UP THE ITEM AS MANY TIMES AS YOU WANT
+	//TODO: FIX THAT YOU CAN PICK UP THE ITEM AS MANY TIMES AS YOU WANT
 	public static void pickupItem(String item) {
 		int i = 0;
 		boolean itemIsValid = false;
@@ -317,7 +317,7 @@ public class Engine {
 		if (curLoc == 'f') {// f == End Game
 			System.out.println("YOU WON!");
 			end = true;
-		} else if (curLoc == 'n') {
+		}else if(curLoc == 'n'){
 			convo();
 		} else if (curLoc == 'e') {// e == End Area
 			level++;
@@ -401,20 +401,18 @@ public class Engine {
 			System.out.println("3 Hours later");
 			wait(1000);
 			System.out.println("Mom: AHHHHHHH!");
-		} else if (story == 3) {
-			System.out
-					.println("System: You again see your mom and dad lying there lifeless, you see your raided house, and Sargent Gelecki walking away.");
+		}else if(story == 3){
+			System.out.println("System: You again see your mom and dad lying there lifeless, you see your raided house, and Sargent Gelecki walking away.");
 			newLevel(2);
 			wait(1500);
 			System.out.println("You wake from your dream..");
 			wait(500);
-			System.out
-					.println("Two days and I'll be at your camp (Bandit leader), you just wait...");
+			System.out.println("Two days and I'll be at your camp (Bandit leader), you just wait...");
 		}
 		story++;
 	}
-
-	public static void wait(int i) {
+	
+	public static void wait(int i){
 		try {
 			Thread.sleep(i);
 		} catch (InterruptedException e) {
