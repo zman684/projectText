@@ -16,13 +16,13 @@
 <fullyQualifiedTypeName name="java.io.FileReader"/>
 <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
 <fullyQualifiedTypeName name="maps.Move"/>
-<fullyQualifiedTypeName name="item.Item"/>
-<fullyQualifiedTypeName name="objects.IObject"/>
 <fullyQualifiedTypeName name="protection.Armor"/>
 <fullyQualifiedTypeName name="weapons.Weapon"/>
-<fullyQualifiedTypeName name="engine.Engine"/>
 <fullyQualifiedTypeName name="monsters.Monster"/>
 <fullyQualifiedTypeName name="start.Fight"/>
 <fullyQualifiedTypeName name="monsters.Dummy"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="item.Item"/>
+<fullyQualifiedTypeName name="objects.IObject"/>
+<fullyQualifiedTypeName name="engine.Engine"/>
 </qualifiedTypeNameHistroy>

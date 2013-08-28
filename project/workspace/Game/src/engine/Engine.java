@@ -44,12 +44,14 @@ public class Engine {
 	private static int pickupItem;
 	private static int story;
 	private static Move[] chapter1Dream;
+	private static IObject[] chapter2Objects;
 
 	/**
 	 * All the commands that a user can type in
 	 */
 	public static void menu() {
 		while (!end) {
+			//Sets to false but for certain commands it will turn true
 			checker();
 			mapChecker();
 			Scanner in = new Scanner(System.in);
@@ -61,49 +63,67 @@ public class Engine {
 			if (action.equals("forward") || action.equals("go forward")
 					|| action.equals("move forward")) {
 				goForward();
+				pickup = false;
 			} else if (action.equals("back") || action.equals("go back")
 					|| action.equals("move back")) {
 				goBack();
+				pickup = false;
 			} else if (action.equals("left") || action.equals("turn left")) {
 				System.out.println("You turn left");
+				pickup = true;
 				turnLeft();
 			} else if (action.equals("right") || action.equals("turn right")) {
 				System.out.println("You turn right");
+				pickup = true;
 				turnRight();
 			} else if (action.equals("location")) {
+				pickup = true;
 				location();
 			} else if (action.equals("equipment")) {
+				pickup = true;
 				System.out.println(user.equipment());
 			} else if (action.equals("equip")) {
+				pickup = true;
 				equip();
 			} else if (action.equals("pickup")) {
 				pickUp();
+				pickup = false;
 			} else if (action.equals("map")) {
+				pickup = true;
 				showMap();
 			} else if (action.equals("status")) {
+				pickup = true;
 				System.out.println(user);
 			} else if (action.equals("help")) {
+				pickup = true;
 				help();
 			} else if (action.equals("commands")) {
+				pickup = true;
 				commands();
 			} else if (action.equals("look around")) {
+				pickup = true;
 				lookAround();
 			} else if (action.equals("look")) {
+				pickup = true;
 				look();
 			} else if (action.equals("invo")) {
+				pickup = true;
 				System.out.println(invo());
 			} else if (action.equals("exit")) {
 				System.out.println("goodbye");
 				break;
 			} else if (action.equals("pull lever")) {
+				pickup = true;
 				pullLever();
 			} else if (action.equals("clear")) {
+				pickup = true;
 				clear();
 			} else if (action.length() > 6) {
 				if (action.substring(0, 6).equals("equip ")) {
+					pickup = true;
 					equipItem(action.substring(6, action.length()));
-				} else if (action.substring(0, 7).equals("pickup ")) {
-					pickupItem(action.substring(7, action.length()));
+//				} else if (action.substring(0, 7).equals("pickup ")) {
+//					pickupItem(action.substring(7, action.length()));
 				} else {
 					System.out
 							.println("That is not a correct command please try again.");
@@ -111,10 +131,10 @@ public class Engine {
 			} else {
 				// If it is not in the command "if" block
 				// it must not be a command
+				pickup = true;
 				System.out
 						.println("That is not a correct command please try again.");
 			}
-			pickup = false;
 		}
 	}
 
@@ -148,26 +168,25 @@ public class Engine {
 		map = newMap;
 	}
 
-	// TODO: FIX THAT YOU CAN PICK UP THE ITEM AS MANY TIMES AS YOU WANT
-	public static void pickupItem(String item) {
-		int i = 0;
-		boolean itemIsValid = false;
-		for (int j = 0; j < mapObjects.length; j++) {
-			// Makes sure the item is by them and they don't just put in a
-			// random name
-			if (mapObjects[j].getName().toLowerCase()
-					.equals(item.toLowerCase())) {
-				i = j;
-				itemIsValid = true;
-			}
-		}
-		if (itemIsValid) {
-			invo.add(mapObjects[i]);
-			System.out.println("You picked up " + mapObjects[i]);
-		} else {
-			System.out.println("You can not pick that up.");
-		}
-	}
+//	public static void pickupItem(String item) {
+//		int i = 0;
+//		boolean itemIsValid = false;
+//		for (int j = 0; j < mapObjects.length; j++) {
+//			// Makes sure the item is by them and they don't just put in a
+//			// random name
+//			if (mapObjects[j].getName().toLowerCase()
+//					.equals(item.toLowerCase())) {
+//				i = j;
+//				itemIsValid = true;
+//			}
+//		}
+//		if (itemIsValid) {
+//			invo.add(mapObjects[i]);
+//			System.out.println("You picked up " + mapObjects[i]);
+//		} else {
+//			System.out.println("You can not pick that up.");
+//		}
+//	}
 
 	public static void lookAround() {
 		// Does 4 turns and 4 looks
@@ -318,7 +337,7 @@ public class Engine {
 			System.out.println("YOU WON!");
 			end = true;
 		} else if (curLoc == 'n') {
-			convo();
+			story();
 		} else if (curLoc == 'e') {// e == End Area
 			level++;
 			newLevel(level);
@@ -326,7 +345,6 @@ public class Engine {
 		} else if (curLoc == 'l') {// l == Lever
 			System.out.println("You are by a lever.");
 		} else if (curLoc == 'a') {
-			System.out.println("You found some armour");
 			armorDraw();
 			pickup = true;
 		} else if (curLoc == 'w') {
@@ -349,6 +367,10 @@ public class Engine {
 				goblinFight.restart();
 				checker();
 			}
+			if(goblinFight.playerFlee() == true){
+				goBack();
+				goblinFight.respawn();
+			}
 		} else if (curLoc == 't') {
 			Monster troll = new Monster("Troll", 500, 5);
 			Fight trollFight = new Fight(user, troll, "Plains");
@@ -362,6 +384,10 @@ public class Engine {
 				trollFight.restart();
 				checker();
 			}
+			if(trollFight.playerFlee() == true){
+				goBack();
+				trollFight.respawn();
+			}
 		} else if (curLoc == 'd') {
 			Monster first = new Monster();
 			Fight firstFight = new Fight(user, first, "Chapter1");
@@ -374,14 +400,14 @@ public class Engine {
 				removeCurLoc();
 				firstFight.restart();
 				checker();
-				convo();
+				story();
 			}
 		} else {
 
 		}
 	}
 
-	public static void convo() {
+	public static void story() {
 		if (story == 0) {
 			System.out.println("Dad: " + user.getName()
 					+ " go get the Wooden Sword in front of you.");
@@ -394,6 +420,8 @@ public class Engine {
 			wait(400);
 			System.out.println("Mom: " + user.getName()
 					+ " it is time for bed!");
+			wait(300);
+			System.out.println("System: Type 'map' to see where are you");
 		} else if (story == 2) {
 			System.out.println("System: You go to your bed and fall asleep...");
 			newLevel(1);
@@ -404,12 +432,17 @@ public class Engine {
 		} else if (story == 3) {
 			System.out
 					.println("System: You again see your mom and dad lying there lifeless, you see your raided house, and Sargent Gelecki walking away.");
+			wait(2000);
 			newLevel(2);
-			wait(1500);
+			mapObjects = chapter2Objects;
+			user.setRightHand(chapter2Objects[4]);
+			user.setLegs((Armor) chapter2Objects[5]);
+			user.setTorso((Armor) chapter2Objects[6]);
+			user.setFeet((Armor) chapter2Objects[7]);
 			System.out.println("You wake from your dream..");
 			wait(500);
 			System.out
-					.println("Two days and I'll be at your camp (Bandit leader), you just wait...");
+					.println(user.getName() + ":"+ " Two days and I'll be at your camp (Bandit leader), you just wait...");
 		}
 		story++;
 	}
@@ -563,7 +596,7 @@ public class Engine {
 	 */
 	// TODO: Clear the menu
 	public static void clear() {
-		for (int i = 0; i < 25; i++) {
+		for (int i = 0; i < 100; i++) {
 			System.out.println();
 		}
 		menu();
@@ -718,7 +751,7 @@ public class Engine {
 		char nextLoc = read((int) newLocation.getX(), (int) newLocation.getY());
 		if (nextLoc != 'x' && nextLoc != 'L') {
 			location = newLocation;
-			System.out.println("You moved forward");
+			System.out.println("You moved backwards");
 		} else if (nextLoc == 'L') {
 			System.out
 					.println("You see a wall... but something seems different");
@@ -767,28 +800,31 @@ public class Engine {
 			System.out.println("You picked up "
 					+ mapObjects[pickupItem].getName());
 			invo.add(mapObjects[pickupItem]);
-		} else {
-			int i = 0;
-			boolean itemIsValid = false;
-			Scanner in = new Scanner(System.in);
-			System.out.print("Pickup what: ");
-			String item = in.nextLine();
-			for (int j = 0; j < mapObjects.length; j++) {
-				// Makes sure the item is by them and they don't just put in a
-				// random name
-				if (mapObjects[j].getName().toLowerCase()
-						.equals(item.toLowerCase())) {
-					i = j;
-					itemIsValid = true;
-				}
-			}
-			if (itemIsValid) {
-				invo.add(mapObjects[i]);
-				System.out.println("You picked up " + mapObjects[i]);
-			} else {
-				System.out.println("You can not pick that up.");
-			}
+		}else{
+			System.out.println("There is nothing to pick up...");
 		}
+//		else {
+//			int i = 0;
+//			boolean itemIsValid = false;
+//			Scanner in = new Scanner(System.in);
+//			System.out.print("Pickup what: ");
+//			String item = in.nextLine();
+//			for (int j = 0; j < mapObjects.length; j++) {
+//				// Makes sure the item is by them and they don't just put in a
+//				// random name
+//				if (mapObjects[j].getName().toLowerCase()
+//						.equals(item.toLowerCase())) {
+//					i = j;
+//					itemIsValid = true;
+//				}
+//			}
+//			if (itemIsValid) {
+//				invo.add(mapObjects[i]);
+//				System.out.println("You picked up " + mapObjects[i]);
+//			} else {
+//				System.out.println("You can not pick that up.");
+//			}
+//		}
 	}
 
 	/**
@@ -869,8 +905,23 @@ public class Engine {
 		// new Armor("Boots", "Feet", 5, 4.0, 1),// 7
 		// new Armor("Cape", "Back", 5, 4.0, 1),// 8
 		// new Armor("Dev Boots", "Feet", 10000, 1.0, 0),
+		/**
+		 * ITEMS HAVE THESE EFFECTS
+		 * 		-'heal'
+		 * 		-'mana'
+		 * 		-'str'
+		 */
 		chapter1Objects = new IObject[] { new Weapon("Null", "Null", 0, 0, 0),
 				new Weapon("Wooden Sword", "Melee", 1, 2.0, 0) };
+		chapter2Objects = new IObject[] { new Weapon("Null", "Null", 0, 0, 0),
+				new Weapon("Bone Bow", "Range", 4, 2.0, 0),
+				new Weapon("Iron Sword", "Melee", 3, 2.5, 0),
+				new Weapon("Oak Staff", "Magic", 2, 3.0, 0),
+				new Weapon("Bronze Dagger", "Melee", 2, 2, 0),
+				new Armor("Leather Chaps", "legs", 1, 1.0, 0),
+				new Armor("Cloth Body", "torso", 0, 1.0, 0),
+				new Armor("Boots", "feet", 1, 2.0, 0),
+				new Item("Bandaid", "heal", 25, .25)};
 		// MAPS NEW TO HAVE ONE 'S' FOR THEIR STARING POSITION//
 		// MONSTERS//
 		// g == Goblin
@@ -885,7 +936,7 @@ public class Engine {
 				mapMaker("xtx"), mapMaker("xgx"), mapMaker("xgx"),
 				mapMaker("xgx"), mapMaker("xgx"), mapMaker("xgx"),
 				mapMaker("xwx"), mapMaker("xix"), mapMaker("xtx"),
-				mapMaker("xax"), mapMaker("xsx"), mapMaker("xxx"), };
+				mapMaker("xgx"), mapMaker("xsx"), mapMaker("xxx"), };
 		chapter1 = new Move[] { mapMaker("xxxxxxx"), mapMaker("xoooxxx"),
 				mapMaker("xxxoxox"), mapMaker("xooooox"), mapMaker("xxxnxxx"),
 				mapMaker("zxooxzz"), mapMaker("zxdxxzz"), mapMaker("zxwxzzz"),
@@ -906,7 +957,7 @@ public class Engine {
 		level = 1;
 		mapStart(chapter1);
 		map = chapter1;
-		mapObjects = chapter1Objects;
+		mapObjects = chapter2Objects;
 		Scanner in = new Scanner(System.in);
 		String name = "";
 		level2Lever = false;
@@ -943,7 +994,7 @@ public class Engine {
 		}
 		story = 0;
 		user = new User(name);
-		convo();
+		story();
 		Heading = 3;
 		if (dev) {
 			invo = new ArrayList<IObject>();
@@ -1011,6 +1062,17 @@ public class Engine {
 			}
 		}
 		return invoList;
+	}
+	
+	/**
+	 * Returns items for the fight method
+	 */
+	public static void fightInvo(){
+		for (IObject a : invo) {
+			if (a.getObjectType().equals("item")) {
+				System.out.println(a.getName());
+			}
+		}
 	}
 
 	/**

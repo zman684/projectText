@@ -19,6 +19,7 @@ public class User {
 	private boolean end;
 	private IObject rightHand;
 	private IObject leftHand;
+	private int gold;
 	private Armor feet;
 	private Armor legs;
 	private Armor torso;
@@ -40,6 +41,7 @@ public class User {
 		level = 1;
 		expLimit = level * 1000;
 		exp = 0.0;
+		gold = 10;
 		wepInvo = new ArrayList<Weapon>();
 		score = 0;
 		end = false;
@@ -47,12 +49,12 @@ public class User {
 		leftHand = null;
 		feet = new Armor("Boots", "feet", 0, 1, 0);
 		legs = new Armor("Rags", "legs", 0, 1, 0);
-		torso = null;
+		torso = new Armor("Shirt", "top", 0, 1, 0);
 		head = null;
 		back = null;
 	}
 
-	public User(String name, int password, double health, double mana,
+	public User(String name, int password, double health, double mana, int gold,
 			int level, double exp, boolean end, int score, IObject rightHand,
 			IObject leftHand, Armor feet, Armor legs, Armor torso, Armor head,
 			Armor back) {
@@ -71,6 +73,7 @@ public class User {
 		this.legs = legs;
 		this.torso = torso;
 		this.head = head;
+		this.gold = gold;
 		this.back = back;
 
 	}
@@ -111,6 +114,7 @@ public class User {
 		summary += "\nHealth: " + health;
 		summary += "\nMana: " + mana;
 		summary += "\nScore: " + score;
+		summary += "\nGold: " + gold;
 		summary += "\nAttack: " + att;
 		summary += "\nDefence: " + def;
 		summary += "\nLevel: " + level;
@@ -388,7 +392,6 @@ public class User {
 
 	public void addExp(double number) {
 		exp = exp + number;
-		System.out.println(exp);
 	}
 
 	public double getExp() {
@@ -401,5 +404,23 @@ public class User {
 		expLimit = level * 1000;
 		health = health + 100;
 		mana = mana + 100;
+	}
+
+	public int getGold() {
+		return gold;
+	}
+
+	public int addGold(int gold) {
+		int posneg = (int)(Math.random()*2);
+		int num = (int)((Math.random()*10)+1);
+		if(posneg == 0){
+			System.out.println(gold - num);
+			this.gold += (gold - num);
+			return gold - num;
+		}else{
+			System.out.println(gold + num);
+			this.gold += (gold + num);
+			return gold + num;
+		}
 	}
 }

@@ -1,8 +1,10 @@
 package start;
 
+import item.Item;
 import java.util.Scanner;
-
+import objects.IObject;
 import monsters.Monster;
+import engine.Engine;
 import engine.User;
 
 public class Fight {
@@ -13,6 +15,7 @@ public class Fight {
 	private boolean playerWin;
 	private boolean playerDie;
 	private int exp;
+	private boolean flee;
 
 	public Fight(User player, Monster first, String area) {
 		this.player = player;
@@ -27,7 +30,7 @@ public class Fight {
 	public String battle() {
 		if (npc.getName().equals("Dummy")) {
 			System.out.println("Dumy");
-			boolean flee = false;
+			flee = false;
 			Scanner in = new Scanner(System.in);
 			System.out.println();
 			System.out.println(player.getName() + " VS " + npc.getName());
@@ -58,7 +61,9 @@ public class Fight {
 					attack(2);
 					System.out.println();
 				} else if (option.toLowerCase().equals("use item")) {
-
+					Engine.fightInvo();
+					System.out.print("What item would you like to use: ");
+					String item = in.nextLine();
 				} else if (option.toLowerCase().equals("flee")) {
 					System.out.println();
 					player.getBack();
@@ -81,7 +86,7 @@ public class Fight {
 				return "You run away.";
 			}
 		} else {
-			boolean flee = false;
+			flee = false;
 			Scanner in = new Scanner(System.in);
 			System.out.println();
 			System.out.println(player.getName() + " VS " + npc.getName());
@@ -115,11 +120,12 @@ public class Fight {
 					attack(2);
 					System.out.println();
 				} else if (option.toLowerCase().equals("use item")) {
-
+					Engine.fightInvo();
+					System.out.print("What item would you like to use: ");
+					String item = in.nextLine();
 				} else if (option.toLowerCase().equals("flee")) {
 					attack(1);
 					System.out.println();
-					player.getBack();
 					flee = true;
 					break;
 				} else {
@@ -129,7 +135,12 @@ public class Fight {
 			if (!flee) {
 				if (playerWin) {
 					player.addExp(exp);
-					// Will change later to reset method
+					System.out.println(npc.getName()
+							+ " dropped "
+							+ player.addGold((int) ((npc.getLevel() / player
+									.getLevel()) * 10)) + " gold");
+					// player.addGold((int) ((npc.getLevel()/player.getLevel())
+					// * 10));
 					player.setHealth(100);
 					return "You Won!";
 				} else {
@@ -281,5 +292,9 @@ public class Fight {
 
 	public void setNpc(Monster npc) {
 		this.npc = npc;
+	}
+
+	public boolean playerFlee() {
+		return flee;
 	}
 }
