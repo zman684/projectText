@@ -1074,6 +1074,10 @@ public class Engine {
 				itemInvo.add((Item)a);
 			}
 		}
+		if(itemInvo.size() == 0){
+			System.out.println("You have no Items!");
+			return null;
+		}
 		return itemInvo;
 	}
 

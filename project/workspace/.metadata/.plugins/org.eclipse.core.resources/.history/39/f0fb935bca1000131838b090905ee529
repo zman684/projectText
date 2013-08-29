@@ -955,8 +955,8 @@ public class Engine {
 		pickupTest = new Move[] { mapMaker("xxxxx"), mapMaker("xxwxx"),
 				mapMaker("xxsax"), mapMaker("xxixx") };
 		level = 1;
-		mapStart(monsterTest);
-		map = monsterTest;
+		mapStart(chapter1);
+		map = chapter1;
 		mapObjects = chapter2Objects;
 		Scanner in = new Scanner(System.in);
 		String name = "";
@@ -1067,14 +1067,12 @@ public class Engine {
 	/**
 	 * Returns items for the fight method
 	 */
-	public static ArrayList<Item> fightInvo(){
-		ArrayList<Item> itemInvo = new ArrayList<Item>();
+	public static void fightInvo(){
 		for (IObject a : invo) {
 			if (a.getObjectType().equals("item")) {
-				itemInvo.add((Item)a);
+				a.getName();
 			}
 		}
-		return itemInvo;
 	}
 
 	/**

@@ -136,7 +136,7 @@ public class Fight {
 					if (invo.size() == 0) {
 						System.out.println("You have no items!");
 					} else {
-						System.out.println(invo);
+						System.out.print(Engine.fightInvo());
 						System.out.print("What item would you like to use: ");
 						String item = in.nextLine();
 						for (Item i : invo) {

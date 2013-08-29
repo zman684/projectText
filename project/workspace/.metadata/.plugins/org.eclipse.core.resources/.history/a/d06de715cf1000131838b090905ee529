@@ -34,7 +34,7 @@ public class Fight {
 	}
 
 	public String battle() {
-		// DUMMY BATTLE//
+		//DUMMY BATTLE//
 		if (npc.getName().equals("Dummy")) {
 			flee = false;
 			Scanner in = new Scanner(System.in);
@@ -58,7 +58,7 @@ public class Fight {
 				}
 				System.out.println("Please choose your move:");
 				System.out.println("Attack");// Calls the attack method
-				// System.out.println("Use item");//
+//				System.out.println("Use item");//
 				System.out.println("Flee");//
 				String option = in.nextLine();
 
@@ -67,10 +67,10 @@ public class Fight {
 					attack(2);
 					System.out.println();
 				} else if (option.toLowerCase().equals("use item")) {
-					// YOU SHOULD NOT NEED ITEMS IN DUMMY BATTLE//
-					// Engine.fightInvo();
-					// System.out.print("What item would you like to use: ");
-					// String item = in.nextLine();
+					//YOU SHOULD NOT NEED ITEMS IN DUMMY BATTLE//
+//					Engine.fightInvo();
+//					System.out.print("What item would you like to use: ");
+//					String item = in.nextLine();
 				} else if (option.toLowerCase().equals("flee")) {
 					System.out.println();
 					player.getBack();
@@ -103,8 +103,8 @@ public class Fight {
 			// System.out.println(npc);
 			// System.out.println();
 			while (true) {
-				// After 3 turns of extra dmg the potion wears off
-				if (turns - startTurn > 3) {
+				//After 3 turns of extra dmg the potion wears off
+				if(turns - startTurn > 3){
 					newDmg = 0;
 					System.out.println("You loose the effects of the potion");
 				}
@@ -133,30 +133,24 @@ public class Fight {
 					System.out.println();
 				} else if (option.toLowerCase().equals("use item")) {
 					ArrayList<Item> invo = Engine.fightInvo();
-					if (invo.size() == 0) {
-						System.out.println("You have no items!");
-					} else {
-						System.out.println(invo);
-						System.out.print("What item would you like to use: ");
-						String item = in.nextLine();
-						for (Item i : invo) {
-							if (item.equals(i.getName().toLowerCase())) {
-								System.out.print("You used " + i.getName());
-								if (i.getEffect().equals("heal")) {
-									System.out.println(" and you gained "
-											+ i.getPower() + " health!");
-									player.addHealth(i.getPower());
-								} else if (i.getEffect().equals("str")) {
-									System.out.println();
-									startTurn = turns;
-									newDmg = i.getDmg();
-								} else if (i.getEffect().equals("mana")) {
-									System.out.println(" and you gained "
-											+ i.getPower() + " mana!");
-									player.addMana(i.getPower());
-								}
-								break;
+					System.out.print(Engine.fightInvo());
+					System.out.print("What item would you like to use: ");
+					String item = in.nextLine();
+					for(Item i : invo){
+						if(item.equals(i.getName().toLowerCase())){
+							System.out.print("You used " + i.getName());
+							if(i.getEffect().equals("heal")){
+								System.out.println(" and you gained " + i.getPower() + " health!");
+								player.addHealth(i.getPower());
+							}else if(i.getEffect().equals("str")){
+								System.out.println();
+								dmg = player.getDmg();
+								startTurn = turns;
+								newDmg = i.getDmg();
+							}else if(i.getEffect().equals("mana")){
+								System.out.println();
 							}
+							break;
 						}
 					}
 				} else if (option.toLowerCase().equals("flee")) {
@@ -201,8 +195,8 @@ public class Fight {
 		if (!npc.getName().equals("Dummy")) {
 			npcDmg = (npc.getLevel() * npc.getDmg() * 3)
 					- (player.getDef() / npc.getDmg());
-			playerDmg = (int) ((player.getLevel() * player.getDmg() * 3)
-					- (npc.getDef() / npc.getDmg()) + newDmg);
+			playerDmg = (int) ((player.getLevel() * player.getDmg() * 3) - (npc
+					.getDef() / npc.getDmg()) + newDmg);
 			int playerRng = playerDmg / 2;
 			int npcRng = npcDmg / 2;
 			// System.out.println("before");

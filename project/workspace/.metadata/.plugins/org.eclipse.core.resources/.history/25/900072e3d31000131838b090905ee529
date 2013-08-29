@@ -955,8 +955,8 @@ public class Engine {
 		pickupTest = new Move[] { mapMaker("xxxxx"), mapMaker("xxwxx"),
 				mapMaker("xxsax"), mapMaker("xxixx") };
 		level = 1;
-		mapStart(monsterTest);
-		map = monsterTest;
+		mapStart(chapter1);
+		map = chapter1;
 		mapObjects = chapter2Objects;
 		Scanner in = new Scanner(System.in);
 		String name = "";
@@ -1073,6 +1073,10 @@ public class Engine {
 			if (a.getObjectType().equals("item")) {
 				itemInvo.add((Item)a);
 			}
+		}
+		if(itemInvo.size() == 0){
+			System.out.println("You have no Items!");
+			return null;
 		}
 		return itemInvo;
 	}
