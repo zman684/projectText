@@ -1,0 +1,1 @@
+INDEX VERSION 1.126 OT2+/Users/zach/Documents/projectText/project/.metadata/.plugins/org.eclipse.jdt.core

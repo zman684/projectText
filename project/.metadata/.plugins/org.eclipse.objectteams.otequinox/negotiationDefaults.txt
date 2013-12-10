@@ -1,0 +1,2 @@
+aspect.binding.default=GRANT
+forced.export.default=UNDEFINED
