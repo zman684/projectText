@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+org.eclipse.debug.core.USE_STEP_FILTERS=true
+org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
+org.eclipse.debug.ui.consoleBackground=25,25,25
+org.eclipse.debug.ui.errorColor=128,0,128
+org.eclipse.debug.ui.inColor=255,255,255
+org.eclipse.debug.ui.outColor=255,255,255
+preferredTargets=default\:default|

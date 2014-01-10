@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;Game/maps/maps/map.csv&apos; to &apos;map.txt&apos;" description="Rename resource &apos;map.csv&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="maps/maps/map.csv" name="map.txt" stamp="1362367834643" updateReferences="true"/>&#x0A;<refactoring accessors="true" comment="Delete element from project &apos;Game&apos;&#x0A;- Original project: &apos;Game&apos;&#x0A;- Original element: &apos;maps.Tutorial.java&apos;" description="Delete element" element1="/maps&lt;maps{Tutorial.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1362368391574" subPackages="false" version="1.0"/>
-</session>

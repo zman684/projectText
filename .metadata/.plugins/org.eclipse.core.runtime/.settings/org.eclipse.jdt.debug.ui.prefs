@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+org.eclipse.jdt.debug.ui.active_filters=java.lang.ClassLoader,de.fub.bytecode.*,gnu.regexp.*,org.eclipse.objectteams.otre,org.eclipse.objectteams.otre.jplis,org.eclipse.objectteams.otre.util
+org.eclipse.jdt.debug.ui.filter_synthetics=true
