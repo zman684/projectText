@@ -1,4 +1,4 @@
-content_assist_number_of_computers=18
+content_assist_number_of_computers=26
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0
 eclipse.preferences.version=1
@@ -19,7 +19,7 @@ java_string=71,116,136
 org.eclipse.jdt.ui.editor.tab.width=
 org.eclipse.jdt.ui.formatterprofiles.version=12
 org.eclipse.jdt.ui.javadoclocations.migrated=true
-org.eclipse.jface.textfont=1|Consolas|10.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Consolas;
+org.eclipse.jface.textfont=1|Monaco|11.0|0|COCOA|1|;
 pf_coloring_argument=236,105,30
 pf_coloring_assignment=255,255,255
 pf_coloring_comment=129,70,162
