@@ -1,1 +1,3 @@
-Player.d: ../Player.cpp
+Player.d: ../Player.cpp ../Player.h
+
+../Player.h:

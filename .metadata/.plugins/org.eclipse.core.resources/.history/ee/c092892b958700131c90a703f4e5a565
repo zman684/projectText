@@ -1,0 +1,6 @@
+#include <iostream>
+
+Question::Question(std::string text){
+
+	Question::text = text;
+}

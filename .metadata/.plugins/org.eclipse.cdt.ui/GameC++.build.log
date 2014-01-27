@@ -1,15 +1,15 @@
-13:55:28 **** Incremental Build of configuration Debug for project GameC++ ****
+15:02:19 **** Incremental Build of configuration Debug for project GameC++ ****
 make all 
-Building file: ../Runner.cpp
+Building file: ../Question.cpp
 Invoking: GCC C++ Compiler
-g++ -I"../`gcc -print-prog-name=cc1plus` -v" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Runner.d" -MT"Runner.d" -o "Runner.o" "../Runner.cpp"
-Finished building: ../Runner.cpp
+g++ -I"../`gcc -print-prog-name=cc1plus` -v" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Question.d" -MT"Question.d" -o "Question.o" "../Question.cpp"
+Finished building: ../Question.cpp
  
 Building target: GameC++
 Invoking: GCC C++ Linker
-g++  -o "GameC++"  ./Levels.o ./Player.o ./Runner.o   
+g++  -o "GameC++"  ./Levels.o ./Player.o ./Question.o ./Runner.o   
 Finished building target: GameC++
  
 
-13:55:29 Build Finished (took 353ms)
+15:02:19 Build Finished (took 253ms)
 

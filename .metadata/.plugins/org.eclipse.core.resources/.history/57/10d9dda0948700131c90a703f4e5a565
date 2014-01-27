@@ -1,0 +1,22 @@
+/*
+ * Questions.h
+ *
+ *  Created on: Jan 27, 2014
+ *      Author: shikuma
+ */
+
+#ifndef QUESTIONS_H_
+#define QUESTIONS_H_
+
+class Questions{
+private:
+std::string text;
+
+public:
+Questions(std::string s);
+
+}
+
+
+
+#endif /* QUESTIONS_H_ */
