@@ -5,4 +5,4 @@ org.eclipse.debug.ui.consoleBackground=25,25,25
 org.eclipse.debug.ui.errorColor=163,163,163
 org.eclipse.debug.ui.inColor=255,255,255
 org.eclipse.debug.ui.outColor=255,255,255
-preferredTargets=default\:default|
+preferredTargets=default\:default|org.eclipse.cdt.debug.ui.toggleCBreakpointTarget\:org.eclipse.cdt.debug.ui.toggleCBreakpointTarget|

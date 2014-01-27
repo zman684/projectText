@@ -54,6 +54,30 @@ public class User {
 		back = null;
 	}
 
+	public User(String name, int password, double health, double mana, int gold,
+			int level, double exp, boolean end, int score, IObject rightHand,
+			IObject leftHand, Armor feet, Armor legs, Armor torso, Armor head,
+			Armor back) {
+		this.name = name;
+		this.password = password;
+		this.health = health;
+		this.mana = mana;
+		this.level = level;
+		this.exp = exp;
+		this.end = end;
+		// wepInvo = new ArrayList<Weapon>();
+		this.score = score;
+		this.rightHand = rightHand;
+		this.leftHand = leftHand;
+		this.feet = feet;
+		this.legs = legs;
+		this.torso = torso;
+		this.head = head;
+		this.gold = gold;
+		this.back = back;
+
+	}
+
 	public String toString() {
 		int def = 0;
 		if (legs != null) {

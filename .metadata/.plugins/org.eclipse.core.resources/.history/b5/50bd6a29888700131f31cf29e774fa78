@@ -1,0 +1,32 @@
+/*
+ * Player.h
+ *
+ *  Created on: Jan 27, 2014
+ *      Author: zach
+ */
+#include <array>
+
+#ifndef PLAYER_H_
+#define PLAYER_H_
+class Player{
+private:
+	std::string name;
+	int password;
+	double health;
+	double mana;
+	int level;
+	int score;
+	bool end;
+	int gold;
+	int expLimit;
+
+public:
+	Player(std::string name);
+	std::string toString();
+	std::string equipment();
+	std::string getName();
+	int getPassword();
+	double getHealth();
+	int get
+};
+#endif /* PLAYER_H_ */
