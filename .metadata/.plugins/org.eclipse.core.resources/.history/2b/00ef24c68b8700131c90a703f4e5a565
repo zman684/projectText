@@ -1,0 +1,15 @@
+/*
+ * Player.h
+ *
+ *  Created on: Jan 27, 2014
+ *      Author: shikuma
+ */
+#include <string>
+
+class Player{
+private:
+
+std::string name;
+std::string powers;
+
+}
