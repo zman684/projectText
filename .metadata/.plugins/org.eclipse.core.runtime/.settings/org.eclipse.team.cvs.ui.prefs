@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
-pref_console_command_color=129,70,162
+pref_console_command_color=163,163,163
 pref_console_error_color=156,248,40
 pref_console_message_color=255,255,255
+pref_first_startup=false
